@@ -1,0 +1,49 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.intellijPlatform/
+
+# Gradle
+.gradle/
+build/
+gradle*.zip
+
+# Kotlin
+.kotlin/
+
+# Claude Code
+.claude/
+
+# Generated sources
+src/main/gen/
+
+# macOS
+.DS_Store
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/
+
+# Build outputs
+*.jar
+*.war
+*.ear
+*.class
+
+# Log files
+*.log
+
+# Plugin build outputs
+build/distributions/
+
+# Test outputs
+test-output/
+
+!gradle/wrapper/gradle-wrapper.jar

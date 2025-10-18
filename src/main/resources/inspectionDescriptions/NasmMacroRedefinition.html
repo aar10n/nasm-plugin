@@ -1,0 +1,40 @@
+<html>
+<body>
+Reports when a macro is defined multiple times.
+<p>
+    In NASM, redefining a macro silently replaces the previous definition, which can cause unexpected behavior.
+</p>
+
+<p><b>Example:</b></p>
+<pre><code>
+    %define FOO 1           ; Original definition
+    %define FOO 2           ; Warning: already defined at line 1
+
+    %macro test 0
+        nop
+    %endmacro
+    %macro test 0           ; Warning: already defined at line 3
+        ret
+    %endmacro
+</code></pre>
+<!-- tooltip end -->
+
+<p>
+    Multi-line macros with different parameter counts are considered distinct:
+</p>
+<pre><code>
+    %macro print 1          ; OK
+        mov rax, %1
+    %endmacro
+    %macro print 2          ; OK - different parameter count
+        mov rax, %1
+        mov rbx, %2
+    %endmacro
+</code></pre>
+
+<p>
+    <b>Note:</b> Does not apply to <code>%assign</code>, which is designed for reassignment.
+</p>
+
+</body>
+</html>

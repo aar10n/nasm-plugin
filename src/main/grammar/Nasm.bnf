@@ -1,0 +1,1051 @@
+{
+  parserClass="dev.agb.nasmplugin.parser.NasmParser"
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Nasm"
+  psiImplClassSuffix="Impl"
+  psiPackage="dev.agb.nasmplugin.psi"
+  psiImplPackage="dev.agb.nasmplugin.psi.impl"
+
+  elementTypeHolderClass="dev.agb.nasmplugin.psi.NasmTypes"
+  elementTypeClass="dev.agb.nasmplugin.psi.NasmElementType"
+  tokenTypeClass="dev.agb.nasmplugin.psi.NasmTokenType"
+
+  tokens = [
+    // Token types from lexer
+    COMMENT='COMMENT'
+    INSTRUCTION_PREFIX='INSTRUCTION_PREFIX'
+    FLOAT='FLOAT'
+    NUMBER='NUMBER'
+    STRING='STRING'
+    IDENTIFIER='IDENTIFIER'
+    CRLF='CRLF'
+    // Operators
+    MOD='MOD'
+    AMP='AMP'
+    PIPE='PIPE'
+    CARET='CARET'
+    TILDE='TILDE'
+    LSHIFT='LSHIFT'
+    RSHIFT='RSHIFT'
+    EQ='EQ'
+    LT='LT'
+    GT='GT'
+    EXCLAIM='EXCLAIM'
+    COLON='COLON'
+    BOOLEAN_OR='BOOLEAN_OR'
+    BOOLEAN_XOR='BOOLEAN_XOR'
+    BOOLEAN_AND='BOOLEAN_AND'
+    LSHIFT_COMPLETE='LSHIFT_COMPLETE'
+    RSHIFT_COMPLETE='RSHIFT_COMPLETE'
+    SIGNED_DIV='SIGNED_DIV'
+    SIGNED_MOD='SIGNED_MOD'
+    SPACESHIP='SPACESHIP'
+    LTE='LTE'
+    GTE='GTE'
+    NOT_EQUAL_1='NOT_EQUAL_1'
+    NOT_EQUAL_2='NOT_EQUAL_2'
+    EQ_EQ='EQ_EQ'
+    DOUBLE_DOLLAR='DOUBLE_DOLLAR'
+    DOLLAR='DOLLAR'
+    QUESTION_MARK='QUESTION_MARK'
+    DOT_DOT='DOT_DOT'
+    // Delimiters
+    LBRACE='LBRACE'
+    RBRACE='RBRACE'
+    LBRACKET='LBRACKET'
+    RBRACKET='RBRACKET'
+    LPAREN='LPAREN'
+    RPAREN='RPAREN'
+    COMMA='COMMA'
+    PLUS='PLUS'
+    MINUS='MINUS'
+    MUL='MUL'
+    DIV='DIV'
+    // Preprocessor tokens
+    PASTE_OP='PASTE_OP'
+    QUERY='QUERY'
+    QUERY_EXPAND='QUERY_EXPAND'
+    MACRO_EXPANSION_START='MACRO_EXPANSION_START'
+    MACRO_EXPLICIT_START='MACRO_EXPLICIT_START'
+    MACRO_PARAM='MACRO_PARAM'
+    MACRO_PARAM_GREEDY='MACRO_PARAM_GREEDY'
+    MACRO_PARAM_REVERSE='MACRO_PARAM_REVERSE'
+    CONTEXT_LOCAL_REF='CONTEXT_LOCAL_REF'
+    MACRO_LOCAL_REF='MACRO_LOCAL_REF'
+    ENV_VAR_PREFIX='ENV_VAR_PREFIX'
+    // Built-in functions
+    BUILTIN_FUNC='BUILTIN_FUNC'
+    STRING_FUNC='STRING_FUNC'
+    FLOAT_FUNC='FLOAT_FUNC'
+    SPECIAL_FLOAT='SPECIAL_FLOAT'
+    DEFINED='DEFINED'
+    // Keywords
+    DUP='DUP'
+    STRICT='STRICT'
+    REL='REL'
+    ABS='ABS'
+    WRT='WRT'
+    WRT_SUFFIX='WRT_SUFFIX'
+    SEG='SEG'
+    EQU='EQU'
+    TIMES='TIMES'
+    // Data directives
+    DATA_SIZE='DATA_SIZE'
+    SPACE_SIZE='SPACE_SIZE'
+    // NASM directives
+    SECTION_KW='SECTION_KW'
+    SEGMENT_KW='SEGMENT_KW'
+    GLOBAL_KW='GLOBAL_KW'
+    EXTERN_KW='EXTERN_KW'
+    COMMON_KW='COMMON_KW'
+    STATIC_KW='STATIC_KW'
+    REQUIRED_KW='REQUIRED_KW'
+    INCBIN_KW='INCBIN_KW'
+    BITS_KW='BITS_KW'
+    USE16_KW='USE16_KW'
+    USE32_KW='USE32_KW'
+    USE64_KW='USE64_KW'
+    DEFAULT_KW='DEFAULT_KW'
+    ABSOLUTE_KW='ABSOLUTE_KW'
+    STRUC_KW='STRUC_KW'
+    ENDSTRUC_KW='ENDSTRUC_KW'
+    ISTRUC_KW='ISTRUC_KW'
+    IEND_KW='IEND_KW'
+    AT_KW='AT_KW'
+    ALIGN_KW='ALIGN_KW'
+    ALIGNB_KW='ALIGNB_KW'
+    SECTALIGN_KW='SECTALIGN_KW'
+    CPU_KW='CPU_KW'
+    FLOAT_KW='FLOAT_KW'
+    ORG_KW='ORG_KW'
+    MAP_KW='MAP_KW'
+    // Section attributes
+    SECTION_ATTR_KW='SECTION_ATTR_KW'
+    // Registers and sizes
+    REGISTER='REGISTER'
+    SEG_REGISTER='SEG_REGISTER'
+    MASK_REG='MASK_REG'
+    SIZE_SPEC='SIZE_SPEC'
+    // AVX-512 decorators
+    ZEROING='ZEROING'
+    SAE='SAE'
+    ROUNDING='ROUNDING'
+    BROADCAST='BROADCAST'
+    // Macro directives
+    MACRO_START='MACRO_START'
+    MACRO_END='MACRO_END'
+    MACRO_DEFINE='MACRO_DEFINE'
+    MACRO_ASSIGN='MACRO_ASSIGN'
+    MACRO_UNDEF='MACRO_UNDEF'
+    MACRO_UNMACRO='MACRO_UNMACRO'
+    MACRO_INCLUDE='MACRO_INCLUDE'
+    MACRO_IF='MACRO_IF'
+    MACRO_IFDEF='MACRO_IFDEF'
+    MACRO_IFNDEF='MACRO_IFNDEF'
+    MACRO_IFMACRO='MACRO_IFMACRO'
+    MACRO_ELIF='MACRO_ELIF'
+    MACRO_ELIFMACRO='MACRO_ELIFMACRO'
+    MACRO_ELSE='MACRO_ELSE'
+    MACRO_ENDIF='MACRO_ENDIF'
+    MACRO_REP='MACRO_REP'
+    MACRO_ENDREP='MACRO_ENDREP'
+    MACRO_EXITREP='MACRO_EXITREP'
+    MACRO_EXITMACRO='MACRO_EXITMACRO'
+    MACRO_WHILE='MACRO_WHILE'
+    MACRO_ENDWHILE='MACRO_ENDWHILE'
+    MACRO_ROTATE='MACRO_ROTATE'
+    MACRO_ERROR='MACRO_ERROR'
+    MACRO_USE='MACRO_USE'
+    MACRO_PUSH='MACRO_PUSH'
+    MACRO_POP='MACRO_POP'
+    MACRO_REPL='MACRO_REPL'
+    MACRO_STRLEN='MACRO_STRLEN'
+    MACRO_SUBSTR='MACRO_SUBSTR'
+    MACRO_STRCAT='MACRO_STRCAT'
+    MACRO_PATHSEARCH='MACRO_PATHSEARCH'
+    MACRO_DEPEND='MACRO_DEPEND'
+    MACRO_ARG_DECL='MACRO_ARG_DECL'
+    MACRO_STACKSIZE='MACRO_STACKSIZE'
+    MACRO_LOCAL='MACRO_LOCAL'
+    MACRO_LINE='MACRO_LINE'
+    MACRO_PRAGMA='MACRO_PRAGMA'
+    MACRO_CLEAR='MACRO_CLEAR'
+    MACRO_ALIASES='MACRO_ALIASES'
+    PREPROCESSOR_DIRECTIVE='PREPROCESSOR_DIRECTIVE'
+  ]
+}
+
+// ============================================================================
+// TOP-LEVEL PROGRAM STRUCTURE
+// ============================================================================
+
+// Entry point for the parser
+program ::= source_lines
+
+source_lines ::= source_line*
+
+source_line ::= equ_line                       // IDENTIFIER EQU ... (pinned on EQU)
+              | label_with_colon_line          // IDENTIFIER: ... (requires colon)
+              | pp_assignment_line              // %assign, %define (pinned on directive)
+              | times_prefixed_line             // TIMES-prefixed statements (with or without CRLF)
+              | label_with_data_line           // IDENTIFIER db/dw/dd/etc ... (label without colon before data) - must come before unlabeled_content
+              | unlabeled_content              // Instructions and other statements
+              | preprocessor_line
+              | conditional_block
+              | multi_line_macro
+              | rep_block
+              | struc_block
+              | istruc_block
+              | CRLF                          // Empty line
+
+// Separate rules for better disambiguation
+private equ_line ::= equ_definition [CRLF]
+
+// Label line that REQUIRES a colon for proper disambiguation
+private label_with_colon_line ::= label_with_colon [non_assignment_statement] [CRLF]
+
+// Label that must have a colon - NOT private so elementType works correctly
+label_with_colon ::= global_label COLON
+                  | local_label COLON
+                  {
+                    elementType=label_def
+                    mixin="dev.agb.nasmplugin.psi.impl.NasmNamedElementImpl"
+                    implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+                  }
+
+// Label line without colon when followed by data or space directive
+// This needs to check for IDENTIFIER + DATA_SIZE/SPACE_SIZE pattern specifically
+private label_with_data_line ::= label_without_colon (data_def | space_def) [CRLF]
+
+// Label without colon (only valid before data directives)
+label_without_colon ::= global_label
+                     | local_label
+                     {
+                       elementType=label_def
+                       mixin="dev.agb.nasmplugin.psi.impl.NasmNamedElementImpl"
+                       implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+                     }
+
+private pp_assignment_line ::= pp_assign_stmt [CRLF]
+                             | pp_define_stmt [CRLF]
+
+// Unified TIMES handling - single rule for all TIMES-prefixed content
+private times_prefixed_line ::= TIMES times_repeat_count times_content [CRLF]
+                               {
+                                 pin=1
+                               }
+
+// Special handling for times repeat count to avoid ambiguity
+private times_repeat_count ::= macro_param_ref     // Direct macro parameter like %1, %0
+                              | const_expr          // Regular expression
+
+// Times-prefixed instruction (creates instruction element like regular instructions)
+times_instruction ::= mnemonic operand_list?
+                    {
+                      elementType=instruction
+                    }
+
+private times_content ::= times_instruction          // TIMES-prefixed instruction
+                        | DATA_SIZE data_list        // TIMES-prefixed data
+                        | invocation                 // TIMES-prefixed macro call
+
+// unlabeled_content now handles statements without labels
+private unlabeled_content ::= non_assignment_statement [CRLF]
+
+// Order matters: try instruction first to ensure prefixes get recognized
+private non_assignment_statement ::= instruction | pseudo_instruction | bracketed_directive | invocation | at_directive
+
+// ============================================================================
+// LABELS AND SYMBOLS
+// ============================================================================
+
+// Labels - keep this for backward compatibility but not used directly in source_line
+// In source_line we use label_with_colon which requires the colon
+label_def ::= global_label COLON?
+            | local_label COLON?
+            {
+              mixin="dev.agb.nasmplugin.psi.impl.NasmNamedElementImpl"
+              implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+            }
+
+// Global labels - includes implicit macro parameter concatenation
+global_label ::= macro_param_concat     // %1_end, %2_label, %$foo_end
+               | context_ref           // %$label, %%label
+               | IDENTIFIER            // regular_label
+
+// Local labels - includes implicit concatenation
+local_label ::= DOT_DOT? IDENTIFIER
+              | MACRO_LOCAL_REF
+
+// Implicit concatenation patterns (unified)
+private macro_param_concat ::= macro_param_ref IDENTIFIER     // %1_end, %2_label
+                             | context_local_ref IDENTIFIER   // %$foo_end
+                             | macro_expansion IDENTIFIER     // %[foo]_end
+
+// Symbol references - includes implicit macro parameter concatenation
+symbol_ref ::= macro_param_concat      // Implicit concat: %1_end, %$foo_end
+             | IDENTIFIER
+             | local_label
+             | special_symbol
+             | macro_param_ref
+             | context_local_ref
+             {
+               mixin="dev.agb.nasmplugin.psi.impl.NasmSymbolReferenceImpl"
+               implements="dev.agb.nasmplugin.psi.NasmSymbolReference"
+             }
+
+// Macro reference in conditional directives (%ifdef, %ifndef)
+macro_ref ::= IDENTIFIER
+            {
+              mixin="dev.agb.nasmplugin.psi.impl.NasmMacroReferenceImpl"
+              implements="dev.agb.nasmplugin.psi.NasmMacroReference"
+            }
+
+special_symbol ::= DOLLAR | DOUBLE_DOLLAR | CONTEXT_LOCAL_REF
+
+macro_param_ref ::= MACRO_PARAM
+                  | MACRO_PARAM_GREEDY
+                  | MACRO_PARAM_REVERSE
+                  | MACRO_EXPLICIT_START NUMBER RBRACE
+                  | MACRO_EXPLICIT_START NUMBER COLON default_value RBRACE
+
+private context_local_ref ::= CONTEXT_LOCAL_REF | MACRO_LOCAL_REF
+
+// ============================================================================
+// INSTRUCTIONS
+// ============================================================================
+
+// Unified instruction handling - no need for separate times_prefix_instruction
+instruction ::= [instruction_prefixes] mnemonic operand_list?
+              {
+                mixin="dev.agb.nasmplugin.psi.impl.NasmInstructionMixin"
+              }
+
+// All possible instruction prefixes in order
+private instruction_prefixes ::= [times_expr] [INSTRUCTION_PREFIX] [lock_prefix] [segment_override] [size_override] [vex_prefix]
+
+times_expr ::= TIMES const_expr
+             | MACRO_REP const_expr
+
+lock_prefix ::= INSTRUCTION_PREFIX      // lock, xacquire, xrelease, bnd, nobnd
+segment_override ::= segment_reg COLON
+size_override ::= INSTRUCTION_PREFIX    // o16, o32, o64, a16, a32, a64, etc.
+vex_prefix ::= INSTRUCTION_PREFIX       // vex, vex2, vex3, evex, rex, rex2
+
+// Instruction mnemonics - includes implicit macro parameter concatenation
+mnemonic ::= macro_param_concat     // Implicit concat: %1_op, %$op_name
+           | IDENTIFIER
+           | macro_expansion
+
+// ============================================================================
+// OPERANDS
+// ============================================================================
+
+operand_list ::= operand operand_tail*
+               {
+                 pin=1
+               }
+
+private operand_tail ::= COMMA operand?
+                       {
+                         pin=1
+                       }
+
+// Recovery for operand list: consume tokens until we hit end of line
+private operand_list_recover ::= !(CRLF | MACRO_START | MACRO_END | MACRO_IF | MACRO_IFDEF | MACRO_IFNDEF | MACRO_IFMACRO | MACRO_ENDIF)
+
+operand ::= expanded_operand decorator* | decorator+
+
+// Reorder alternatives to try more specific patterns first
+expanded_operand ::= SIZE_SPEC const_expr          // Sized immediate: qword 0, byte 10
+                   | SIZE_SPEC register             // Sized register (unusual but allowed)
+                   | memory_expr                    // Memory expressions with segment overrides (try before const_expr)
+                   | conditional_operand            // Conditional operands
+                   | far_jump_operand               // Far jump (moved to separate rule to avoid ambiguity)
+                   | register                       // Plain register (try before const_expr to avoid ambiguity)
+                   | const_expr                     // Expressions (includes macro_expansion within it)
+
+// Separate rule for far jump to handle the COLON explicitly
+private far_jump_operand ::= const_expr COLON const_expr
+                           {
+                             pin=2
+                           }
+
+decorator ::= LBRACE decorator_list RBRACE
+            {
+              pin=2
+            }
+
+decorator_list ::= decorator_item (COMMA decorator_item)*
+
+decorator_item ::= MASK_REG | ZEROING | BROADCAST | ROUNDING | SAE
+
+memory_expr ::= size_spec memory_ref
+              | segment_override memory_ref
+              | memory_ref
+
+memory_ref ::= LBRACKET effective_addr RBRACKET
+
+effective_addr ::= [segment_reg COLON] ea_expr  // Optional segment override inside brackets
+
+ea_expr ::= ea_term ((PLUS | MINUS) ea_term)*
+
+ea_term ::= REL symbol_ref        // RIP-relative addressing
+          | register MUL scale     // Scaled register
+          | register               // Plain register
+          | const_expr
+          | symbol_ref
+          | macro_expansion
+
+scale ::= NUMBER // 1, 2, 4, 8
+
+private size_spec ::= SIZE_SPEC SIZE_SPEC*
+private register ::= REGISTER | SEG_REGISTER | MASK_REG
+segment_reg ::= SEG_REGISTER
+
+// ============================================================================
+// PSEUDO-INSTRUCTIONS
+// ============================================================================
+
+pseudo_instruction ::= data_def
+                     | space_def
+                     | include_dir
+                     | section_dir
+                     | global_dir
+                     | extern_dir
+                     | common_dir
+                     | align_dir
+                     | org_dir
+                     | bits_dir
+                     | cpu_dir
+                     | float_dir
+                     | default_dir
+                     | absolute_dir
+                     | use_package
+
+data_def ::= [times_expr] DATA_SIZE data_list
+           {
+             pin=2
+           }
+
+data_list ::= data_item (COMMA data_item)*
+
+data_item ::= string_function       // Try specific patterns first
+            | conditional_data
+            | QUESTION_MARK
+            | data_expr                    // Expressions (including optional DUP)
+            | macro_expansion
+
+private data_expr ::= const_expr [DUP LPAREN data_list RPAREN]
+
+string_function ::= STRING_FUNC LPAREN STRING RPAREN
+                  {
+                    pin=2
+                  }
+
+space_def ::= SPACE_SIZE const_expr
+            {
+              pin=1
+            }
+
+include_dir ::= INCBIN_KW STRING (COMMA const_expr (COMMA const_expr)?)?
+              | MACRO_INCLUDE string_or_env
+              | MACRO_USE package_name
+              {
+                pin=1
+              }
+
+section_dir ::= (SECTION_KW | SEGMENT_KW) section_name [section_attrs]
+              {
+                pin=1
+              }
+
+section_name ::= IDENTIFIER | STRING
+
+section_attrs ::= section_attr+
+
+section_attr ::= section_attr_name EQ const_expr  // align=16, start=0x1000
+               | section_attr_name                 // alloc, exec, write, etc.
+
+// Section attribute names can be identifiers, section attributes, or keywords that might conflict
+section_attr_name ::= IDENTIFIER | SECTION_ATTR_KW | ALIGN_KW | BITS_KW | ORG_KW
+
+global_dir ::= GLOBAL_KW symbol_list
+             | MACRO_PUSH symbol_list
+             {
+               pin=1
+             }
+
+extern_dir ::= EXTERN_KW symbol_list
+             {
+               pin=1
+             }
+
+symbol_list ::= symbol_decl (COMMA symbol_decl)*
+
+symbol_decl ::= symbol_name [COLON symbol_name]  // name or name:type
+              {
+                mixin="dev.agb.nasmplugin.psi.impl.NasmSymbolDeclMixin"
+                implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+              }
+
+// Allow keywords to be used as symbol names (e.g., "extern write")
+symbol_name ::= IDENTIFIER | SECTION_ATTR_KW | SIZE_SPEC | keyword_as_name
+
+common_dir ::= COMMON_KW IDENTIFIER const_expr
+             {
+               pin=1
+             }
+
+align_dir ::= (ALIGN_KW | ALIGNB_KW) const_expr (COMMA align_fill)?
+            | SECTALIGN_KW const_expr
+            {
+              pin=1
+            }
+
+// Align fill pattern can be a constant or a data directive (db, dw, etc.)
+private align_fill ::= DATA_SIZE data_list | const_expr
+
+org_dir ::= ORG_KW const_expr
+          {
+            pin=1
+          }
+
+absolute_dir ::= ABSOLUTE_KW const_expr
+               {
+                 pin=1
+               }
+
+bits_dir ::= BITS_KW const_expr
+           | USE16_KW
+           | USE32_KW
+           | USE64_KW
+           {
+             pin=1
+           }
+
+cpu_dir ::= CPU_KW IDENTIFIER
+          {
+            pin=1
+          }
+
+float_dir ::= FLOAT_KW IDENTIFIER
+            {
+              pin=1
+            }
+
+default_dir ::= DEFAULT_KW default_option
+              {
+                pin=1
+              }
+
+default_option ::= REL | ABS | INSTRUCTION_PREFIX  // bnd, nobnd
+
+use_package ::= MACRO_USE package_name
+              {
+                pin=1
+              }
+
+package_name ::= IDENTIFIER
+
+// ============================================================================
+// BRACKETED DIRECTIVES
+// ============================================================================
+
+bracketed_directive ::= LBRACKET DEFAULT_KW default_option RBRACKET
+                      | LBRACKET IDENTIFIER IDENTIFIER+ RBRACKET  // [pragma ...], [map ...], etc.
+                      {
+                        pin=1
+                      }
+
+at_directive ::= AT_KW symbol_ref COMMA data_def
+               {
+                 pin=1
+               }
+
+// ============================================================================
+// ASSIGNMENTS
+// ============================================================================
+
+// Keep assignment rule for backward compatibility, but now it's not directly used in source_line
+assignment ::= equ_definition
+             | pp_assign_stmt
+             | pp_define_stmt
+
+equ_definition ::= (IDENTIFIER | context_ref | macro_param_concat) EQU const_expr
+                 {
+                   pin=2
+                   mixin="dev.agb.nasmplugin.psi.impl.NasmNamedElementImpl"
+                   implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+                 }
+
+pp_assign_stmt ::= MACRO_ASSIGN IDENTIFIER const_expr
+                 {
+                   pin=1
+                   mixin="dev.agb.nasmplugin.psi.impl.NasmNamedElementImpl"
+                   implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+                 }
+
+pp_define_stmt ::= MACRO_DEFINE macro_name [macro_params] [macro_body_inline]
+                 {
+                   pin=1
+                   mixin="dev.agb.nasmplugin.psi.impl.NasmNamedElementImpl"
+                   implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+                 }
+
+// ============================================================================
+// PREPROCESSOR AND CONDITIONALS
+// ============================================================================
+
+preprocessor_line ::= macro_dir
+                    | context_dir
+                    | message_dir
+                    | line_dir
+                    | clear_dir
+                    | exit_dir
+
+exit_dir ::= MACRO_EXITMACRO | MACRO_EXITREP
+           {
+             pin=1
+           }
+
+// Simplified conditional block structure
+conditional_block ::= if_dir CRLF conditional_content endif_dir [CRLF]
+                    {
+                      pin=1
+                    }
+
+private conditional_content ::= conditional_source_lines elif_or_else_part?
+
+private elif_or_else_part ::= elif_blocks else_block?
+                            | else_block
+
+private elif_blocks ::= elif_block+
+
+private elif_block ::= elif_dir CRLF conditional_source_lines
+                     {
+                       pin=1
+                     }
+
+private else_block ::= else_dir CRLF conditional_source_lines
+                     {
+                       pin=1
+                     }
+
+// Source lines inside conditionals - stops at elif/else/endif
+private conditional_source_lines ::= (!conditional_marker source_line)*
+
+private conditional_marker ::= MACRO_ELIF | MACRO_ELIFMACRO | MACRO_ELSE | MACRO_ENDIF
+
+if_dir ::= MACRO_IF condition?
+         | MACRO_IFDEF macro_ref
+         | MACRO_IFNDEF macro_ref
+         | MACRO_IFMACRO macro_ref param_count
+         {
+           pin=1
+         }
+
+elif_dir ::= MACRO_ELIF condition?
+           | MACRO_ELIFMACRO macro_ref param_count
+           {
+             pin=1
+           }
+
+else_dir ::= MACRO_ELSE
+           {
+             pin=1
+           }
+
+endif_dir ::= MACRO_ENDIF
+            {
+              pin=1
+            }
+
+condition ::= token_comparison    // Comma-separated token comparison (for %ifidn)
+            | const_expr          // Numeric/expression comparisons
+
+// Token comparison for %ifidn/%ifidni - only comma-separated form
+token_comparison ::= token_operand COMMA token_operand
+
+// Token operands in comparisons - unified token elements minus comparison ops and comma
+private token_operand ::= token_operand_element+
+
+private token_operand_element ::= !(comparison_op | COMMA) base_token_element
+
+// Context directives
+context_dir ::= MACRO_PUSH [context_name]
+              | MACRO_POP
+              | MACRO_REPL context_name
+              | MACRO_ARG_DECL arg_directive
+              | MACRO_STACKSIZE const_expr
+              | MACRO_LOCAL local_directive
+              {
+                pin=1
+              }
+
+context_name ::= IDENTIFIER
+arg_directive ::= IDENTIFIER (COMMA IDENTIFIER)*
+local_directive ::= IDENTIFIER (COMMA IDENTIFIER)*
+
+message_dir ::= MACRO_ERROR message_text
+              {
+                pin=1
+              }
+
+message_text ::= STRING | token_sequence
+
+line_dir ::= MACRO_LINE const_expr [STRING]
+           {
+             pin=1
+           }
+
+clear_dir ::= MACRO_CLEAR [clear_target]
+            | MACRO_UNDEF IDENTIFIER
+            | MACRO_UNMACRO IDENTIFIER [param_count]
+            {
+              pin=1
+            }
+
+clear_target ::= IDENTIFIER
+
+// ============================================================================
+// MACRO SYSTEM
+// ============================================================================
+
+multi_line_macro ::= macro_start_line macro_lines macro_end_line
+                   {
+                     pin=1
+                     mixin="dev.agb.nasmplugin.psi.impl.NasmNamedElementImpl"
+                     implements="dev.agb.nasmplugin.psi.NasmNamedElement"
+                   }
+
+private macro_start_line ::= MACRO_START macro_name param_count [param_defaults] [macro_flags]
+
+private param_defaults ::= NUMBER (COMMA NUMBER)*
+
+macro_name ::= IDENTIFIER | preprocessor_id | context_ref | keyword_as_name | SIZE_SPEC
+
+preprocessor_id ::= PREPROCESSOR_DIRECTIVE
+
+// Keywords that can be used as identifiers in certain contexts (like macro names)
+keyword_as_name ::= ABS | REL | SEG | STRICT | DUP | WRT | AT_KW | DEFAULT_KW
+
+macro_params ::= LPAREN param_list RPAREN
+
+param_list ::= param_spec (COMMA param_spec)*
+
+param_spec ::= param_name [param_qualifier]
+
+param_name ::= IDENTIFIER
+
+param_qualifier ::= EQ default_value
+                  | PLUS [default_value]
+                  | MUL [default_value]
+                  | EXCLAIM [default_value]
+
+default_value ::= token_sequence
+
+param_count ::= NUMBER [MINUS NUMBER]
+              {
+                pin=1
+              }
+
+macro_flags ::= PLUS | MUL | MINUS MUL
+
+macro_body_inline ::= token_sequence
+
+macro_lines ::= source_lines
+
+private macro_end_line ::= MACRO_END
+                         {
+                           pin=1
+                         }
+
+// Unified macro invocation
+invocation ::= macro_call
+             | smacro_expansion
+             | builtin_function
+             | macro_param_invocation  // Macro parameter used as a statement/invocation
+
+// Macro parameter as invocation - must be followed by potential arguments
+private macro_param_invocation ::= macro_param_ref macro_args?
+
+// Regular macro call (no parentheses): FOO arg1, arg2
+macro_call ::= IDENTIFIER macro_args
+             {
+               pin=2
+               mixin="dev.agb.nasmplugin.psi.impl.NasmMacroInvocationMixin"
+               implements="dev.agb.nasmplugin.psi.NasmMacroReference"
+             }
+
+// Function-like macro call (with parentheses): FOO(arg1, arg2)
+function_macro_call ::= IDENTIFIER LPAREN [macro_arg_list] RPAREN
+                      {
+                        pin=2
+                        mixin="dev.agb.nasmplugin.psi.impl.NasmMacroInvocationMixin"
+                        implements="dev.agb.nasmplugin.psi.NasmMacroReference"
+                      }
+
+macro_args ::= macro_arg (COMMA macro_arg)*
+
+private macro_arg_list ::= macro_arg (COMMA macro_arg)*
+
+macro_arg ::= LBRACE token_sequence RBRACE
+            | macro_arg_tokens
+            {
+              mixin="dev.agb.nasmplugin.psi.impl.NasmMacroArgMixin"
+            }
+
+private macro_arg_tokens ::= macro_arg_token+
+
+// Macro argument tokens - base tokens minus COMMA and RPAREN
+private macro_arg_token ::= !(COMMA | RPAREN) base_token_element
+
+smacro_expansion ::= IDENTIFIER
+                   | MACRO_EXPANSION_START token_sequence RBRACKET
+                   | preprocessor_id
+
+// Macro expansions %[...] and %{...}
+macro_expansion ::= MACRO_EXPANSION_START macro_expansion_content RBRACKET
+                  | MACRO_EXPLICIT_START macro_expansion_brace_content RBRACE
+
+private macro_expansion_content ::= macro_expansion_token+
+
+// Expansion tokens - base tokens minus RBRACKET
+private macro_expansion_token ::= !RBRACKET base_token_element
+
+private macro_expansion_brace_content ::= macro_expansion_brace_token+
+
+// Brace expansion tokens - base tokens minus RBRACE
+private macro_expansion_brace_token ::= !RBRACE base_token_element
+
+// Built-in functions
+builtin_function ::= integer_function
+                   | preprocessor_function
+                   | string_transform
+                   | query_function
+
+integer_function ::= BUILTIN_FUNC LPAREN const_expr RPAREN
+                   {
+                     pin=2
+                   }
+
+preprocessor_function ::= (MACRO_STRLEN | MACRO_SUBSTR | MACRO_STRCAT | PREPROCESSOR_DIRECTIVE)
+                          LPAREN preprocessor_function_args RPAREN
+                        {
+                          pin=2
+                        }
+
+private preprocessor_function_args ::= preprocessor_function_arg (COMMA preprocessor_function_arg)*
+
+private preprocessor_function_arg ::= const_expr
+
+string_transform ::= STRING_FUNC LPAREN STRING RPAREN
+                   {
+                     pin=2
+                   }
+
+query_function ::= QUERY IDENTIFIER
+                 | QUERY_EXPAND IDENTIFIER
+                 | defined_func
+
+defined_func ::= DEFINED LPAREN IDENTIFIER RPAREN
+               {
+                 pin=1
+               }
+
+// ============================================================================
+// EXPRESSIONS
+// ============================================================================
+
+expression ::= comparison_expr [wrt_suffix]
+
+private wrt_suffix ::= WRT (symbol_ref | WRT_SUFFIX)
+                     {
+                       pin=1
+                     }
+
+// Operator precedence ladder (all use elementType=expression for PSI tree collapsing)
+comparison_expr ::= logical_or_expr (comparison_op logical_or_expr)*
+                  { elementType=expression }
+
+private comparison_op ::= EQ_EQ | NOT_EQUAL_1 | NOT_EQUAL_2 | LT | LTE | GT | GTE | SPACESHIP
+
+logical_or_expr ::= logical_xor_expr (BOOLEAN_OR logical_xor_expr)*
+                  { elementType=expression }
+
+logical_xor_expr ::= logical_and_expr (BOOLEAN_XOR logical_and_expr)*
+                   { elementType=expression }
+
+logical_and_expr ::= or_expr (BOOLEAN_AND or_expr)*
+                   { elementType=expression }
+
+or_expr ::= xor_expr (PIPE xor_expr)*
+          { elementType=expression }
+
+xor_expr ::= and_expr (CARET and_expr)*
+           { elementType=expression }
+
+and_expr ::= shift_expr (AMP shift_expr)*
+           { elementType=expression }
+
+shift_expr ::= add_expr (shift_op add_expr)*
+             { elementType=expression }
+
+private shift_op ::= LSHIFT | LSHIFT_COMPLETE | RSHIFT | RSHIFT_COMPLETE
+
+add_expr ::= mul_expr ((PLUS | MINUS) mul_expr)*
+           { elementType=expression }
+
+mul_expr ::= unary_expr (mul_op unary_expr)*
+           { elementType=expression }
+
+private mul_op ::= MUL | DIV | SIGNED_DIV | MOD | SIGNED_MOD
+
+unary_expr ::= unary_op unary_expr
+             | postfix_expr
+             { elementType=expression }
+
+private unary_op ::= PLUS | MINUS | TILDE | EXCLAIM | SEG
+
+postfix_expr ::= atom_expr (PASTE_OP atom_expr)*
+               { elementType=expression }
+
+atom_expr ::= LPAREN expression RPAREN
+            | LBRACE brace_token_sequence RBRACE  // Brace-wrapped token sequence (for macro arguments)
+            | function_macro_call     // Function-like macro: THREAD_FRAME(r14)
+            | builtin_function        // Built-in functions
+            | macro_expansion         // Macro expansions: %{...}, %[...]
+            | env_var_ref             // Environment variables
+            | float_format            // Float format conversions
+            | register                // Registers
+            | symbol_ref              // Plain identifiers
+            | NUMBER
+            | STRING
+            | FLOAT
+            | SPECIAL_FLOAT
+
+env_var_ref ::= ENV_VAR_PREFIX (IDENTIFIER | STRING)
+
+float_format ::= FLOAT_FUNC LPAREN float_value RPAREN
+               {
+                 pin=2
+               }
+
+float_value ::= FLOAT | NUMBER | SPECIAL_FLOAT
+
+// Constant expressions (for contexts requiring compile-time constants)
+private const_expr ::= expression
+
+// ============================================================================
+// TOKEN SEQUENCES (unified)
+// ============================================================================
+
+// Base token element used across all token sequences
+private base_token_element ::= preprocessor_id
+                              | macro_expansion
+                              | macro_param_ref
+                              | context_ref
+                              | stringize_op
+                              | IDENTIFIER
+                              | NUMBER
+                              | STRING
+                              | REGISTER
+                              | SEG_REGISTER
+                              | MASK_REG
+                              | SIZE_SPEC
+                              | DATA_SIZE
+                              | SPACE_SIZE
+                              | BUILTIN_FUNC
+                              | STRING_FUNC
+                              | FLOAT
+                              | SPECIAL_FLOAT
+                              | operator
+                              | separator
+
+// General token sequence
+token_sequence ::= preprocessor_token+
+
+// Token sequence for brace-wrapped content (excludes RBRACE to avoid consuming the closing brace)
+private brace_token_sequence ::= brace_token+
+
+private brace_token ::= !RBRACE preprocessor_token
+
+// Preprocessor tokens reuse base elements with function calls
+preprocessor_token ::= preprocessor_function  // %strlen(...), %strcat(...), etc.
+                     | base_token_element
+                     {
+                       mixin="dev.agb.nasmplugin.psi.impl.NasmPreprocessorTokenMixin"
+                     }
+
+context_ref ::= MACRO_LOCAL_REF | CONTEXT_LOCAL_REF
+
+stringize_op ::= ENV_VAR_PREFIX IDENTIFIER
+
+// Operators and separators
+operator ::= PLUS | MINUS | MUL | DIV | MOD | SIGNED_DIV | SIGNED_MOD
+           | AMP | PIPE | CARET | TILDE | EXCLAIM
+           | LSHIFT | LSHIFT_COMPLETE | RSHIFT | RSHIFT_COMPLETE
+           | BOOLEAN_AND | BOOLEAN_OR | BOOLEAN_XOR
+           | EQ_EQ | NOT_EQUAL_1 | NOT_EQUAL_2 | LT | LTE | GT | GTE | SPACESHIP
+           | QUESTION_MARK
+           | PASTE_OP
+           | SEG | WRT
+
+separator ::= COMMA | COLON | LPAREN | RPAREN | LBRACKET | RBRACKET | LBRACE | RBRACE
+
+// ============================================================================
+// SPECIAL CONSTRUCTS
+// ============================================================================
+
+conditional_data ::= MACRO_IF condition CRLF data_item CRLF
+                     (MACRO_ELIF condition CRLF data_item CRLF)*
+                     [MACRO_ELSE CRLF data_item CRLF]
+                     MACRO_ENDIF
+                     {
+                       pin=1
+                     }
+
+conditional_operand ::= MACRO_IF condition CRLF operand CRLF
+                        (MACRO_ELIF condition CRLF operand CRLF)*
+                        [MACRO_ELSE CRLF operand CRLF]
+                        MACRO_ENDIF
+                        {
+                          pin=1
+                        }
+
+rep_block ::= MACRO_REP const_expr CRLF source_lines CRLF* MACRO_ENDREP
+            {
+              pin=1
+            }
+
+struc_block ::= STRUC_KW IDENTIFIER CRLF source_lines CRLF* ENDSTRUC_KW
+              {
+                pin=1
+              }
+
+istruc_block ::= ISTRUC_KW IDENTIFIER CRLF source_lines CRLF* IEND_KW
+               {
+                 pin=1
+               }
+
+string_or_env ::= STRING
+                | LT IDENTIFIER GT
+                | env_var_ref
+
+// ============================================================================
+// MACRO DIRECTIVES
+// ============================================================================
+
+macro_dir ::= MACRO_ROTATE const_expr
+            | MACRO_STRLEN IDENTIFIER (STRING | IDENTIFIER)
+            | MACRO_SUBSTR IDENTIFIER (STRING | IDENTIFIER) const_expr [const_expr]
+            | MACRO_STRCAT IDENTIFIER (STRING | IDENTIFIER)+
+            | MACRO_PATHSEARCH IDENTIFIER STRING
+            | MACRO_DEPEND STRING
+            | MACRO_ALIASES IDENTIFIER
+            | PREPROCESSOR_DIRECTIVE
+            {
+              pin=1
+            }

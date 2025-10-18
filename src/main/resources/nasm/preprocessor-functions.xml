@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<preprocessor-functions>
+  <function name="%abs">
+    <description>Return absolute value of numeric expression</description>
+  </function>
+  <function name="%chr">
+    <description>Create string from character codes</description>
+  </function>
+  <function name="%count">
+    <description>Count number of macro arguments</description>
+  </function>
+  <function name="%eval">
+    <description>Evaluate numeric expression</description>
+  </function>
+  <function name="%find">
+    <description>Find argument in list, return index</description>
+  </function>
+  <function name="%hex">
+    <description>Convert number to hexadecimal representation</description>
+  </function>
+  <function name="%num">
+    <description>Encode number in specified base</description>
+  </function>
+  <function name="%ord">
+    <description>Get byte values from string</description>
+  </function>
+  <function name="%sel">
+    <description>Select argument at specific index</description>
+  </function>
+  <function name="%str">
+    <description>Convert tokens to quoted string</description>
+  </function>
+  <function name="%strcat">
+    <description>Concatenate strings</description>
+  </function>
+  <function name="%tok">
+    <description>Convert quoted string to tokens</description>
+  </function>
+  <function name="%strlen">
+    <description>Get length of string</description>
+  </function>
+  <function name="%substr">
+    <description>Extract substring from string</description>
+  </function>
+</preprocessor-functions>

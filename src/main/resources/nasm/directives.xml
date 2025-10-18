@@ -1,0 +1,423 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<directives>
+  <directive name="%aliases">
+    <description>Enable/disable macro aliases</description>
+  </directive>
+  <directive name="%arg">
+    <description>Define stack-based procedure arguments</description>
+  </directive>
+  <directive name="%assign">
+    <description>Assign numeric value to symbol</description>
+  </directive>
+  <directive name="%clear">
+    <description>Clear macro definitions</description>
+  </directive>
+  <directive name="%cond">
+    <description>Conditional expansion</description>
+  </directive>
+  <directive name="%defalias">
+    <description>Define macro alias</description>
+  </directive>
+  <directive name="%define">
+    <description>Define single-line macro</description>
+  </directive>
+  <directive name="%defstr">
+    <description>Define single-line macro as string</description>
+  </directive>
+  <directive name="%deftok">
+    <description>Define single-line macro as token</description>
+  </directive>
+  <directive name="%depend">
+    <description>Add file dependency</description>
+  </directive>
+  <directive name="%elif">
+    <description>Else if in conditional assembly</description>
+  </directive>
+  <directive name="%elifctx">
+    <description>Else if context is active</description>
+  </directive>
+  <directive name="%elifdef">
+    <description>Else if macro is defined</description>
+  </directive>
+  <directive name="%elifdefalias">
+    <description>Else if macro alias is defined</description>
+  </directive>
+  <directive name="%elifempty">
+    <description>Else if macro parameter is empty</description>
+  </directive>
+  <directive name="%elifenv">
+    <description>Else if environment variable is defined</description>
+  </directive>
+  <directive name="%elifid">
+    <description>Else if token is an identifier</description>
+  </directive>
+  <directive name="%elifidn">
+    <description>Else if strings are identical</description>
+  </directive>
+  <directive name="%elifidni">
+    <description>Else if strings are identical (case-insensitive)</description>
+  </directive>
+  <directive name="%elifmacro">
+    <description>Else if macro exists with parameter count</description>
+  </directive>
+  <directive name="%elifn">
+    <description>Else if negated in conditional assembly</description>
+  </directive>
+  <directive name="%elifnctx">
+    <description>Else if context is not active</description>
+  </directive>
+  <directive name="%elifndef">
+    <description>Else if macro is not defined</description>
+  </directive>
+  <directive name="%elifndefalias">
+    <description>Else if macro alias is not defined</description>
+  </directive>
+  <directive name="%elifnempty">
+    <description>Else if macro parameter is not empty</description>
+  </directive>
+  <directive name="%elifnenv">
+    <description>Else if environment variable is not defined</description>
+  </directive>
+  <directive name="%elifnid">
+    <description>Else if token is not an identifier</description>
+  </directive>
+  <directive name="%elifnidn">
+    <description>Else if strings are not identical</description>
+  </directive>
+  <directive name="%elifnidni">
+    <description>Else if strings are not identical (case-insensitive)</description>
+  </directive>
+  <directive name="%elifnmacro">
+    <description>Else if macro does not exist with parameter count</description>
+  </directive>
+  <directive name="%elifnnum">
+    <description>Else if token is not a number</description>
+  </directive>
+  <directive name="%elifnstr">
+    <description>Else if token is not a string</description>
+  </directive>
+  <directive name="%elifntoken">
+    <description>Else if token does not exist</description>
+  </directive>
+  <directive name="%elifnum">
+    <description>Else if token is a number</description>
+  </directive>
+  <directive name="%elifstr">
+    <description>Else if token is a string</description>
+  </directive>
+  <directive name="%eliftoken">
+    <description>Else if token exists</description>
+  </directive>
+  <directive name="%else">
+    <description>Else in conditional assembly</description>
+  </directive>
+  <directive name="%endif">
+    <description>End conditional assembly</description>
+  </directive>
+  <directive name="%endmacro">
+    <description>End macro definition</description>
+  </directive>
+  <directive name="%endrep">
+    <description>End repeat block</description>
+  </directive>
+  <directive name="%endrmacro">
+    <description>End range macro definition</description>
+  </directive>
+  <directive name="%endwhile">
+    <description>End while loop</description>
+  </directive>
+  <directive name="%error">
+    <description>Generate error message</description>
+  </directive>
+  <directive name="%exitmacro">
+    <description>Exit from macro early</description>
+  </directive>
+  <directive name="%exitrep">
+    <description>Exit from repeat loop</description>
+  </directive>
+  <directive name="%fatal">
+    <description>Generate fatal error</description>
+  </directive>
+  <directive name="%iassign">
+    <description>Assign numeric value (case-insensitive)</description>
+  </directive>
+  <directive name="%idefalias">
+    <description>Define case-insensitive macro alias</description>
+  </directive>
+  <directive name="%idefine">
+    <description>Define case-insensitive macro</description>
+  </directive>
+  <directive name="%idefstr">
+    <description>Define case-insensitive macro as string</description>
+  </directive>
+  <directive name="%ideftok">
+    <description>Define case-insensitive macro as token</description>
+  </directive>
+  <directive name="%if">
+    <description>Begin conditional assembly</description>
+  </directive>
+  <directive name="%ifctx">
+    <description>If context is active</description>
+  </directive>
+  <directive name="%ifdef">
+    <description>If macro is defined</description>
+  </directive>
+  <directive name="%ifdefalias">
+    <description>If macro alias is defined</description>
+  </directive>
+  <directive name="%ifdirective">
+    <description>If preprocessor directive exists</description>
+  </directive>
+  <directive name="%ifempty">
+    <description>If macro parameter is empty</description>
+  </directive>
+  <directive name="%ifenv">
+    <description>If environment variable is defined</description>
+  </directive>
+  <directive name="%iffile">
+    <description>If file exists</description>
+  </directive>
+  <directive name="%ifid">
+    <description>If token is an identifier</description>
+  </directive>
+  <directive name="%ifidn">
+    <description>If strings are identical</description>
+  </directive>
+  <directive name="%ifidni">
+    <description>If strings are identical (case-insensitive)</description>
+  </directive>
+  <directive name="%ifmacro">
+    <description>If macro exists with parameter count</description>
+  </directive>
+  <directive name="%ifn">
+    <description>Begin negated conditional assembly</description>
+  </directive>
+  <directive name="%ifnctx">
+    <description>If context is not active</description>
+  </directive>
+  <directive name="%ifndef">
+    <description>If macro is not defined</description>
+  </directive>
+  <directive name="%ifndefalias">
+    <description>If macro alias is not defined</description>
+  </directive>
+  <directive name="%ifnempty">
+    <description>If macro parameter is not empty</description>
+  </directive>
+  <directive name="%ifnenv">
+    <description>If environment variable is not defined</description>
+  </directive>
+  <directive name="%ifnid">
+    <description>If token is not an identifier</description>
+  </directive>
+  <directive name="%ifnidn">
+    <description>If strings are not identical</description>
+  </directive>
+  <directive name="%ifnidni">
+    <description>If strings are not identical (case-insensitive)</description>
+  </directive>
+  <directive name="%ifnmacro">
+    <description>If macro does not exist with parameter count</description>
+  </directive>
+  <directive name="%ifnnum">
+    <description>If token is not a number</description>
+  </directive>
+  <directive name="%ifnstr">
+    <description>If token is not a string</description>
+  </directive>
+  <directive name="%ifntoken">
+    <description>If token does not exist</description>
+  </directive>
+  <directive name="%ifnum">
+    <description>If token is a number</description>
+  </directive>
+  <directive name="%ifstr">
+    <description>If token is a string</description>
+  </directive>
+  <directive name="%iftoken">
+    <description>If token exists</description>
+  </directive>
+  <directive name="%ifusable">
+    <description>If single-line macro is usable</description>
+  </directive>
+  <directive name="%ifusing">
+    <description>If context is using</description>
+  </directive>
+  <directive name="%imacro">
+    <description>Start case-insensitive macro definition</description>
+  </directive>
+  <directive name="%include">
+    <description>Include another file</description>
+  </directive>
+  <directive name="%irmacro">
+    <description>Start case-insensitive range macro definition</description>
+  </directive>
+  <directive name="%ixdefine">
+    <description>Define case-insensitive macro (evaluated)</description>
+  </directive>
+  <directive name="%line">
+    <description>Set line number for error messages</description>
+  </directive>
+  <directive name="%local">
+    <description>Define local variables in procedure</description>
+  </directive>
+  <directive name="%macro">
+    <description>Start macro definition</description>
+  </directive>
+  <directive name="%note">
+    <description>Generate note message</description>
+  </directive>
+  <directive name="%pathsearch">
+    <description>Search for file in include path</description>
+  </directive>
+  <directive name="%pop">
+    <description>Pop context</description>
+  </directive>
+  <directive name="%pragma">
+    <description>Set assembler-specific pragma</description>
+  </directive>
+  <directive name="%push">
+    <description>Push context</description>
+  </directive>
+  <directive name="%rep">
+    <description>Repeat block</description>
+  </directive>
+  <directive name="%repl">
+    <description>Replace context</description>
+  </directive>
+  <directive name="%rmacro">
+    <description>Start range macro definition</description>
+  </directive>
+  <directive name="%rotate">
+    <description>Rotate macro parameters</description>
+  </directive>
+  <directive name="%stacksize">
+    <description>Set stack size for procedure</description>
+  </directive>
+  <directive name="%undef">
+    <description>Undefine macro</description>
+  </directive>
+  <directive name="%undefalias">
+    <description>Undefine macro alias</description>
+  </directive>
+  <directive name="%unimacro">
+    <description>Undefine case-insensitive multi-line macro</description>
+  </directive>
+  <directive name="%unirmacro">
+    <description>Undefine case-insensitive range macro</description>
+  </directive>
+  <directive name="%unmacro">
+    <description>Undefine multi-line macro</description>
+  </directive>
+  <directive name="%unrmacro">
+    <description>Undefine range macro</description>
+  </directive>
+  <directive name="%use">
+    <description>Use standard macro package</description>
+  </directive>
+  <directive name="%warning">
+    <description>Generate warning message</description>
+  </directive>
+  <directive name="%while">
+    <description>Conditional loop</description>
+  </directive>
+  <directive name="%xdefine">
+    <description>Define single-line macro (evaluated)</description>
+  </directive>
+  <directive name="absolute">
+    <description>Define absolute address section</description>
+  </directive>
+  <directive name="align">
+    <description>Align next instruction/data</description>
+  </directive>
+  <directive name="alignb">
+    <description>Align with specific boundary</description>
+  </directive>
+  <directive name="bits">
+    <description>Set assembly mode (16/32/64 bit)</description>
+  </directive>
+  <directive name="common">
+    <description>Declare common variable</description>
+  </directive>
+  <directive name="cpu">
+    <description>Set CPU level</description>
+  </directive>
+  <directive name="db">
+    <description>Define byte(s)</description>
+  </directive>
+  <directive name="dd">
+    <description>Define doubleword(s) (32-bit)</description>
+  </directive>
+  <directive name="default">
+    <description>Set default options</description>
+  </directive>
+<directive name="do">
+    <description>Define octaword (128-bit)</description>
+  </directive>
+  <directive name="dq">
+    <description>Define quadword(s) (64-bit)</description>
+  </directive>
+  <directive name="dt">
+    <description>Define ten bytes</description>
+  </directive>
+  <directive name="dw">
+    <description>Define word(s) (16-bit)</description>
+  </directive>
+  <directive name="dy">
+    <description>Define 256-bit value</description>
+  </directive>
+  <directive name="dz">
+    <description>Define 512-bit value</description>
+  </directive>
+  <directive name="equ">
+    <description>Define constant</description>
+  </directive>
+  <directive name="extern">
+    <description>Declare external symbol</description>
+  </directive>
+  <directive name="global">
+    <description>Declare symbol as global</description>
+  </directive>
+  <directive name="resb">
+    <description>Reserve byte(s)</description>
+  </directive>
+  <directive name="resd">
+    <description>Reserve doubleword(s) (32-bit)</description>
+  </directive>
+  <directive name="reso">
+    <description>Reserve octaword (128-bit)</description>
+  </directive>
+  <directive name="resq">
+    <description>Reserve quadword(s) (64-bit)</description>
+  </directive>
+  <directive name="rest">
+    <description>Reserve ten bytes</description>
+  </directive>
+  <directive name="resw">
+    <description>Reserve word(s) (16-bit)</description>
+  </directive>
+  <directive name="resy">
+    <description>Reserve 256-bit value</description>
+  </directive>
+  <directive name="resz">
+    <description>Reserve 512-bit value</description>
+  </directive>
+  <directive name="section">
+    <description>Define a section</description>
+  </directive>
+  <directive name="segment">
+    <description>Define a segment (same as section)</description>
+  </directive>
+  <directive name="times">
+    <description>Repeat instruction or data</description>
+  </directive>
+  <directive name="use16">
+    <description>Use 16-bit mode</description>
+  </directive>
+  <directive name="use32">
+    <description>Use 32-bit mode</description>
+  </directive>
+  <directive name="use64">
+    <description>Use 64-bit mode</description>
+  </directive>
+</directives>

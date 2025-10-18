@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <!-- File background -->
+  <rect x="2" y="1" width="12" height="14" fill="#389fd6" rx="1"/>
+
+  <!-- ASM text -->
+  <text x="8" y="11" font-family="Arial, sans-serif" font-size="6" font-weight="bold"
+        fill="white" text-anchor="middle">ASM</text>
+</svg>

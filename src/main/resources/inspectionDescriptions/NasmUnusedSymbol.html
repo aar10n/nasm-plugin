@@ -1,0 +1,30 @@
+<html>
+<body>
+Reports symbols that are defined but never used.
+<p>
+    Detects unused:
+</p>
+<ul>
+    <li>Labels (both global and local)</li>
+    <li>Macros (<code>%define</code>, <code>%macro</code>)</li>
+    <li>Constants (<code>%assign</code>, <code>equ</code>)</li>
+    <li>Data labels</li>
+</ul>
+<p><b>Example:</b></p>
+<pre><code>
+    unused_label:          ; Warning: never used
+        nop
+
+    %macro UNUSED 1        ; Warning: never invoked
+        mov rax, %1
+    %endmacro
+
+    UNUSED_CONST equ 42    ; Warning: never referenced
+</code></pre>
+<!-- tooltip end -->
+<p>
+    <b>Note:</b> Entry points like <code>_start</code> and <code>main</code> are excluded.
+    Symbols declared with <code>global</code> are also excluded as they may be used externally.
+</p>
+</body>
+</html>

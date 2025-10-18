@@ -1,0 +1,277 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. Cannot be changed between the plugin versions. -->
+    <id>dev.agb.nasmplugin</id>
+
+    <!-- Public plugin name should be written in Title Case. -->
+    <name>Enhanced NASM Assembly Support</name>
+
+    <!-- Product and plugin compatibility requirements. -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Optional CLion-specific features -->
+    <depends optional="true" config-file="plugin-clion.xml">com.intellij.modules.clion</depends>
+
+    <!-- Description of the plugin displayed in the Plugin Manager and Marketplace. -->
+    <description><![CDATA[
+    Enhanced IDE support for NASM x86_64 assembly language development.
+    <br/>
+    <br/>
+    Compatible with all JetBrains IDEs (IntelliJ IDEA, CLion, PyCharm, WebStorm, etc.) with
+    additional features when used in CLion.
+    <br/>
+    <br/>
+    <strong>Features:</strong>
+    <ul>
+      <li>Context-aware code completion for instructions, registers, directives, and symbols</li>
+      <li>Hover documentation with instruction details, operand variants, and pseudocode</li>
+      <li>Go-to-definition and find usages for labels, macros, constants, and includes</li>
+      <li>Advanced syntax highlighting with semantic validation</li>
+      <li>Preprocessor support: macros, conditionals, includes, command-line defines</li>
+      <li>Rename refactoring with cross-file support</li>
+      <li>Code inspections: unused symbols, inactive preprocessor branches</li>
+      <li>Structure view with hierarchical outline of sections, macros, and labels</li>
+      <li>Brace matching and auto-completion for macro/conditional blocks</li>
+      <li>Configurable project settings for include paths and preprocessor definitions</li>
+    </ul>
+    <br/>
+    <strong>CLion-Specific Features:</strong>
+    <ul>
+      <li>Native debugger integration (GDB/LLDB) with breakpoint and expression evaluation support</li>
+      <li>Bidirectional cross-language navigation between NASM and C/C++ code</li>
+      <li>Automatic include path detection from compile_commands.json</li>
+    </ul>
+    <br/>
+    <strong>TODO Features:</strong>
+    <ul>
+      <li>Evaluation of constant expressions (to support %if in the conditional branch inspection)</li>
+      <li>Instruction operand validation</li>
+      <li>Expanded instruction documentation</li>
+      <li>[CLion only] Integration with the project model (support automatic flag detection for compiled files)</li>
+    </ul>
+    ]]></description>
+
+    <!-- Change notes for the current version. -->
+    <change-notes><![CDATA[
+    <h3>1.0.0 - Initial Release</h3>
+
+    <h4>Core Features</h4>
+    <ul>
+        <li>Full NASM x86_64 syntax parsing and highlighting</li>
+        <li>Context-aware code completion for instructions, registers, directives, and symbols</li>
+        <li>Hover documentation with instruction details and pseudocode</li>
+        <li>Go-to-definition and find usages for labels, macros, constants, and includes</li>
+        <li>Structure view with hierarchical outline</li>
+    </ul>
+
+    <h4>Preprocessor</h4>
+    <ul>
+        <li>Macro support: %define, %assign, %macro/%endmacro with parameter substitution</li>
+        <li>Conditional assembly: %ifdef, %ifndef, %if with intelligent evaluation</li>
+        <li>Include file resolution with configurable paths</li>
+        <li>Command-line macro definitions in project settings</li>
+    </ul>
+
+    <h4>Code Quality</h4>
+    <ul>
+        <li>Rename refactoring with cross-file support</li>
+        <li>Inspections: unused symbols, inactive branches, macro redefinitions</li>
+        <li>Symbol and instruction validation</li>
+    </ul>
+
+    <h4>CLion Features</h4>
+    <ul>
+        <li>GDB/LLDB debugger integration with breakpoint support</li>
+        <li>Bidirectional C/C++ cross-language navigation</li>
+    </ul>
+    ]]></change-notes>
+
+    <!-- Plugin's vendor information. -->
+    <vendor email="aaron@agb.dev" url="https://github.com/aar10n/nasm-plugin">Aaron Gill-Braun</vendor>
+
+    <!-- Extension points defined by the plugin. -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- File type registration -->
+        <fileType
+                name="NASM Assembly"
+                implementationClass="dev.agb.nasmplugin.NasmFileType"
+                fieldName="INSTANCE"
+                language="NASM"
+                extensions="asm;nasm;inc;mac"/>
+
+        <!-- Parser definition -->
+        <lang.parserDefinition
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.parser.NasmParserDefinition"/>
+
+        <!-- Syntax highlighting -->
+        <lang.syntaxHighlighterFactory
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.highlighting.NasmSyntaxHighlighterFactory"/>
+
+        <!-- Color settings page -->
+        <colorSettingsPage
+                implementation="dev.agb.nasmplugin.highlighting.NasmColorSettingsPage"/>
+
+        <!-- Macro highlighting annotator -->
+        <annotator
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.highlighting.NasmMacroHighlightingAnnotator"/>
+
+        <!-- Instruction validation annotator -->
+        <annotator
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.highlighting.NasmInstructionValidationAnnotator"/>
+
+        <!-- Section attribute annotator -->
+        <annotator
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.highlighting.NasmSectionAttributeAnnotator"/>
+
+        <!-- Symbol validation annotator -->
+        <annotator
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.highlighting.NasmSymbolValidationAnnotator"/>
+
+        <!-- Symbol name annotator (highlights keywords as identifiers in symbol name contexts) -->
+        <annotator
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.highlighting.NasmSymbolNameAnnotator"/>
+
+        <!-- Brace matching -->
+        <lang.braceMatcher
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.editor.NasmBraceMatcher"/>
+
+        <!-- Comment/Uncomment support -->
+        <lang.commenter
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.editor.NasmCommenter"/>
+
+        <!-- Code completion -->
+        <completion.contributor
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.completion.NasmCompletionContributor"/>
+
+        <!-- Typed handler for auto-popup triggers -->
+        <typedHandler
+                implementation="dev.agb.nasmplugin.editor.NasmTypedHandler"/>
+
+        <!-- Find Usages -->
+        <lang.findUsagesProvider
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.NasmFindUsagesProvider"/>
+
+        <!-- Reference Resolution -->
+        <psi.referenceContributor
+                language="NASM"
+                implementation="dev.agb.nasmplugin.NasmReferenceContributor"/>
+
+        <!-- Custom reference search for extern declarations -->
+        <!-- This makes "Find Usages" on extern declarations show local usages in the same file -->
+        <referencesSearch
+                implementation="dev.agb.nasmplugin.references.NasmExternUsagesSearchExecutor"/>
+
+        <!-- Goto Declaration Handler for %include navigation -->
+        <gotoDeclarationHandler
+                implementation="dev.agb.nasmplugin.navigation.NasmGotoDeclarationHandler"/>
+
+        <!-- Documentation Provider -->
+        <lang.documentationProvider
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.documentation.NasmDocumentationProvider"/>
+
+        <!-- Structure View -->
+        <lang.psiStructureViewFactory
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.structure.NasmStructureViewFactory"/>
+
+        <!-- Code Folding -->
+        <lang.foldingBuilder
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.editor.NasmFoldingBuilder"/>
+
+        <!-- Navigate to Symbol (Choose by Name) -->
+        <gotoSymbolContributor
+                implementation="dev.agb.nasmplugin.navigation.NasmChooseByNameContributor"/>
+
+        <!-- Enter Handler -->
+        <enterHandlerDelegate
+                implementation="dev.agb.nasmplugin.editor.NasmEnterHandler"/>
+
+        <!-- Refactoring Support (rename, safe delete, etc.) -->
+        <lang.refactoringSupport
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.refactoring.NasmRefactoringSupportProvider"/>
+
+        <!-- Element Manipulator for rename refactoring -->
+        <lang.elementManipulator
+                forClass="dev.agb.nasmplugin.psi.NasmNamedElement"
+                implementationClass="dev.agb.nasmplugin.refactoring.NasmElementManipulator"/>
+
+        <!-- Element Manipulator for NasmSymbolRef -->
+        <lang.elementManipulator
+                forClass="dev.agb.nasmplugin.psi.NasmSymbolRef"
+                implementationClass="dev.agb.nasmplugin.refactoring.NasmSymbolRefManipulator"/>
+
+        <!-- Element Manipulator for NasmInstruction (for macro invocations) -->
+        <lang.elementManipulator
+                forClass="dev.agb.nasmplugin.psi.NasmInstruction"
+                implementationClass="dev.agb.nasmplugin.refactoring.NasmInstructionManipulator"/>
+
+        <!-- Element Manipulator for NasmPreprocessorToken (for identifiers in macro definitions) -->
+        <lang.elementManipulator
+                forClass="dev.agb.nasmplugin.psi.NasmPreprocessorToken"
+                implementationClass="dev.agb.nasmplugin.refactoring.NasmPreprocessorTokenManipulator"/>
+
+        <!-- Names Validator for rename refactoring -->
+        <lang.namesValidator
+                language="NASM"
+                implementationClass="dev.agb.nasmplugin.refactoring.NasmNamesValidator"/>
+
+        <!-- Rename Processor for %assign statements -->
+        <renamePsiElementProcessor
+                implementation="dev.agb.nasmplugin.refactoring.NasmPpAssignRenameProcessor"/>
+
+        <!-- Inspections -->
+        <localInspection
+                language="NASM"
+                shortName="NasmUnusedSymbol"
+                displayName="Unused symbol"
+                groupName="NASM"
+                enabledByDefault="true"
+                level="WARNING"
+                implementationClass="dev.agb.nasmplugin.inspections.NasmUnusedSymbolInspection"/>
+
+        <localInspection
+                language="NASM"
+                shortName="NasmInactiveConditionalBranch"
+                displayName="Inactive preprocessor branch"
+                groupName="NASM"
+                enabledByDefault="true"
+                level="WEAK WARNING"
+                implementationClass="dev.agb.nasmplugin.inspections.InactiveConditionalBranchInspection"/>
+
+        <localInspection
+                language="NASM"
+                shortName="NasmMacroRedefinition"
+                displayName="Macro redefinition"
+                groupName="NASM"
+                enabledByDefault="true"
+                level="WARNING"
+                implementationClass="dev.agb.nasmplugin.inspections.NasmMacroRedefinitionInspection"/>
+
+        <!-- Project Settings -->
+        <projectConfigurable
+                parentId="language"
+                id="dev.agb.nasmplugin.settings.NasmSettingsConfigurable"
+                displayName="NASM Assembly"
+                instance="dev.agb.nasmplugin.settings.NasmSettingsConfigurable"/>
+
+        <!-- Include Path Resolver (fallback implementation, overridden by CLion-specific service) -->
+        <projectService
+                serviceInterface="dev.agb.nasmplugin.navigation.NasmIncludePathResolver"
+                serviceImplementation="dev.agb.nasmplugin.navigation.NasmFallbackIncludePathResolver"/>
+
+    </extensions>
+</idea-plugin>

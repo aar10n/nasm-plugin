@@ -1,0 +1,35 @@
+<!-- CLion-specific extensions for NASM plugin -->
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Cross-language navigation: NASM extern symbols -> C/C++ declarations -->
+        <!-- Registered as "first" to take priority for extern symbols -->
+        <gotoDeclarationHandler
+                implementation="dev.agb.nasmplugin.clion.NasmToCppGotoHandler"
+                order="first"/>
+
+        <!-- Cross-language navigation: C/C++ extern declarations -> NASM labels -->
+        <!-- Allows navigation from C/C++ to NASM assembly implementations -->
+        <gotoDeclarationHandler
+                implementation="dev.agb.nasmplugin.clion.CppToNasmGotoHandler"
+                order="first"/>
+
+        <!-- Enable bidirectional "Find Usages" between NASM and C/C++ -->
+        <!-- When searching for C/C++ symbol usages, this finds NASM extern references -->
+        <referencesSearch
+                implementation="dev.agb.nasmplugin.clion.NasmToCppReferencesSearchExecutor"/>
+
+        <!-- When searching for NASM label usages, this finds C/C++ extern references -->
+        <referencesSearch
+                implementation="dev.agb.nasmplugin.clion.CppToNasmReferencesSearchExecutor"/>
+    </extensions>
+
+    <!-- CIDR Debugger Integration -->
+    <extensions defaultExtensionNs="cidr.debugger">
+        <!-- Register NASM as a debuggable language with CLion's native debugger -->
+        <!-- This allows breakpoints in NASM assembly files to work with GDB/LLDB -->
+        <languageSupport language="NASM" implementationClass="dev.agb.nasmplugin.clion.NasmDebuggerLanguageSupport"/>
+
+        <!-- Register NASM file type as supporting line breakpoints -->
+        <lineBreakpointFileTypesProvider implementation="dev.agb.nasmplugin.clion.NasmLineBreakpointFileTypesProvider"/>
+    </extensions>
+</idea-plugin>

@@ -1,0 +1,2 @@
+; Default directive
+default rel

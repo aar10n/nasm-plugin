@@ -1,0 +1,721 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<syntax-templates>
+  <template category="directive" name="%define">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="value" />
+  </template>
+  <template category="directive" name="%idefine">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="value" />
+  </template>
+  <template category="directive" name="%xdefine">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="value" />
+  </template>
+  <template category="directive" name="%ixdefine">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="value" />
+  </template>
+  <template category="directive" name="%assign">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="expression" default="0" />
+  </template>
+  <template category="directive" name="%iassign">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="expression" default="0" />
+  </template>
+  <template category="directive" name="%defstr">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="value" />
+  </template>
+  <template category="directive" name="%idefstr">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="value" />
+  </template>
+  <template category="directive" name="%deftok">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> "</segment>
+    <segment type="variable" name="string" default="string" />
+    <segment type="text">"</segment>
+  </template>
+  <template category="directive" name="%ideftok">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> "</segment>
+    <segment type="variable" name="string" default="string" />
+    <segment type="text">"</segment>
+  </template>
+  <template category="directive" name="%defalias">
+    <segment type="text"> </segment>
+    <segment type="variable" name="alias" default="alias" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="target" default="target" />
+  </template>
+  <template category="directive" name="%idefalias">
+    <segment type="text"> </segment>
+    <segment type="variable" name="alias" default="alias" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="target" default="target" />
+  </template>
+  <template category="directive" name="%undef">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%undefalias">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%macro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="0" />
+  </template>
+  <template category="directive" name="%imacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="0" />
+  </template>
+  <template category="directive" name="%rmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="0" />
+  </template>
+  <template category="directive" name="%irmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="0" />
+  </template>
+  <template category="directive" name="%endmacro" />
+  <template category="directive" name="%endrmacro" />
+  <template category="directive" name="%unmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%unimacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%unrmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%unirmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%if">
+    <segment type="text"> </segment>
+    <segment type="variable" name="expression" default="expression" />
+  </template>
+  <template category="directive" name="%ifn">
+    <segment type="text"> </segment>
+    <segment type="variable" name="expression" default="expression" />
+  </template>
+  <template category="directive" name="%elif">
+    <segment type="text"> </segment>
+    <segment type="variable" name="expression" default="expression" />
+  </template>
+  <template category="directive" name="%elifn">
+    <segment type="text"> </segment>
+    <segment type="variable" name="expression" default="expression" />
+  </template>
+  <template category="directive" name="%ifdef">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifndef">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifdef">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifndef">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifdefalias">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifndefalias">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifdefalias">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifndefalias">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%ifnmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%elifmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%elifnmacro">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="minparams" default="0" />
+  </template>
+  <template category="directive" name="%ifctx">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifnctx">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifctx">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifnctx">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifidn">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%ifidni">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%ifnidn">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%ifnidni">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%elifidn">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%elifidni">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%elifnidn">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%elifnidni">
+    <segment type="text"> </segment>
+    <segment type="variable" name="text1" default="text1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="text2" default="text2" />
+  </template>
+  <template category="directive" name="%ifnum">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifnnum">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifnum">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifnnum">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifstr">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifnstr">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifstr">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifnstr">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifid">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifnid">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifid">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifnid">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%iftoken">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifntoken">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%eliftoken">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifntoken">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifempty">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifnempty">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifempty">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%elifnempty">
+    <segment type="text"> </segment>
+    <segment type="variable" name="token" default="token" />
+  </template>
+  <template category="directive" name="%ifenv">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifnenv">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifenv">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%elifnenv">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifdirective">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%iffile">
+    <segment type="text"> "</segment>
+    <segment type="variable" name="filename" default="filename" />
+    <segment type="text">"</segment>
+  </template>
+  <template category="directive" name="%ifusable">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%ifusing">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+  </template>
+  <template category="directive" name="%rep">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="count" />
+  </template>
+  <template category="directive" name="%include">
+    <segment type="text"> "</segment>
+    <segment type="variable" name="filename" default="filename" />
+    <segment type="text">"</segment>
+  </template>
+  <template category="directive" name="%pathsearch">
+    <segment type="text"> </segment>
+    <segment type="variable" name="macro_name" default="macro_name" />
+    <segment type="text"> "</segment>
+    <segment type="variable" name="filename" default="filename" />
+    <segment type="text">"</segment>
+  </template>
+  <template category="directive" name="%depend">
+    <segment type="text"> "</segment>
+    <segment type="variable" name="filename" default="filename" />
+    <segment type="text">"</segment>
+  </template>
+  <template category="directive" name="%use">
+    <segment type="text"> </segment>
+    <segment type="variable" name="package_name" default="package_name" />
+  </template>
+  <template category="directive" name="%push">
+    <segment type="text"> </segment>
+    <segment type="variable" name="context_name" default="context_name" />
+  </template>
+  <template category="directive" name="%pop">
+    <segment type="text"> </segment>
+    <segment type="variable" name="context_name" default="context_name" />
+  </template>
+  <template category="directive" name="%repl">
+    <segment type="text"> </segment>
+    <segment type="variable" name="context_name" default="context_name" />
+  </template>
+  <template category="directive" name="%error">
+    <segment type="text"> </segment>
+    <segment type="variable" name="message" default="message" />
+  </template>
+  <template category="directive" name="%warning">
+    <segment type="text"> </segment>
+    <segment type="variable" name="message" default="message" />
+  </template>
+  <template category="directive" name="%fatal">
+    <segment type="text"> </segment>
+    <segment type="variable" name="message" default="message" />
+  </template>
+  <template category="directive" name="%line">
+    <segment type="text"> </segment>
+    <segment type="variable" name="line_number" default="1" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="filename" default="filename" />
+  </template>
+  <template category="directive" name="%arg">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text">:</segment>
+    <segment type="variable" name="size" default="dword" />
+  </template>
+  <template category="directive" name="%local">
+    <segment type="text"> </segment>
+    <segment type="variable" name="name" default="name" />
+    <segment type="text">:</segment>
+    <segment type="variable" name="size" default="dword" />
+  </template>
+  <template category="directive" name="%stacksize">
+    <segment type="text"> </segment>
+    <segment type="variable" name="size" default="flat" />
+  </template>
+  <template category="directive" name="%strlen">
+    <segment type="text">("</segment>
+    <segment type="variable" name="string" default="string" />
+    <segment type="text">")</segment>
+  </template>
+  <template category="directive" name="%substr">
+    <segment type="text">("</segment>
+    <segment type="variable" name="string" default="string" />
+    <segment type="text">", </segment>
+    <segment type="variable" name="start" default="0" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="length" default="-1" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%strcat">
+    <segment type="text">("</segment>
+    <segment type="variable" name="string1" default="string1" />
+    <segment type="text">", "</segment>
+    <segment type="variable" name="string2" default="string2" />
+    <segment type="text">")</segment>
+  </template>
+  <template category="directive" name="%eval">
+    <segment type="text">(</segment>
+    <segment type="variable" name="expression" default="expression" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%abs">
+    <segment type="text">(</segment>
+    <segment type="variable" name="value" default="value" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%chr">
+    <segment type="text">(</segment>
+    <segment type="variable" name="int" default="65" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%cond">
+    <segment type="text">(</segment>
+    <segment type="variable" name="expr" default="expr" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="true_val" default="true_val" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="false_val" default="false_val" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%count">
+    <segment type="text">(</segment>
+    <segment type="variable" name="args" default="args" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%find">
+    <segment type="text">(</segment>
+    <segment type="variable" name="needle" default="needle" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="haystack" default="haystack" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%hex">
+    <segment type="text">(</segment>
+    <segment type="variable" name="expr" default="expr" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="digits" default="8" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%num">
+    <segment type="text">(</segment>
+    <segment type="variable" name="value" default="value" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="digits" default="0" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="base" default="10" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%ord">
+    <segment type="text">("</segment>
+    <segment type="variable" name="string" default="string" />
+    <segment type="text">", </segment>
+    <segment type="variable" name="start" default="0" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%sel">
+    <segment type="text">(</segment>
+    <segment type="variable" name="index" default="1" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="args" default="args" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%str">
+    <segment type="text">(</segment>
+    <segment type="variable" name="text" default="text" />
+    <segment type="text">)</segment>
+  </template>
+  <template category="directive" name="%tok">
+    <segment type="text">("</segment>
+    <segment type="variable" name="string" default="string" />
+    <segment type="text">")</segment>
+  </template>
+  <template category="directive" name="%rotate">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <template category="directive" name="%clear">
+    <segment type="text"> </segment>
+    <segment type="variable" name="type" default="define" />
+  </template>
+  <!-- Common x86_64 Instruction Templates -->
+  <template category="instruction" name="mov">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="src" default="rbx" />
+  </template>
+  <template category="instruction" name="add">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="src" default="1" />
+  </template>
+  <template category="instruction" name="sub">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="src" default="1" />
+  </template>
+  <template category="instruction" name="imul">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="src" default="2" />
+  </template>
+  <template category="instruction" name="idiv">
+    <segment type="text"> </segment>
+    <segment type="variable" name="src" default="rbx" />
+  </template>
+  <template category="instruction" name="cmp">
+    <segment type="text"> </segment>
+    <segment type="variable" name="op1" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="op2" default="0" />
+  </template>
+  <template category="instruction" name="test">
+    <segment type="text"> </segment>
+    <segment type="variable" name="op1" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="op2" default="rax" />
+  </template>
+  <template category="instruction" name="jmp">
+    <segment type="text"> </segment>
+    <segment type="variable" name="label" default="label" />
+  </template>
+  <template category="instruction" name="je">
+    <segment type="text"> </segment>
+    <segment type="variable" name="label" default="label" />
+  </template>
+  <template category="instruction" name="jne">
+    <segment type="text"> </segment>
+    <segment type="variable" name="label" default="label" />
+  </template>
+  <template category="instruction" name="jg">
+    <segment type="text"> </segment>
+    <segment type="variable" name="label" default="label" />
+  </template>
+  <template category="instruction" name="jl">
+    <segment type="text"> </segment>
+    <segment type="variable" name="label" default="label" />
+  </template>
+  <template category="instruction" name="call">
+    <segment type="text"> </segment>
+    <segment type="variable" name="function" default="function" />
+  </template>
+  <template category="instruction" name="push">
+    <segment type="text"> </segment>
+    <segment type="variable" name="src" default="rax" />
+  </template>
+  <template category="instruction" name="pop">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+  </template>
+  <template category="instruction" name="lea">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, [</segment>
+    <segment type="variable" name="address" default="rbx" />
+    <segment type="text">]</segment>
+  </template>
+  <template category="instruction" name="and">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="src" default="0xFF" />
+  </template>
+  <template category="instruction" name="or">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="src" default="0x01" />
+  </template>
+  <template category="instruction" name="xor">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="src" default="rax" />
+  </template>
+  <template category="instruction" name="shl">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <template category="instruction" name="shr">
+    <segment type="text"> </segment>
+    <segment type="variable" name="dest" default="rax" />
+    <segment type="text">, </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <!-- Data Declaration Templates -->
+  <template category="data" name="db">
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="0" />
+  </template>
+  <template category="data" name="dw">
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="0" />
+  </template>
+  <template category="data" name="dd">
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="0" />
+  </template>
+  <template category="data" name="dq">
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="0" />
+  </template>
+  <template category="data" name="dt">
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="0" />
+  </template>
+  <template category="data" name="resb">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <template category="data" name="resw">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <template category="data" name="resd">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <template category="data" name="resq">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <template category="data" name="rest">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="1" />
+  </template>
+  <template category="data" name="equ">
+    <segment type="text"> </segment>
+    <segment type="variable" name="value" default="0" />
+  </template>
+  <template category="data" name="times">
+    <segment type="text"> </segment>
+    <segment type="variable" name="count" default="1" />
+    <segment type="text"> </segment>
+    <segment type="variable" name="instruction" default="db 0" />
+  </template>
+</syntax-templates>

@@ -1,0 +1,501 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<registers>
+  <register name="rax" size="BIT_64">
+    <description>Accumulator register</description>
+  </register>
+  <register name="rbx" size="BIT_64">
+    <description>Base register</description>
+  </register>
+  <register name="rcx" size="BIT_64">
+    <description>Counter register</description>
+  </register>
+  <register name="rdx" size="BIT_64">
+    <description>Data register</description>
+  </register>
+  <register name="rsi" size="BIT_64">
+    <description>Source index register</description>
+  </register>
+  <register name="rdi" size="BIT_64">
+    <description>Destination index register</description>
+  </register>
+  <register name="rsp" size="BIT_64">
+    <description>Stack pointer register</description>
+  </register>
+  <register name="rbp" size="BIT_64">
+    <description>Base pointer register</description>
+  </register>
+  <register name="r8" size="BIT_64">
+    <description>General purpose register 8</description>
+  </register>
+  <register name="r9" size="BIT_64">
+    <description>General purpose register 9</description>
+  </register>
+  <register name="r10" size="BIT_64">
+    <description>General purpose register 10</description>
+  </register>
+  <register name="r11" size="BIT_64">
+    <description>General purpose register 11</description>
+  </register>
+  <register name="r12" size="BIT_64">
+    <description>General purpose register 12</description>
+  </register>
+  <register name="r13" size="BIT_64">
+    <description>General purpose register 13</description>
+  </register>
+  <register name="r14" size="BIT_64">
+    <description>General purpose register 14</description>
+  </register>
+  <register name="r15" size="BIT_64">
+    <description>General purpose register 15</description>
+  </register>
+  <register name="eax" size="BIT_32">
+    <description>Accumulator register (32-bit)</description>
+  </register>
+  <register name="ebx" size="BIT_32">
+    <description>Base register (32-bit)</description>
+  </register>
+  <register name="ecx" size="BIT_32">
+    <description>Counter register (32-bit)</description>
+  </register>
+  <register name="edx" size="BIT_32">
+    <description>Data register (32-bit)</description>
+  </register>
+  <register name="esi" size="BIT_32">
+    <description>Source index register (32-bit)</description>
+  </register>
+  <register name="edi" size="BIT_32">
+    <description>Destination index register (32-bit)</description>
+  </register>
+  <register name="esp" size="BIT_32">
+    <description>Stack pointer register (32-bit)</description>
+  </register>
+  <register name="ebp" size="BIT_32">
+    <description>Base pointer register (32-bit)</description>
+  </register>
+  <register name="r8d" size="BIT_32">
+    <description>General purpose register 8 (32-bit)</description>
+  </register>
+  <register name="r9d" size="BIT_32">
+    <description>General purpose register 9 (32-bit)</description>
+  </register>
+  <register name="r10d" size="BIT_32">
+    <description>General purpose register 10 (32-bit)</description>
+  </register>
+  <register name="r11d" size="BIT_32">
+    <description>General purpose register 11 (32-bit)</description>
+  </register>
+  <register name="r12d" size="BIT_32">
+    <description>General purpose register 12 (32-bit)</description>
+  </register>
+  <register name="r13d" size="BIT_32">
+    <description>General purpose register 13 (32-bit)</description>
+  </register>
+  <register name="r14d" size="BIT_32">
+    <description>General purpose register 14 (32-bit)</description>
+  </register>
+  <register name="r15d" size="BIT_32">
+    <description>General purpose register 15 (32-bit)</description>
+  </register>
+  <register name="ax" size="BIT_16">
+    <description>Accumulator register (16-bit)</description>
+  </register>
+  <register name="bx" size="BIT_16">
+    <description>Base register (16-bit)</description>
+  </register>
+  <register name="cx" size="BIT_16">
+    <description>Counter register (16-bit)</description>
+  </register>
+  <register name="dx" size="BIT_16">
+    <description>Data register (16-bit)</description>
+  </register>
+  <register name="si" size="BIT_16">
+    <description>Source index register (16-bit)</description>
+  </register>
+  <register name="di" size="BIT_16">
+    <description>Destination index register (16-bit)</description>
+  </register>
+  <register name="sp" size="BIT_16">
+    <description>Stack pointer register (16-bit)</description>
+  </register>
+  <register name="bp" size="BIT_16">
+    <description>Base pointer register (16-bit)</description>
+  </register>
+  <register name="r8w" size="BIT_16">
+    <description>General purpose register 8 (16-bit)</description>
+  </register>
+  <register name="r9w" size="BIT_16">
+    <description>General purpose register 9 (16-bit)</description>
+  </register>
+  <register name="r10w" size="BIT_16">
+    <description>General purpose register 10 (16-bit)</description>
+  </register>
+  <register name="r11w" size="BIT_16">
+    <description>General purpose register 11 (16-bit)</description>
+  </register>
+  <register name="r12w" size="BIT_16">
+    <description>General purpose register 12 (16-bit)</description>
+  </register>
+  <register name="r13w" size="BIT_16">
+    <description>General purpose register 13 (16-bit)</description>
+  </register>
+  <register name="r14w" size="BIT_16">
+    <description>General purpose register 14 (16-bit)</description>
+  </register>
+  <register name="r15w" size="BIT_16">
+    <description>General purpose register 15 (16-bit)</description>
+  </register>
+  <register name="al" size="BIT_8">
+    <description>Accumulator register low byte</description>
+  </register>
+  <register name="ah" size="BIT_8">
+    <description>Accumulator register high byte</description>
+  </register>
+  <register name="bl" size="BIT_8">
+    <description>Base register low byte</description>
+  </register>
+  <register name="bh" size="BIT_8">
+    <description>Base register high byte</description>
+  </register>
+  <register name="cl" size="BIT_8">
+    <description>Counter register low byte</description>
+  </register>
+  <register name="ch" size="BIT_8">
+    <description>Counter register high byte</description>
+  </register>
+  <register name="dl" size="BIT_8">
+    <description>Data register low byte</description>
+  </register>
+  <register name="dh" size="BIT_8">
+    <description>Data register high byte</description>
+  </register>
+  <register name="sil" size="BIT_8">
+    <description>Source index register low byte</description>
+  </register>
+  <register name="dil" size="BIT_8">
+    <description>Destination index register low byte</description>
+  </register>
+  <register name="spl" size="BIT_8">
+    <description>Stack pointer register low byte</description>
+  </register>
+  <register name="bpl" size="BIT_8">
+    <description>Base pointer register low byte</description>
+  </register>
+  <register name="r8b" size="BIT_8">
+    <description>General purpose register 8 low byte</description>
+  </register>
+  <register name="r9b" size="BIT_8">
+    <description>General purpose register 9 low byte</description>
+  </register>
+  <register name="r10b" size="BIT_8">
+    <description>General purpose register 10 low byte</description>
+  </register>
+  <register name="r11b" size="BIT_8">
+    <description>General purpose register 11 low byte</description>
+  </register>
+  <register name="r12b" size="BIT_8">
+    <description>General purpose register 12 low byte</description>
+  </register>
+  <register name="r13b" size="BIT_8">
+    <description>General purpose register 13 low byte</description>
+  </register>
+  <register name="r14b" size="BIT_8">
+    <description>General purpose register 14 low byte</description>
+  </register>
+  <register name="r15b" size="BIT_8">
+    <description>General purpose register 15 low byte</description>
+  </register>
+  <register name="cs" size="SEGMENT">
+    <description>Code segment register</description>
+  </register>
+  <register name="ds" size="SEGMENT">
+    <description>Data segment register</description>
+  </register>
+  <register name="ss" size="SEGMENT">
+    <description>Stack segment register</description>
+  </register>
+  <register name="es" size="SEGMENT">
+    <description>Extra segment register</description>
+  </register>
+  <register name="fs" size="SEGMENT">
+    <description>Extra segment register F</description>
+  </register>
+  <register name="gs" size="SEGMENT">
+    <description>Extra segment register G</description>
+  </register>
+  <register name="st0" size="FPU">
+    <description>FPU stack register 0</description>
+  </register>
+  <register name="st1" size="FPU">
+    <description>FPU stack register 1</description>
+  </register>
+  <register name="st2" size="FPU">
+    <description>FPU stack register 2</description>
+  </register>
+  <register name="st3" size="FPU">
+    <description>FPU stack register 3</description>
+  </register>
+  <register name="st4" size="FPU">
+    <description>FPU stack register 4</description>
+  </register>
+  <register name="st5" size="FPU">
+    <description>FPU stack register 5</description>
+  </register>
+  <register name="st6" size="FPU">
+    <description>FPU stack register 6</description>
+  </register>
+  <register name="st7" size="FPU">
+    <description>FPU stack register 7</description>
+  </register>
+  <register name="mm0" size="MMX">
+    <description>MMX register 0</description>
+  </register>
+  <register name="mm1" size="MMX">
+    <description>MMX register 1</description>
+  </register>
+  <register name="mm2" size="MMX">
+    <description>MMX register 2</description>
+  </register>
+  <register name="mm3" size="MMX">
+    <description>MMX register 3</description>
+  </register>
+  <register name="mm4" size="MMX">
+    <description>MMX register 4</description>
+  </register>
+  <register name="mm5" size="MMX">
+    <description>MMX register 5</description>
+  </register>
+  <register name="mm6" size="MMX">
+    <description>MMX register 6</description>
+  </register>
+  <register name="mm7" size="MMX">
+    <description>MMX register 7</description>
+  </register>
+<register name="xmm0" size="BIT_128">
+    <description>XMM register 0 (SSE)</description>
+  </register>
+  <register name="xmm1" size="BIT_128">
+    <description>XMM register 1 (SSE)</description>
+  </register>
+  <register name="xmm2" size="BIT_128">
+    <description>XMM register 2 (SSE)</description>
+  </register>
+  <register name="xmm3" size="BIT_128">
+    <description>XMM register 3 (SSE)</description>
+  </register>
+  <register name="xmm4" size="BIT_128">
+    <description>XMM register 4 (SSE)</description>
+  </register>
+  <register name="xmm5" size="BIT_128">
+    <description>XMM register 5 (SSE)</description>
+  </register>
+  <register name="xmm6" size="BIT_128">
+    <description>XMM register 6 (SSE)</description>
+  </register>
+  <register name="xmm7" size="BIT_128">
+    <description>XMM register 7 (SSE)</description>
+  </register>
+  <register name="xmm8" size="BIT_128">
+    <description>XMM register 8 (SSE)</description>
+  </register>
+  <register name="xmm9" size="BIT_128">
+    <description>XMM register 9 (SSE)</description>
+  </register>
+  <register name="xmm10" size="BIT_128">
+    <description>XMM register 10 (SSE)</description>
+  </register>
+  <register name="xmm11" size="BIT_128">
+    <description>XMM register 11 (SSE)</description>
+  </register>
+  <register name="xmm12" size="BIT_128">
+    <description>XMM register 12 (SSE)</description>
+  </register>
+  <register name="xmm13" size="BIT_128">
+    <description>XMM register 13 (SSE)</description>
+  </register>
+  <register name="xmm14" size="BIT_128">
+    <description>XMM register 14 (SSE)</description>
+  </register>
+  <register name="xmm15" size="BIT_128">
+    <description>XMM register 15 (SSE)</description>
+  </register>
+  <register name="ymm0" size="BIT_256">
+    <description>YMM register 0 (AVX)</description>
+  </register>
+  <register name="ymm1" size="BIT_256">
+    <description>YMM register 1 (AVX)</description>
+  </register>
+  <register name="ymm2" size="BIT_256">
+    <description>YMM register 2 (AVX)</description>
+  </register>
+  <register name="ymm3" size="BIT_256">
+    <description>YMM register 3 (AVX)</description>
+  </register>
+  <register name="ymm4" size="BIT_256">
+    <description>YMM register 4 (AVX)</description>
+  </register>
+  <register name="ymm5" size="BIT_256">
+    <description>YMM register 5 (AVX)</description>
+  </register>
+  <register name="ymm6" size="BIT_256">
+    <description>YMM register 6 (AVX)</description>
+  </register>
+  <register name="ymm7" size="BIT_256">
+    <description>YMM register 7 (AVX)</description>
+  </register>
+  <register name="ymm8" size="BIT_256">
+    <description>YMM register 8 (AVX)</description>
+  </register>
+  <register name="ymm9" size="BIT_256">
+    <description>YMM register 9 (AVX)</description>
+  </register>
+  <register name="ymm10" size="BIT_256">
+    <description>YMM register 10 (AVX)</description>
+  </register>
+  <register name="ymm11" size="BIT_256">
+    <description>YMM register 11 (AVX)</description>
+  </register>
+  <register name="ymm12" size="BIT_256">
+    <description>YMM register 12 (AVX)</description>
+  </register>
+  <register name="ymm13" size="BIT_256">
+    <description>YMM register 13 (AVX)</description>
+  </register>
+  <register name="ymm14" size="BIT_256">
+    <description>YMM register 14 (AVX)</description>
+  </register>
+  <register name="ymm15" size="BIT_256">
+    <description>YMM register 15 (AVX)</description>
+  </register>
+  <register name="zmm0" size="BIT_512">
+    <description>ZMM register 0 (AVX-512)</description>
+  </register>
+  <register name="zmm1" size="BIT_512">
+    <description>ZMM register 1 (AVX-512)</description>
+  </register>
+  <register name="zmm2" size="BIT_512">
+    <description>ZMM register 2 (AVX-512)</description>
+  </register>
+  <register name="zmm3" size="BIT_512">
+    <description>ZMM register 3 (AVX-512)</description>
+  </register>
+  <register name="zmm4" size="BIT_512">
+    <description>ZMM register 4 (AVX-512)</description>
+  </register>
+  <register name="zmm5" size="BIT_512">
+    <description>ZMM register 5 (AVX-512)</description>
+  </register>
+  <register name="zmm6" size="BIT_512">
+    <description>ZMM register 6 (AVX-512)</description>
+  </register>
+  <register name="zmm7" size="BIT_512">
+    <description>ZMM register 7 (AVX-512)</description>
+  </register>
+  <register name="zmm8" size="BIT_512">
+    <description>ZMM register 8 (AVX-512)</description>
+  </register>
+  <register name="zmm9" size="BIT_512">
+    <description>ZMM register 9 (AVX-512)</description>
+  </register>
+  <register name="zmm10" size="BIT_512">
+    <description>ZMM register 10 (AVX-512)</description>
+  </register>
+  <register name="zmm11" size="BIT_512">
+    <description>ZMM register 11 (AVX-512)</description>
+  </register>
+  <register name="zmm12" size="BIT_512">
+    <description>ZMM register 12 (AVX-512)</description>
+  </register>
+  <register name="zmm13" size="BIT_512">
+    <description>ZMM register 13 (AVX-512)</description>
+  </register>
+  <register name="zmm14" size="BIT_512">
+    <description>ZMM register 14 (AVX-512)</description>
+  </register>
+  <register name="zmm15" size="BIT_512">
+    <description>ZMM register 15 (AVX-512)</description>
+  </register>
+  <register name="zmm16" size="BIT_512">
+    <description>ZMM register 16 (AVX-512)</description>
+  </register>
+  <register name="zmm17" size="BIT_512">
+    <description>ZMM register 17 (AVX-512)</description>
+  </register>
+  <register name="zmm18" size="BIT_512">
+    <description>ZMM register 18 (AVX-512)</description>
+  </register>
+  <register name="zmm19" size="BIT_512">
+    <description>ZMM register 19 (AVX-512)</description>
+  </register>
+  <register name="zmm20" size="BIT_512">
+    <description>ZMM register 20 (AVX-512)</description>
+  </register>
+  <register name="zmm21" size="BIT_512">
+    <description>ZMM register 21 (AVX-512)</description>
+  </register>
+  <register name="zmm22" size="BIT_512">
+    <description>ZMM register 22 (AVX-512)</description>
+  </register>
+  <register name="zmm23" size="BIT_512">
+    <description>ZMM register 23 (AVX-512)</description>
+  </register>
+  <register name="zmm24" size="BIT_512">
+    <description>ZMM register 24 (AVX-512)</description>
+  </register>
+  <register name="zmm25" size="BIT_512">
+    <description>ZMM register 25 (AVX-512)</description>
+  </register>
+  <register name="zmm26" size="BIT_512">
+    <description>ZMM register 26 (AVX-512)</description>
+  </register>
+  <register name="zmm27" size="BIT_512">
+    <description>ZMM register 27 (AVX-512)</description>
+  </register>
+  <register name="zmm28" size="BIT_512">
+    <description>ZMM register 28 (AVX-512)</description>
+  </register>
+  <register name="zmm29" size="BIT_512">
+    <description>ZMM register 29 (AVX-512)</description>
+  </register>
+  <register name="zmm30" size="BIT_512">
+    <description>ZMM register 30 (AVX-512)</description>
+  </register>
+  <register name="zmm31" size="BIT_512">
+    <description>ZMM register 31 (AVX-512)</description>
+  </register>
+  <register name="cr0" size="CONTROL">
+    <description>Control register 0</description>
+  </register>
+  <register name="cr1" size="CONTROL">
+    <description>Control register 1</description>
+  </register>
+  <register name="cr2" size="CONTROL">
+    <description>Control register 2 (page fault address)</description>
+  </register>
+  <register name="cr3" size="CONTROL">
+    <description>Control register 3 (page directory base)</description>
+  </register>
+  <register name="cr4" size="CONTROL">
+    <description>Control register 4</description>
+  </register>
+  <register name="cr8" size="CONTROL">
+    <description>Control register 8 (task priority)</description>
+  </register>
+  <register name="dr0" size="DEBUG">
+    <description>Debug register 0</description>
+  </register>
+  <register name="dr1" size="DEBUG">
+    <description>Debug register 1</description>
+  </register>
+  <register name="dr2" size="DEBUG">
+    <description>Debug register 2</description>
+  </register>
+  <register name="dr3" size="DEBUG">
+    <description>Debug register 3</description>
+  </register>
+  <register name="dr6" size="DEBUG">
+    <description>Debug register 6 (status)</description>
+  </register>
+  <register name="dr7" size="DEBUG">
+    <description>Debug register 7 (control)</description>
+  </register>
+</registers>

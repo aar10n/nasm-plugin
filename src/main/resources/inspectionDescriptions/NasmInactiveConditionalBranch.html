@@ -1,0 +1,46 @@
+<html>
+<body>
+<p>
+    Reports code inside inactive preprocessor conditional branches.
+</p>
+
+<p>
+    The inspection evaluates <code>%ifdef</code>, <code>%ifndef</code>, <code>%if</code>, and other
+    conditional directives based on:
+</p>
+
+<ul>
+    <li>Macro definitions from project settings (command-line defines)</li>
+    <li>Macro definitions in source files (<code>%define</code>, <code>%assign</code>)</li>
+    <li>Macro definitions in included files</li>
+</ul>
+
+<p>
+    Code determined to be in an inactive branch is greyed out, similar to unused symbols,
+    and excluded from code navigation and reference resolution.
+</p>
+
+<p><b>Example:</b></p>
+<pre>
+  %ifdef DEBUG
+  ; This code is active if DEBUG is defined in settings
+  call debug_log
+  %else
+  ; This code is inactive if DEBUG is defined (greyed out)
+  nop
+  %endif
+</pre>
+
+<p>
+    <b>Configuration:</b> Define command-line macros in
+    <i>Settings → Languages &amp; Frameworks → NASM Assembly → Preprocessor Macros</i>.
+</p>
+
+<p>
+    <b>Disable this inspection</b> if you want to see all conditional branches equally,
+    for example when working on cross-platform assembly code where you need to see
+    both platform-specific implementations.
+</p>
+
+</body>
+</html>
