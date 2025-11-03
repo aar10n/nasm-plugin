@@ -60,12 +60,9 @@ class NasmSettingsConfigurable(private val project: Project) : BoundConfigurable
                         )
                         .columns(60)
                         .comment(
-                            "Enter comma-separated macro definitions. Examples:\n" +
-                            "  DEBUG\n" +
-                            "  DEBUG,VERSION=2\n" +
-                            "  OS=LINUX,ARCH=x64,DEBUG\n\n" +
-                            "Format: MACRO[=value][,MACRO[=value],...]\n" +
-                            "These are treated as if defined with %define at the start of each file."
+                            "<html>Enter comma-separated macro definitions. Examples: DEBUG DEBUG,VERSION=2 " +
+                            "OS=LINUX,ARCH=x64,DEBUG Format: MACRO[=value][,MACRO[=value],...]<br>" +
+                            "These are treated as if defined with %define at the start of each file.</html>"
                         )
                 }
             }
