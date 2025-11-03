@@ -1333,6 +1333,30 @@ RSP := RSP - imm16</operation>
   <instruction name="fclex" category="FLOATING_POINT">
     <description>Clear exceptions</description>
   </instruction>
+  <instruction name="fcmovb" category="FLOATING_POINT">
+    <description>Floating-point conditional move if below (CF=1)</description>
+  </instruction>
+  <instruction name="fcmovbe" category="FLOATING_POINT">
+    <description>Floating-point conditional move if below or equal (CF=1 or ZF=1)</description>
+  </instruction>
+  <instruction name="fcmove" category="FLOATING_POINT">
+    <description>Floating-point conditional move if equal (ZF=1)</description>
+  </instruction>
+  <instruction name="fcmovnb" category="FLOATING_POINT">
+    <description>Floating-point conditional move if not below (CF=0)</description>
+  </instruction>
+  <instruction name="fcmovnbe" category="FLOATING_POINT">
+    <description>Floating-point conditional move if not below or equal (CF=0 and ZF=0)</description>
+  </instruction>
+  <instruction name="fcmovne" category="FLOATING_POINT">
+    <description>Floating-point conditional move if not equal (ZF=0)</description>
+  </instruction>
+  <instruction name="fcmovnu" category="FLOATING_POINT">
+    <description>Floating-point conditional move if not unordered (PF=0)</description>
+  </instruction>
+  <instruction name="fcmovu" category="FLOATING_POINT">
+    <description>Floating-point conditional move if unordered (PF=1)</description>
+  </instruction>
   <instruction name="fcom" category="FLOATING_POINT">
     <description>Compare floating point</description>
   </instruction>
@@ -1354,6 +1378,9 @@ RSP := RSP - imm16</operation>
   <instruction name="fdecstp" category="FLOATING_POINT">
     <description>Decrement stack-top pointer</description>
   </instruction>
+  <instruction name="fdisi" category="FLOATING_POINT">
+    <description>Disable interrupts (8087 only, treated as NOP on 287+)</description>
+  </instruction>
   <instruction name="fdiv" category="FLOATING_POINT">
     <description>Divide floating point</description>
   </instruction>
@@ -1365,6 +1392,9 @@ RSP := RSP - imm16</operation>
   </instruction>
   <instruction name="fdivrp" category="FLOATING_POINT">
     <description>Reverse divide floating point and pop</description>
+  </instruction>
+  <instruction name="feni" category="FLOATING_POINT">
+    <description>Enable interrupts (8087 only, treated as NOP on 287+)</description>
   </instruction>
   <instruction name="ffree" category="FLOATING_POINT">
     <description>Free floating point register</description>
@@ -1453,6 +1483,12 @@ RSP := RSP - imm16</operation>
   <instruction name="fnclex" category="FLOATING_POINT">
     <description>Clear exceptions (no wait)</description>
   </instruction>
+  <instruction name="fndisi" category="FLOATING_POINT">
+    <description>Disable interrupts without wait (8087 only, treated as NOP on 287+)</description>
+  </instruction>
+  <instruction name="fneni" category="FLOATING_POINT">
+    <description>Enable interrupts without wait (8087 only, treated as NOP on 287+)</description>
+  </instruction>
   <instruction name="fninit" category="FLOATING_POINT">
     <description>Initialize floating point unit (no wait)</description>
   </instruction>
@@ -1494,6 +1530,9 @@ RSP := RSP - imm16</operation>
   </instruction>
   <instruction name="fscale" category="FLOATING_POINT">
     <description>Scale by power of 2</description>
+  </instruction>
+  <instruction name="fsetpm" category="FLOATING_POINT">
+    <description>Set protected mode (287 only, treated as NOP on 387+)</description>
   </instruction>
   <instruction name="fsin" category="FLOATING_POINT">
     <description>Sine</description>
@@ -3710,6 +3749,15 @@ else if operand size is 64:
   <instruction name="pclmulqdq" category="CRYPTO">
     <description>Carry-less multiplication quadword</description>
   </instruction>
+  <instruction name="pcmov" category="SIMD">
+    <description>Vector conditional move implementing ternary operator at bit level on XMM/YMM registers. Part of AMD XOP instruction set.</description>
+  </instruction>
+  <instruction name="pcmpb" category="SIMD">
+    <description>Compare packed signed bytes using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcmpd" category="SIMD">
+    <description>Compare packed signed doublewords using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
   <instruction name="pcmpeqb" category="SIMD">
     <description>Compare packed bytes for equality</description>
   </instruction>
@@ -3746,8 +3794,74 @@ else if operand size is 64:
   <instruction name="pcmpistrm" category="SIMD">
     <description>Packed compare implicit length strings, return mask</description>
   </instruction>
+  <instruction name="pcmpq" category="SIMD">
+    <description>Compare packed signed quadwords using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcmpub" category="SIMD">
+    <description>Compare packed unsigned bytes using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcmpud" category="SIMD">
+    <description>Compare packed unsigned doublewords using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcmpuq" category="SIMD">
+    <description>Compare packed unsigned quadwords using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcmpuw" category="SIMD">
+    <description>Compare packed unsigned words using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcmpw" category="SIMD">
+    <description>Compare packed signed words using immediate predicate. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomb" category="SIMD">
+    <description>Compare packed signed bytes with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomd" category="SIMD">
+    <description>Compare packed signed doublewords with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomq" category="SIMD">
+    <description>Compare packed signed quadwords with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomub" category="SIMD">
+    <description>Compare packed unsigned bytes with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomud" category="SIMD">
+    <description>Compare packed unsigned doublewords with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomuq" category="SIMD">
+    <description>Compare packed unsigned quadwords with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomuw" category="SIMD">
+    <description>Compare packed unsigned words with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
+  <instruction name="pcomw" category="SIMD">
+    <description>Compare packed signed words with immediate predicate control. AMD XOP instruction for Bulldozer-family processors.</description>
+  </instruction>
   <instruction name="pdep" category="BIT_MANIPULATION">
     <description>Parallel bits deposit (BMI2)</description>
+  </instruction>
+  <instruction name="perm2f128" category="SIMD">
+    <description>Permute 128-bit floating-point fields from two 256-bit sources using immediate control. AVX instruction.</description>
+  </instruction>
+  <instruction name="perm2i128" category="SIMD">
+    <description>Permute 128-bit integer fields from two 256-bit sources using immediate control. AVX2 instruction.</description>
+  </instruction>
+  <instruction name="permb" category="SIMD">
+    <description>Permute packed bytes from source using byte indices. AVX-512 VBMI instruction.</description>
+  </instruction>
+  <instruction name="permd" category="SIMD">
+    <description>Permute packed doublewords from source using doubleword indices. AVX2 instruction.</description>
+  </instruction>
+  <instruction name="permpd" category="SIMD">
+    <description>Permute packed double-precision floating-point values using immediate or indices. AVX2 instruction.</description>
+  </instruction>
+  <instruction name="permps" category="SIMD">
+    <description>Permute packed single-precision floating-point values using doubleword indices. AVX2 instruction.</description>
+  </instruction>
+  <instruction name="permq" category="SIMD">
+    <description>Permute packed quadwords using immediate control or indices. AVX2/AVX-512 instruction.</description>
+  </instruction>
+  <instruction name="permw" category="SIMD">
+    <description>Permute packed words from source using word indices. AVX-512 BW instruction.</description>
   </instruction>
   <instruction name="pext" category="BIT_MANIPULATION">
     <description>Parallel bits extract (BMI2)</description>
@@ -3764,26 +3878,74 @@ else if operand size is 64:
   <instruction name="pextrw" category="SIMD">
     <description>Extract word</description>
   </instruction>
+  <instruction name="pgatherdq" category="SIMD">
+    <description>Gather packed quadword values using signed doubleword indices and mask. AVX2 instruction for non-contiguous memory loads.</description>
+  </instruction>
+  <instruction name="phaddbd" category="SIMD">
+    <description>Horizontal add adjacent signed bytes to signed doublewords with sign extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phaddbq" category="SIMD">
+    <description>Horizontal add adjacent signed bytes to signed quadwords with sign extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phaddbw" category="SIMD">
+    <description>Horizontal add adjacent signed bytes to signed words with sign extension. AMD XOP instruction.</description>
+  </instruction>
   <instruction name="phaddd" category="SIMD">
     <description>Packed horizontal add doublewords</description>
+  </instruction>
+  <instruction name="phadddq" category="SIMD">
+    <description>Horizontal add adjacent signed doublewords to signed quadwords with sign extension. AMD XOP instruction.</description>
   </instruction>
   <instruction name="phaddsw" category="SIMD">
     <description>Packed horizontal add signed words with saturation</description>
   </instruction>
+  <instruction name="phaddubd" category="SIMD">
+    <description>Horizontal add adjacent unsigned bytes to unsigned doublewords with zero extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phaddubq" category="SIMD">
+    <description>Horizontal add adjacent unsigned bytes to unsigned quadwords with zero extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phaddubw" category="SIMD">
+    <description>Horizontal add adjacent unsigned bytes to unsigned words with zero extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phaddudq" category="SIMD">
+    <description>Horizontal add adjacent unsigned doublewords to unsigned quadwords with zero extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phadduwd" category="SIMD">
+    <description>Horizontal add adjacent unsigned words to unsigned doublewords with zero extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phadduwq" category="SIMD">
+    <description>Horizontal add adjacent unsigned words to unsigned quadwords with zero extension. AMD XOP instruction.</description>
+  </instruction>
   <instruction name="phaddw" category="SIMD">
     <description>Packed horizontal add words</description>
+  </instruction>
+  <instruction name="phaddwd" category="SIMD">
+    <description>Horizontal add adjacent signed words to signed doublewords with sign extension. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="phaddwq" category="SIMD">
+    <description>Horizontal add adjacent signed words to signed quadwords with sign extension. AMD XOP instruction.</description>
   </instruction>
   <instruction name="phminposuw" category="SIMD">
     <description>Packed horizontal word minimum</description>
   </instruction>
+  <instruction name="phsubbw" category="SIMD">
+    <description>Horizontal subtract adjacent signed bytes to signed words with sign extension. AMD XOP instruction.</description>
+  </instruction>
   <instruction name="phsubd" category="SIMD">
     <description>Packed horizontal subtract doublewords</description>
+  </instruction>
+  <instruction name="phsubdq" category="SIMD">
+    <description>Horizontal subtract adjacent signed doublewords to signed quadwords with sign extension. AMD XOP instruction.</description>
   </instruction>
   <instruction name="phsubsw" category="SIMD">
     <description>Packed horizontal subtract signed words with saturation</description>
   </instruction>
   <instruction name="phsubw" category="SIMD">
     <description>Packed horizontal subtract words</description>
+  </instruction>
+  <instruction name="phsubwd" category="SIMD">
+    <description>Horizontal subtract adjacent signed words to signed doublewords with sign extension. AMD XOP instruction.</description>
   </instruction>
   <instruction name="pinsrb" category="SIMD">
     <description>Insert byte</description>
@@ -3797,11 +3959,53 @@ else if operand size is 64:
   <instruction name="pinsrw" category="SIMD">
     <description>Insert word</description>
   </instruction>
+  <instruction name="pmacsdd" category="SIMD">
+    <description>Packed multiply-accumulate signed doublewords to signed doublewords. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacsdqh" category="SIMD">
+    <description>Packed multiply-accumulate signed high doublewords to signed quadwords. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacsdql" category="SIMD">
+    <description>Packed multiply-accumulate signed low doublewords to signed quadwords. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacssdd" category="SIMD">
+    <description>Packed multiply-accumulate signed doublewords to signed doublewords with saturation. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacssdqh" category="SIMD">
+    <description>Packed multiply-accumulate signed high doublewords to signed quadwords with saturation. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacssdql" category="SIMD">
+    <description>Packed multiply-accumulate signed low doublewords to signed quadwords with saturation. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacsswd" category="SIMD">
+    <description>Packed multiply-accumulate signed words to signed doublewords with saturation. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacssww" category="SIMD">
+    <description>Packed multiply-accumulate signed words to signed words with saturation. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacswd" category="SIMD">
+    <description>Packed multiply-accumulate signed words to signed doublewords. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmacsww" category="SIMD">
+    <description>Packed multiply-accumulate signed words to signed words. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmadcsswd" category="SIMD">
+    <description>Packed multiply-add signed words to signed doublewords with saturation. Four-operand AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pmadcswd" category="SIMD">
+    <description>Packed multiply-add signed words to signed doublewords. Four-operand AMD XOP instruction.</description>
+  </instruction>
   <instruction name="pmaddubsw" category="SIMD">
     <description>Multiply and add packed unsigned/signed bytes</description>
   </instruction>
   <instruction name="pmaddwd" category="SIMD">
     <description>Multiply and add packed words</description>
+  </instruction>
+  <instruction name="pmaskmovd" category="SIMD">
+    <description>Conditional SIMD load/store of packed doublewords using sign bit mask. AVX2 instruction.</description>
+  </instruction>
+  <instruction name="pmaskmovq" category="SIMD">
+    <description>Conditional SIMD load/store of packed quadwords using sign bit mask. AVX2 instruction.</description>
   </instruction>
   <instruction name="pmaxsb" category="SIMD">
     <description>Maximum of packed signed bytes</description>
@@ -3883,6 +4087,9 @@ else if operand size is 64:
   </instruction>
   <instruction name="pmulhrsw" category="SIMD">
     <description>Packed multiply high with round and scale</description>
+  </instruction>
+  <instruction name="pmulhrw" category="SIMD">
+    <description>Packed multiply high with round and scale for signed words. Returns rounded high 16 bits of 32-bit products.</description>
   </instruction>
   <instruction name="pmulhuw" category="SIMD">
     <description>Multiply packed unsigned words and store high result</description>
@@ -4026,8 +4233,44 @@ RSP := RSP + 8</operation>
   <instruction name="prefetchwt1" category="SYSTEM">
     <description>Prefetch vector data with intent to write (L2 cache)</description>
   </instruction>
+  <instruction name="protb" category="SIMD">
+    <description>Rotate packed bytes left or right by variable count per element. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="protd" category="SIMD">
+    <description>Rotate packed doublewords left or right by variable count per element. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="protq" category="SIMD">
+    <description>Rotate packed quadwords left or right by variable count per element. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="protw" category="SIMD">
+    <description>Rotate packed words left or right by variable count per element. AMD XOP instruction.</description>
+  </instruction>
   <instruction name="psadbw" category="SIMD">
     <description>Sum of absolute differences of packed unsigned bytes</description>
+  </instruction>
+  <instruction name="pshab" category="SIMD">
+    <description>Variable arithmetic shift packed bytes with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pshad" category="SIMD">
+    <description>Variable arithmetic shift packed doublewords with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pshaq" category="SIMD">
+    <description>Variable arithmetic shift packed quadwords with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pshaw" category="SIMD">
+    <description>Variable arithmetic shift packed words with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pshlb" category="SIMD">
+    <description>Variable logical shift packed bytes with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pshld" category="SIMD">
+    <description>Variable logical shift packed doublewords with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pshlq" category="SIMD">
+    <description>Variable logical shift packed quadwords with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
+  </instruction>
+  <instruction name="pshlw" category="SIMD">
+    <description>Variable logical shift packed words with per-element shift counts. Positive shifts left, negative shifts right. AMD XOP instruction.</description>
   </instruction>
   <instruction name="pshufb" category="SIMD">
     <description>Packed shuffle bytes</description>
@@ -6054,14 +6297,32 @@ R11 := RFLAGS</operation>
   <instruction name="unpcklps" category="SIMD">
     <description>Unpack low packed single-precision</description>
   </instruction>
+  <instruction name="v4fmaddps" category="SIMD">
+    <description>Packed single-precision floating-point fused multiply-add with 4 iterations.</description>
+  </instruction>
+  <instruction name="v4fmaddss" category="SIMD">
+    <description>Scalar single-precision floating-point fused multiply-add with 4 iterations.</description>
+  </instruction>
+  <instruction name="v4fnmaddps" category="SIMD">
+    <description>Packed single-precision floating-point fused negated multiply-add with 4 iterations.</description>
+  </instruction>
+  <instruction name="v4fnmaddss" category="SIMD">
+    <description>Scalar single-precision floating-point fused negated multiply-add with 4 iterations.</description>
+  </instruction>
   <instruction name="vaddpd" category="SIMD">
     <description>Add packed double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vaddph" category="SIMD">
+    <description>Add packed half-precision (FP16) floating-point values.</description>
   </instruction>
   <instruction name="vaddps" category="SIMD">
     <description>Add packed single-precision (AVX)</description>
   </instruction>
   <instruction name="vaddsd" category="SIMD">
     <description>Add scalar double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vaddsh" category="SIMD">
+    <description>Add scalar half-precision (FP16) floating-point values.</description>
   </instruction>
   <instruction name="vaddss" category="SIMD">
     <description>Add scalar single-precision (AVX)</description>
@@ -6108,6 +6369,12 @@ R11 := RFLAGS</operation>
   <instruction name="vandps" category="SIMD">
     <description>Bitwise AND of packed single-precision (AVX)</description>
   </instruction>
+  <instruction name="vblendmpd" category="SIMD">
+    <description>Blend packed double-precision floating-point values using an opmask control.</description>
+  </instruction>
+  <instruction name="vblendmps" category="SIMD">
+    <description>Blend packed single-precision floating-point values using an opmask control.</description>
+  </instruction>
   <instruction name="vblendpd" category="SIMD">
     <description>Blend packed double-precision (AVX)</description>
   </instruction>
@@ -6120,11 +6387,56 @@ R11 := RFLAGS</operation>
   <instruction name="vblendvps" category="SIMD">
     <description>Variable blend packed single-precision (AVX)</description>
   </instruction>
+  <instruction name="vbroadcast" category="SIMD">
+    <description>Broadcast floating-point data from memory or register to vector register.</description>
+  </instruction>
+  <instruction name="vbroadcastb" category="SIMD">
+    <description>Broadcast a byte value to all elements of a vector register.</description>
+  </instruction>
+  <instruction name="vbroadcastd" category="SIMD">
+    <description>Broadcast a 32-bit integer value to all elements of a vector register.</description>
+  </instruction>
   <instruction name="vbroadcastf128" category="SIMD">
     <description>Broadcast 128 bits (AVX)</description>
   </instruction>
+  <instruction name="vbroadcastf32x2" category="SIMD">
+    <description>Broadcast two 32-bit floating-point values to all 64-bit elements.</description>
+  </instruction>
+  <instruction name="vbroadcastf32x4" category="SIMD">
+    <description>Broadcast 128 bits of four 32-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vbroadcastf32x8" category="SIMD">
+    <description>Broadcast 256 bits of eight 32-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vbroadcastf64x2" category="SIMD">
+    <description>Broadcast 128 bits of two 64-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vbroadcastf64x4" category="SIMD">
+    <description>Broadcast 256 bits of four 64-bit floating-point values.</description>
+  </instruction>
   <instruction name="vbroadcasti128" category="SIMD">
     <description>Broadcast 128 bits of integer data (AVX2)</description>
+  </instruction>
+  <instruction name="vbroadcasti32x2" category="SIMD">
+    <description>Broadcast two 32-bit integer values to all 64-bit elements.</description>
+  </instruction>
+  <instruction name="vbroadcasti32x4" category="SIMD">
+    <description>Broadcast 128 bits of four 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vbroadcasti32x8" category="SIMD">
+    <description>Broadcast 256 bits of eight 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vbroadcasti64x2" category="SIMD">
+    <description>Broadcast 128 bits of two 64-bit integer values.</description>
+  </instruction>
+  <instruction name="vbroadcasti64x4" category="SIMD">
+    <description>Broadcast 256 bits of four 64-bit integer values.</description>
+  </instruction>
+  <instruction name="vbroadcastm" category="SIMD">
+    <description>Broadcast mask register to vector register.</description>
+  </instruction>
+  <instruction name="vbroadcastq" category="SIMD">
+    <description>Broadcast a 64-bit integer value to all elements of a vector register.</description>
   </instruction>
   <instruction name="vbroadcastsd" category="SIMD">
     <description>Broadcast double-precision to all elements (AVX)</description>
@@ -6132,8 +6444,32 @@ R11 := RFLAGS</operation>
   <instruction name="vbroadcastss" category="SIMD">
     <description>Broadcast single-precision to all elements (AVX)</description>
   </instruction>
+  <instruction name="vbroadcastw" category="SIMD">
+    <description>Broadcast a 16-bit integer value to all elements of a vector register.</description>
+  </instruction>
+  <instruction name="vcmpeqpd" category="SIMD">
+    <description>Compare packed double-precision floating-point values for equality.</description>
+  </instruction>
+  <instruction name="vcmpeqps" category="SIMD">
+    <description>Compare packed single-precision floating-point values for equality.</description>
+  </instruction>
+  <instruction name="vcmplepd" category="SIMD">
+    <description>Compare packed double-precision floating-point values for less-than-or-equal.</description>
+  </instruction>
+  <instruction name="vcmpleps" category="SIMD">
+    <description>Compare packed single-precision floating-point values for less-than-or-equal.</description>
+  </instruction>
+  <instruction name="vcmpltpd" category="SIMD">
+    <description>Compare packed double-precision floating-point values for less-than.</description>
+  </instruction>
+  <instruction name="vcmpltps" category="SIMD">
+    <description>Compare packed single-precision floating-point values for less-than.</description>
+  </instruction>
   <instruction name="vcmppd" category="SIMD">
     <description>Compare packed double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vcmpph" category="SIMD">
+    <description>Compare packed half-precision (FP16) floating-point values.</description>
   </instruction>
   <instruction name="vcmpps" category="SIMD">
     <description>Compare packed single-precision (AVX)</description>
@@ -6141,11 +6477,17 @@ R11 := RFLAGS</operation>
   <instruction name="vcmpsd" category="SIMD">
     <description>Compare scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vcmpsh" category="SIMD">
+    <description>Compare scalar half-precision (FP16) floating-point values.</description>
+  </instruction>
   <instruction name="vcmpss" category="SIMD">
     <description>Compare scalar single-precision (AVX)</description>
   </instruction>
   <instruction name="vcomisd" category="SIMD">
     <description>Compare scalar ordered double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vcomish" category="SIMD">
+    <description>Compare ordered scalar half-precision (FP16) floating-point values and set EFLAGS.</description>
   </instruction>
   <instruction name="vcomiss" category="SIMD">
     <description>Compare scalar ordered single-precision (AVX)</description>
@@ -6156,20 +6498,68 @@ R11 := RFLAGS</operation>
   <instruction name="vcompressps" category="SIMD">
     <description>Store sparse packed single-precision floating-point values</description>
   </instruction>
+  <instruction name="vcompressw" category="SIMD">
+    <description>Compress packed 16-bit integer values using writemask control.</description>
+  </instruction>
   <instruction name="vcvtdq2pd" category="SIMD">
     <description>Convert packed dword integers to packed double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vcvtdq2ph" category="SIMD">
+    <description>Convert packed doubleword integers to packed half-precision floating-point values.</description>
   </instruction>
   <instruction name="vcvtdq2ps" category="SIMD">
     <description>Convert packed dword integers to packed single-precision (AVX)</description>
   </instruction>
+  <instruction name="vcvtne2ps2bf16" category="SIMD">
+    <description>Convert two packed single-precision floating-point values to bfloat16 with no rounding.</description>
+  </instruction>
+  <instruction name="vcvtneps2bf16" category="SIMD">
+    <description>Convert packed single-precision floating-point values to bfloat16 with no rounding.</description>
+  </instruction>
   <instruction name="vcvtpd2dq" category="SIMD">
     <description>Convert packed double-precision to packed dword integers (AVX)</description>
+  </instruction>
+  <instruction name="vcvtpd2ph" category="SIMD">
+    <description>Convert packed double-precision floating-point values to packed half-precision values.</description>
   </instruction>
   <instruction name="vcvtpd2ps" category="SIMD">
     <description>Convert packed double-precision to packed single-precision (AVX)</description>
   </instruction>
+  <instruction name="vcvtpd2qq" category="SIMD">
+    <description>Convert packed double-precision floating-point values to packed quadword integers.</description>
+  </instruction>
+  <instruction name="vcvtpd2udq" category="SIMD">
+    <description>Convert packed double-precision floating-point values to packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvtpd2uqq" category="SIMD">
+    <description>Convert packed double-precision floating-point values to packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vcvtph2dq" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvtph2pd" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed double-precision values.</description>
+  </instruction>
   <instruction name="vcvtph2ps" category="SIMD">
     <description>Convert packed half-precision to single-precision</description>
+  </instruction>
+  <instruction name="vcvtph2psx" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed single-precision values.</description>
+  </instruction>
+  <instruction name="vcvtph2qq" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed quadword integers.</description>
+  </instruction>
+  <instruction name="vcvtph2udq" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvtph2uqq" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vcvtph2uw" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed unsigned word integers.</description>
+  </instruction>
+  <instruction name="vcvtph2w" category="SIMD">
+    <description>Convert packed half-precision floating-point values to packed signed word integers.</description>
   </instruction>
   <instruction name="vcvtps2dq" category="SIMD">
     <description>Convert packed single-precision to packed dword integers (AVX)</description>
@@ -6180,14 +6570,56 @@ R11 := RFLAGS</operation>
   <instruction name="vcvtps2ph" category="SIMD">
     <description>Convert packed single-precision to half-precision</description>
   </instruction>
+  <instruction name="vcvtps2phx" category="SIMD">
+    <description>Convert packed single-precision floating-point values to packed half-precision values.</description>
+  </instruction>
+  <instruction name="vcvtps2qq" category="SIMD">
+    <description>Convert packed single-precision floating-point values to packed quadword integers.</description>
+  </instruction>
+  <instruction name="vcvtps2udq" category="SIMD">
+    <description>Convert packed single-precision floating-point values to packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvtps2uqq" category="SIMD">
+    <description>Convert packed single-precision floating-point values to packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vcvtqq2pd" category="SIMD">
+    <description>Convert packed quadword integers to packed double-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtqq2ph" category="SIMD">
+    <description>Convert packed quadword integers to packed half-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtqq2ps" category="SIMD">
+    <description>Convert packed quadword integers to packed single-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtsd2sh" category="SIMD">
+    <description>Convert scalar double-precision floating-point value to scalar half-precision value.</description>
+  </instruction>
   <instruction name="vcvtsd2si" category="SIMD">
     <description>Convert scalar double-precision to dword integer (AVX)</description>
   </instruction>
   <instruction name="vcvtsd2ss" category="SIMD">
     <description>Convert scalar double-precision to scalar single-precision (AVX)</description>
   </instruction>
+  <instruction name="vcvtsd2usi" category="SIMD">
+    <description>Convert scalar double-precision floating-point value to unsigned integer.</description>
+  </instruction>
+  <instruction name="vcvtsh2sd" category="SIMD">
+    <description>Convert scalar half-precision floating-point value to scalar double-precision value.</description>
+  </instruction>
+  <instruction name="vcvtsh2si" category="SIMD">
+    <description>Convert scalar half-precision floating-point value to signed integer.</description>
+  </instruction>
+  <instruction name="vcvtsh2ss" category="SIMD">
+    <description>Convert scalar half-precision floating-point value to scalar single-precision value.</description>
+  </instruction>
+  <instruction name="vcvtsh2usi" category="SIMD">
+    <description>Convert scalar half-precision floating-point value to unsigned integer.</description>
+  </instruction>
   <instruction name="vcvtsi2sd" category="SIMD">
     <description>Convert dword integer to scalar double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vcvtsi2sh" category="SIMD">
+    <description>Convert signed integer to scalar half-precision floating-point value.</description>
   </instruction>
   <instruction name="vcvtsi2ss" category="SIMD">
     <description>Convert dword integer to scalar single-precision (AVX)</description>
@@ -6195,23 +6627,116 @@ R11 := RFLAGS</operation>
   <instruction name="vcvtss2sd" category="SIMD">
     <description>Convert scalar single-precision to scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vcvtss2sh" category="SIMD">
+    <description>Convert scalar single-precision floating-point value to scalar half-precision value.</description>
+  </instruction>
   <instruction name="vcvtss2si" category="SIMD">
     <description>Convert scalar single-precision to dword integer (AVX)</description>
+  </instruction>
+  <instruction name="vcvtss2usi" category="SIMD">
+    <description>Convert scalar single-precision floating-point value to unsigned integer.</description>
   </instruction>
   <instruction name="vcvttpd2dq" category="SIMD">
     <description>Convert with truncation packed double-precision to packed dword integers (AVX)</description>
   </instruction>
+  <instruction name="vcvttpd2qq" category="SIMD">
+    <description>Convert with truncation packed double-precision floating-point values to packed quadword integers.</description>
+  </instruction>
+  <instruction name="vcvttpd2udq" category="SIMD">
+    <description>Convert with truncation packed double-precision floating-point values to packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvttpd2uqq" category="SIMD">
+    <description>Convert with truncation packed double-precision floating-point values to packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vcvttph2dq" category="SIMD">
+    <description>Convert with truncation packed half-precision floating-point values to packed doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvttph2qq" category="SIMD">
+    <description>Convert with truncation packed half-precision floating-point values to packed quadword integers.</description>
+  </instruction>
+  <instruction name="vcvttph2udq" category="SIMD">
+    <description>Convert with truncation packed half-precision floating-point values to packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvttph2uqq" category="SIMD">
+    <description>Convert with truncation packed half-precision floating-point values to packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vcvttph2uw" category="SIMD">
+    <description>Convert with truncation packed half-precision floating-point values to packed unsigned word integers.</description>
+  </instruction>
+  <instruction name="vcvttph2w" category="SIMD">
+    <description>Convert with truncation packed half-precision floating-point values to packed signed word integers.</description>
+  </instruction>
   <instruction name="vcvttps2dq" category="SIMD">
     <description>Convert with truncation packed single-precision to packed dword integers (AVX)</description>
+  </instruction>
+  <instruction name="vcvttps2qq" category="SIMD">
+    <description>Convert with truncation packed single-precision floating-point values to packed quadword integers.</description>
+  </instruction>
+  <instruction name="vcvttps2udq" category="SIMD">
+    <description>Convert with truncation packed single-precision floating-point values to packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vcvttps2uqq" category="SIMD">
+    <description>Convert with truncation packed single-precision floating-point values to packed unsigned quadword integers.</description>
   </instruction>
   <instruction name="vcvttsd2si" category="SIMD">
     <description>Convert with truncation scalar double-precision to dword integer (AVX)</description>
   </instruction>
+  <instruction name="vcvttsd2usi" category="SIMD">
+    <description>Convert with truncation scalar double-precision floating-point value to unsigned integer.</description>
+  </instruction>
+  <instruction name="vcvttsh2si" category="SIMD">
+    <description>Convert with truncation scalar half-precision floating-point value to signed integer.</description>
+  </instruction>
+  <instruction name="vcvttsh2usi" category="SIMD">
+    <description>Convert with truncation scalar half-precision floating-point value to unsigned integer.</description>
+  </instruction>
   <instruction name="vcvttss2si" category="SIMD">
     <description>Convert with truncation scalar single-precision to dword integer (AVX)</description>
   </instruction>
+  <instruction name="vcvttss2usi" category="SIMD">
+    <description>Convert with truncation scalar single-precision floating-point value to unsigned integer.</description>
+  </instruction>
+  <instruction name="vcvtudq2pd" category="SIMD">
+    <description>Convert packed unsigned doubleword integers to packed double-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtudq2ph" category="SIMD">
+    <description>Convert packed unsigned doubleword integers to packed half-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtudq2ps" category="SIMD">
+    <description>Convert packed unsigned doubleword integers to packed single-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtuqq2pd" category="SIMD">
+    <description>Convert packed unsigned quadword integers to packed double-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtuqq2ph" category="SIMD">
+    <description>Convert packed unsigned quadword integers to packed half-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtuqq2ps" category="SIMD">
+    <description>Convert packed unsigned quadword integers to packed single-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtusi2sd" category="SIMD">
+    <description>Convert unsigned integer to scalar double-precision floating-point value.</description>
+  </instruction>
+  <instruction name="vcvtusi2sh" category="SIMD">
+    <description>Convert unsigned integer to scalar half-precision floating-point value.</description>
+  </instruction>
+  <instruction name="vcvtusi2ss" category="SIMD">
+    <description>Convert unsigned integer to scalar single-precision floating-point value.</description>
+  </instruction>
+  <instruction name="vcvtuw2ph" category="SIMD">
+    <description>Convert packed unsigned word integers to packed half-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vcvtw2ph" category="SIMD">
+    <description>Convert packed signed word integers to packed half-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vdbpsadbw" category="SIMD">
+    <description>Double block packed sum-absolute-differences on unsigned bytes.</description>
+  </instruction>
   <instruction name="vdivpd" category="SIMD">
     <description>Divide packed double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vdivph" category="SIMD">
+    <description>Divide packed half-precision (FP16) floating-point values.</description>
   </instruction>
   <instruction name="vdivps" category="SIMD">
     <description>Divide packed single-precision (AVX)</description>
@@ -6219,8 +6744,14 @@ R11 := RFLAGS</operation>
   <instruction name="vdivsd" category="SIMD">
     <description>Divide scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vdivsh" category="SIMD">
+    <description>Divide scalar half-precision (FP16) floating-point values.</description>
+  </instruction>
   <instruction name="vdivss" category="SIMD">
     <description>Divide scalar single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vdpbf16ps" category="SIMD">
+    <description>Dot product of bfloat16 pairs accumulated into packed single precision.</description>
   </instruction>
   <instruction name="vdppd" category="SIMD">
     <description>Dot product of packed double-precision (AVX)</description>
@@ -6234,6 +6765,12 @@ R11 := RFLAGS</operation>
   <instruction name="verw" category="SYSTEM">
     <description>Verify segment for writing</description>
   </instruction>
+  <instruction name="vexp2pd" category="SIMD">
+    <description>Compute approximate base-2 exponential of packed double-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vexp2ps" category="SIMD">
+    <description>Compute approximate base-2 exponential of packed single-precision floating-point values.</description>
+  </instruction>
   <instruction name="vexpandpd" category="SIMD">
     <description>Load sparse packed double-precision floating-point values</description>
   </instruction>
@@ -6243,11 +6780,47 @@ R11 := RFLAGS</operation>
   <instruction name="vextractf128" category="SIMD">
     <description>Extract 128 bits (AVX)</description>
   </instruction>
+  <instruction name="vextractf32x4" category="SIMD">
+    <description>Extract 128 bits of four 32-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vextractf32x8" category="SIMD">
+    <description>Extract 256 bits of eight 32-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vextractf64x2" category="SIMD">
+    <description>Extract 128 bits of two 64-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vextractf64x4" category="SIMD">
+    <description>Extract 256 bits of four 64-bit floating-point values.</description>
+  </instruction>
   <instruction name="vextracti128" category="SIMD">
     <description>Extract 128 bits of integer data (AVX2)</description>
   </instruction>
+  <instruction name="vextracti32x4" category="SIMD">
+    <description>Extract 128 bits of four 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vextracti32x8" category="SIMD">
+    <description>Extract 256 bits of eight 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vextracti64x2" category="SIMD">
+    <description>Extract 128 bits of two 64-bit integer values.</description>
+  </instruction>
+  <instruction name="vextracti64x4" category="SIMD">
+    <description>Extract 256 bits of four 64-bit integer values.</description>
+  </instruction>
   <instruction name="vextractps" category="SIMD">
     <description>Extract packed single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vfcmaddcph" category="SIMD">
+    <description>Complex multiply and accumulate FP16 values with conjugate.</description>
+  </instruction>
+  <instruction name="vfcmaddcsh" category="SIMD">
+    <description>Scalar complex multiply and accumulate FP16 values with conjugate.</description>
+  </instruction>
+  <instruction name="vfcmulcph" category="SIMD">
+    <description>Complex multiply FP16 values with conjugate.</description>
+  </instruction>
+  <instruction name="vfcmulcsh" category="SIMD">
+    <description>Scalar complex multiply FP16 values with conjugate.</description>
   </instruction>
   <instruction name="vfixupimmpd" category="SIMD">
     <description>Fix up special packed double-precision floating-point values</description>
@@ -6261,8 +6834,14 @@ R11 := RFLAGS</operation>
   <instruction name="vfixupimmss" category="SIMD">
     <description>Fix up special scalar single-precision floating-point value</description>
   </instruction>
+  <instruction name="vfmadd" category="SIMD">
+    <description>Fused multiply-add of floating-point values.</description>
+  </instruction>
   <instruction name="vfmadd132pd" category="SIMD">
     <description>Fused multiply-add packed double-precision (132 form)</description>
+  </instruction>
+  <instruction name="vfmadd132ph" category="SIMD">
+    <description>Fused multiply-add of packed half-precision values (operand ordering 132).</description>
   </instruction>
   <instruction name="vfmadd132ps" category="SIMD">
     <description>Fused multiply-add packed single-precision (132 form)</description>
@@ -6270,11 +6849,17 @@ R11 := RFLAGS</operation>
   <instruction name="vfmadd132sd" category="SIMD">
     <description>Fused multiply-add scalar double-precision (132 form)</description>
   </instruction>
+  <instruction name="vfmadd132sh" category="SIMD">
+    <description>Fused multiply-add of scalar half-precision values (operand ordering 132).</description>
+  </instruction>
   <instruction name="vfmadd132ss" category="SIMD">
     <description>Fused multiply-add scalar single-precision (132 form)</description>
   </instruction>
   <instruction name="vfmadd213pd" category="SIMD">
     <description>Fused multiply-add packed double-precision (213 form)</description>
+  </instruction>
+  <instruction name="vfmadd213ph" category="SIMD">
+    <description>Fused multiply-add of packed half-precision values (operand ordering 213).</description>
   </instruction>
   <instruction name="vfmadd213ps" category="SIMD">
     <description>Fused multiply-add packed single-precision (213 form)</description>
@@ -6282,11 +6867,17 @@ R11 := RFLAGS</operation>
   <instruction name="vfmadd213sd" category="SIMD">
     <description>Fused multiply-add scalar double-precision (213 form)</description>
   </instruction>
+  <instruction name="vfmadd213sh" category="SIMD">
+    <description>Fused multiply-add of scalar half-precision values (operand ordering 213).</description>
+  </instruction>
   <instruction name="vfmadd213ss" category="SIMD">
     <description>Fused multiply-add scalar single-precision (213 form)</description>
   </instruction>
   <instruction name="vfmadd231pd" category="SIMD">
     <description>Fused multiply-add packed double-precision (231 form)</description>
+  </instruction>
+  <instruction name="vfmadd231ph" category="SIMD">
+    <description>Fused multiply-add of packed half-precision values (operand ordering 231).</description>
   </instruction>
   <instruction name="vfmadd231ps" category="SIMD">
     <description>Fused multiply-add packed single-precision (231 form)</description>
@@ -6294,11 +6885,41 @@ R11 := RFLAGS</operation>
   <instruction name="vfmadd231sd" category="SIMD">
     <description>Fused multiply-add scalar double-precision (231 form)</description>
   </instruction>
+  <instruction name="vfmadd231sh" category="SIMD">
+    <description>Fused multiply-add of scalar half-precision values (operand ordering 231).</description>
+  </instruction>
   <instruction name="vfmadd231ss" category="SIMD">
     <description>Fused multiply-add scalar single-precision (231 form)</description>
   </instruction>
+  <instruction name="vfmaddcph" category="SIMD">
+    <description>Complex multiply and accumulate FP16 values.</description>
+  </instruction>
+  <instruction name="vfmaddcsh" category="SIMD">
+    <description>Scalar complex multiply and accumulate FP16 values.</description>
+  </instruction>
+  <instruction name="vfmaddpd" category="SIMD">
+    <description>Fused multiply-add of packed double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmaddps" category="SIMD">
+    <description>Fused multiply-add of packed single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmaddrnd231pd" category="SIMD">
+    <description>Fused multiply-add of packed double-precision values with rounding (operand ordering 231).</description>
+  </instruction>
+  <instruction name="vfmaddsd" category="SIMD">
+    <description>Fused multiply-add of scalar double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmaddss" category="SIMD">
+    <description>Fused multiply-add of scalar single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmaddsub" category="SIMD">
+    <description>Fused multiply-add/subtract of floating-point values.</description>
+  </instruction>
   <instruction name="vfmaddsub132pd" category="SIMD">
     <description>Fused multiply-add/subtract packed double-precision (132 form)</description>
+  </instruction>
+  <instruction name="vfmaddsub132ph" category="SIMD">
+    <description>Fused multiply-add/subtract of packed half-precision values (operand ordering 132).</description>
   </instruction>
   <instruction name="vfmaddsub132ps" category="SIMD">
     <description>Fused multiply-add/subtract packed single-precision (132 form)</description>
@@ -6306,14 +6927,29 @@ R11 := RFLAGS</operation>
   <instruction name="vfmaddsub213pd" category="SIMD">
     <description>Fused multiply-add/subtract packed double-precision (213 form)</description>
   </instruction>
+  <instruction name="vfmaddsub213ph" category="SIMD">
+    <description>Fused multiply-add/subtract of packed half-precision values (operand ordering 213).</description>
+  </instruction>
   <instruction name="vfmaddsub213ps" category="SIMD">
     <description>Fused multiply-add/subtract packed single-precision (213 form)</description>
   </instruction>
   <instruction name="vfmaddsub231pd" category="SIMD">
     <description>Fused multiply-add/subtract packed double-precision (231 form)</description>
   </instruction>
+  <instruction name="vfmaddsub231ph" category="SIMD">
+    <description>Fused multiply-add/subtract of packed half-precision values (operand ordering 231).</description>
+  </instruction>
   <instruction name="vfmaddsub231ps" category="SIMD">
     <description>Fused multiply-add/subtract packed single-precision (231 form)</description>
+  </instruction>
+  <instruction name="vfmaddsubpd" category="SIMD">
+    <description>Fused multiply-add/subtract of packed double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmaddsubps" category="SIMD">
+    <description>Fused multiply-add/subtract of packed single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmsub" category="SIMD">
+    <description>Fused multiply-subtract of floating-point values.</description>
   </instruction>
   <instruction name="vfmsub132pd" category="SIMD">
     <description>Fused multiply-subtract packed double-precision (132 form)</description>
@@ -6351,6 +6987,9 @@ R11 := RFLAGS</operation>
   <instruction name="vfmsub231ss" category="SIMD">
     <description>Fused multiply-subtract scalar single-precision (231 form)</description>
   </instruction>
+  <instruction name="vfmsubadd" category="SIMD">
+    <description>Fused multiply-subtract/add of floating-point values.</description>
+  </instruction>
   <instruction name="vfmsubadd132pd" category="SIMD">
     <description>Fused multiply-subtract/add packed double-precision (132 form)</description>
   </instruction>
@@ -6369,8 +7008,38 @@ R11 := RFLAGS</operation>
   <instruction name="vfmsubadd231ps" category="SIMD">
     <description>Fused multiply-subtract/add packed single-precision (231 form)</description>
   </instruction>
+  <instruction name="vfmsubaddpd" category="SIMD">
+    <description>Fused multiply-subtract/add of packed double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmsubaddps" category="SIMD">
+    <description>Fused multiply-subtract/add of packed single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmsubpd" category="SIMD">
+    <description>Fused multiply-subtract of packed double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmsubps" category="SIMD">
+    <description>Fused multiply-subtract of packed single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmsubsd" category="SIMD">
+    <description>Fused multiply-subtract of scalar double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmsubss" category="SIMD">
+    <description>Fused multiply-subtract of scalar single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfmulcph" category="SIMD">
+    <description>Complex multiply FP16 values.</description>
+  </instruction>
+  <instruction name="vfmulcsh" category="SIMD">
+    <description>Scalar complex multiply FP16 values.</description>
+  </instruction>
+  <instruction name="vfnmadd" category="SIMD">
+    <description>Fused negated multiply-add of floating-point values.</description>
+  </instruction>
   <instruction name="vfnmadd132pd" category="SIMD">
     <description>Fused negative multiply-add packed double-precision (132 form)</description>
+  </instruction>
+  <instruction name="vfnmadd132ph" category="SIMD">
+    <description>Fused negated multiply-add of packed half-precision values (operand ordering 132).</description>
   </instruction>
   <instruction name="vfnmadd132ps" category="SIMD">
     <description>Fused negative multiply-add packed single-precision (132 form)</description>
@@ -6378,11 +7047,17 @@ R11 := RFLAGS</operation>
   <instruction name="vfnmadd132sd" category="SIMD">
     <description>Fused negative multiply-add scalar double-precision (132 form)</description>
   </instruction>
+  <instruction name="vfnmadd132sh" category="SIMD">
+    <description>Fused negated multiply-add of scalar half-precision values (operand ordering 132).</description>
+  </instruction>
   <instruction name="vfnmadd132ss" category="SIMD">
     <description>Fused negative multiply-add scalar single-precision (132 form)</description>
   </instruction>
   <instruction name="vfnmadd213pd" category="SIMD">
     <description>Fused negative multiply-add packed double-precision (213 form)</description>
+  </instruction>
+  <instruction name="vfnmadd213ph" category="SIMD">
+    <description>Fused negated multiply-add of packed half-precision values (operand ordering 213).</description>
   </instruction>
   <instruction name="vfnmadd213ps" category="SIMD">
     <description>Fused negative multiply-add packed single-precision (213 form)</description>
@@ -6390,11 +7065,17 @@ R11 := RFLAGS</operation>
   <instruction name="vfnmadd213sd" category="SIMD">
     <description>Fused negative multiply-add scalar double-precision (213 form)</description>
   </instruction>
+  <instruction name="vfnmadd213sh" category="SIMD">
+    <description>Fused negated multiply-add of scalar half-precision values (operand ordering 213).</description>
+  </instruction>
   <instruction name="vfnmadd213ss" category="SIMD">
     <description>Fused negative multiply-add scalar single-precision (213 form)</description>
   </instruction>
   <instruction name="vfnmadd231pd" category="SIMD">
     <description>Fused negative multiply-add packed double-precision (231 form)</description>
+  </instruction>
+  <instruction name="vfnmadd231ph" category="SIMD">
+    <description>Fused negated multiply-add of packed half-precision values (operand ordering 231).</description>
   </instruction>
   <instruction name="vfnmadd231ps" category="SIMD">
     <description>Fused negative multiply-add packed single-precision (231 form)</description>
@@ -6402,11 +7083,32 @@ R11 := RFLAGS</operation>
   <instruction name="vfnmadd231sd" category="SIMD">
     <description>Fused negative multiply-add scalar double-precision (231 form)</description>
   </instruction>
+  <instruction name="vfnmadd231sh" category="SIMD">
+    <description>Fused negated multiply-add of scalar half-precision values (operand ordering 231).</description>
+  </instruction>
   <instruction name="vfnmadd231ss" category="SIMD">
     <description>Fused negative multiply-add scalar single-precision (231 form)</description>
   </instruction>
+  <instruction name="vfnmaddpd" category="SIMD">
+    <description>Fused negated multiply-add of packed double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfnmaddps" category="SIMD">
+    <description>Fused negated multiply-add of packed single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfnmaddsd" category="SIMD">
+    <description>Fused negated multiply-add of scalar double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfnmaddss" category="SIMD">
+    <description>Fused negated multiply-add of scalar single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfnmsub" category="SIMD">
+    <description>Fused negated multiply-subtract of floating-point values.</description>
+  </instruction>
   <instruction name="vfnmsub132pd" category="SIMD">
     <description>Fused negative multiply-subtract packed double-precision (132 form)</description>
+  </instruction>
+  <instruction name="vfnmsub132ph" category="SIMD">
+    <description>Fused negated multiply-subtract of packed half-precision values (operand ordering 132).</description>
   </instruction>
   <instruction name="vfnmsub132ps" category="SIMD">
     <description>Fused negative multiply-subtract packed single-precision (132 form)</description>
@@ -6414,11 +7116,17 @@ R11 := RFLAGS</operation>
   <instruction name="vfnmsub132sd" category="SIMD">
     <description>Fused negative multiply-subtract scalar double-precision (132 form)</description>
   </instruction>
+  <instruction name="vfnmsub132sh" category="SIMD">
+    <description>Fused negated multiply-subtract of scalar half-precision values (operand ordering 132).</description>
+  </instruction>
   <instruction name="vfnmsub132ss" category="SIMD">
     <description>Fused negative multiply-subtract scalar single-precision (132 form)</description>
   </instruction>
   <instruction name="vfnmsub213pd" category="SIMD">
     <description>Fused negative multiply-subtract packed double-precision (213 form)</description>
+  </instruction>
+  <instruction name="vfnmsub213ph" category="SIMD">
+    <description>Fused negated multiply-subtract of packed half-precision values (operand ordering 213).</description>
   </instruction>
   <instruction name="vfnmsub213ps" category="SIMD">
     <description>Fused negative multiply-subtract packed single-precision (213 form)</description>
@@ -6426,11 +7134,17 @@ R11 := RFLAGS</operation>
   <instruction name="vfnmsub213sd" category="SIMD">
     <description>Fused negative multiply-subtract scalar double-precision (213 form)</description>
   </instruction>
+  <instruction name="vfnmsub213sh" category="SIMD">
+    <description>Fused negated multiply-subtract of scalar half-precision values (operand ordering 213).</description>
+  </instruction>
   <instruction name="vfnmsub213ss" category="SIMD">
     <description>Fused negative multiply-subtract scalar single-precision (213 form)</description>
   </instruction>
   <instruction name="vfnmsub231pd" category="SIMD">
     <description>Fused negative multiply-subtract packed double-precision (231 form)</description>
+  </instruction>
+  <instruction name="vfnmsub231ph" category="SIMD">
+    <description>Fused negated multiply-subtract of packed half-precision values (operand ordering 231).</description>
   </instruction>
   <instruction name="vfnmsub231ps" category="SIMD">
     <description>Fused negative multiply-subtract packed single-precision (231 form)</description>
@@ -6438,11 +7152,29 @@ R11 := RFLAGS</operation>
   <instruction name="vfnmsub231sd" category="SIMD">
     <description>Fused negative multiply-subtract scalar double-precision (231 form)</description>
   </instruction>
+  <instruction name="vfnmsub231sh" category="SIMD">
+    <description>Fused negated multiply-subtract of scalar half-precision values (operand ordering 231).</description>
+  </instruction>
   <instruction name="vfnmsub231ss" category="SIMD">
     <description>Fused negative multiply-subtract scalar single-precision (231 form)</description>
   </instruction>
+  <instruction name="vfnmsubpd" category="SIMD">
+    <description>Fused negated multiply-subtract of packed double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfnmsubps" category="SIMD">
+    <description>Fused negated multiply-subtract of packed single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfnmsubsd" category="SIMD">
+    <description>Fused negated multiply-subtract of scalar double-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
+  <instruction name="vfnmsubss" category="SIMD">
+    <description>Fused negated multiply-subtract of scalar single-precision floating-point values (FMA4 legacy).</description>
+  </instruction>
   <instruction name="vfpclasspd" category="SIMD">
     <description>Test packed double-precision floating-point values for special categories</description>
+  </instruction>
+  <instruction name="vfpclassph" category="SIMD">
+    <description>Test packed half-precision floating-point values for special categories.</description>
   </instruction>
   <instruction name="vfpclassps" category="SIMD">
     <description>Test packed single-precision floating-point values for special categories</description>
@@ -6450,14 +7182,53 @@ R11 := RFLAGS</operation>
   <instruction name="vfpclasssd" category="SIMD">
     <description>Test scalar double-precision floating-point value for special categories</description>
   </instruction>
+  <instruction name="vfpclasssh" category="SIMD">
+    <description>Test scalar half-precision floating-point value for special categories.</description>
+  </instruction>
   <instruction name="vfpclassss" category="SIMD">
     <description>Test scalar single-precision floating-point value for special categories</description>
+  </instruction>
+  <instruction name="vfrczpd" category="SIMD">
+    <description>Extract fraction from packed double-precision floating-point values (XOP).</description>
+  </instruction>
+  <instruction name="vfrczps" category="SIMD">
+    <description>Extract fraction from packed single-precision floating-point values (XOP).</description>
+  </instruction>
+  <instruction name="vfrczsd" category="SIMD">
+    <description>Extract fraction from scalar double-precision floating-point value (XOP).</description>
+  </instruction>
+  <instruction name="vfrczss" category="SIMD">
+    <description>Extract fraction from scalar single-precision floating-point value (XOP).</description>
   </instruction>
   <instruction name="vgatherdpd" category="SIMD">
     <description>Gather packed double-precision floating-point values using doubleword indices</description>
   </instruction>
   <instruction name="vgatherdps" category="SIMD">
     <description>Gather packed single-precision floating-point values using doubleword indices</description>
+  </instruction>
+  <instruction name="vgatherpf0dpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with dword indices using T0 hint.</description>
+  </instruction>
+  <instruction name="vgatherpf0dps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with dword indices using T0 hint.</description>
+  </instruction>
+  <instruction name="vgatherpf0qpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with qword indices using T0 hint.</description>
+  </instruction>
+  <instruction name="vgatherpf0qps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with qword indices using T0 hint.</description>
+  </instruction>
+  <instruction name="vgatherpf1dpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with dword indices using T1 hint.</description>
+  </instruction>
+  <instruction name="vgatherpf1dps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with dword indices using T1 hint.</description>
+  </instruction>
+  <instruction name="vgatherpf1qpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with qword indices using T1 hint.</description>
+  </instruction>
+  <instruction name="vgatherpf1qps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with qword indices using T1 hint.</description>
   </instruction>
   <instruction name="vgatherqpd" category="SIMD">
     <description>Gather packed double-precision floating-point values using quadword indices</description>
@@ -6468,11 +7239,17 @@ R11 := RFLAGS</operation>
   <instruction name="vgetexppd" category="SIMD">
     <description>Convert exponents of packed double-precision floating-point values to FP values</description>
   </instruction>
+  <instruction name="vgetexpph" category="SIMD">
+    <description>Extract exponent from packed half-precision floating-point values.</description>
+  </instruction>
   <instruction name="vgetexpps" category="SIMD">
     <description>Convert exponents of packed single-precision floating-point values to FP values</description>
   </instruction>
   <instruction name="vgetexpsd" category="SIMD">
     <description>Convert exponent of scalar double-precision floating-point value to FP value</description>
+  </instruction>
+  <instruction name="vgetexpsh" category="SIMD">
+    <description>Extract exponent from scalar half-precision floating-point value.</description>
   </instruction>
   <instruction name="vgetexpss" category="SIMD">
     <description>Convert exponent of scalar single-precision floating-point value to FP value</description>
@@ -6480,11 +7257,17 @@ R11 := RFLAGS</operation>
   <instruction name="vgetmantpd" category="SIMD">
     <description>Extract mantissas of packed double-precision floating-point values</description>
   </instruction>
+  <instruction name="vgetmantph" category="SIMD">
+    <description>Extract mantissa from packed half-precision floating-point values.</description>
+  </instruction>
   <instruction name="vgetmantps" category="SIMD">
     <description>Extract mantissas of packed single-precision floating-point values</description>
   </instruction>
   <instruction name="vgetmantsd" category="SIMD">
     <description>Extract mantissa of scalar double-precision floating-point value</description>
+  </instruction>
+  <instruction name="vgetmantsh" category="SIMD">
+    <description>Extract mantissa from scalar half-precision floating-point value.</description>
   </instruction>
   <instruction name="vgetmantss" category="SIMD">
     <description>Extract mantissa of scalar single-precision floating-point value</description>
@@ -6504,11 +7287,47 @@ R11 := RFLAGS</operation>
   <instruction name="vinsertf128" category="SIMD">
     <description>Insert 128 bits (AVX)</description>
   </instruction>
+  <instruction name="vinsertf32x4" category="SIMD">
+    <description>Insert 128 bits of four 32-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vinsertf32x8" category="SIMD">
+    <description>Insert 256 bits of eight 32-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vinsertf64x2" category="SIMD">
+    <description>Insert 128 bits of two 64-bit floating-point values.</description>
+  </instruction>
+  <instruction name="vinsertf64x4" category="SIMD">
+    <description>Insert 256 bits of four 64-bit floating-point values.</description>
+  </instruction>
   <instruction name="vinserti128" category="SIMD">
     <description>Insert 128 bits of integer data (AVX2)</description>
   </instruction>
+  <instruction name="vinserti32x4" category="SIMD">
+    <description>Insert 128 bits of four 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vinserti32x8" category="SIMD">
+    <description>Insert 256 bits of eight 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vinserti64x2" category="SIMD">
+    <description>Insert 128 bits of two 64-bit integer values.</description>
+  </instruction>
+  <instruction name="vinserti64x4" category="SIMD">
+    <description>Insert 256 bits of four 64-bit integer values.</description>
+  </instruction>
   <instruction name="vinsertps" category="SIMD">
     <description>Insert packed single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vlddqu" category="SIMD">
+    <description>Load unaligned integer 128 bits (legacy SSE3 instruction with VEX prefix).</description>
+  </instruction>
+  <instruction name="vldmxcsr" category="SIMD">
+    <description>Load MXCSR register from memory.</description>
+  </instruction>
+  <instruction name="vmaskmov" category="SIMD">
+    <description>Conditional SIMD packed load or store with mask.</description>
+  </instruction>
+  <instruction name="vmaskmovdqu" category="SIMD">
+    <description>Store selected bytes of double quadword with NT hint (legacy SSE2 instruction with VEX prefix).</description>
   </instruction>
   <instruction name="vmaskmovpd" category="SIMD">
     <description>Conditional load/store packed double-precision (AVX)</description>
@@ -6519,17 +7338,35 @@ R11 := RFLAGS</operation>
   <instruction name="vmaxpd" category="SIMD">
     <description>Maximum of packed double-precision (AVX)</description>
   </instruction>
+  <instruction name="vmaxph" category="SIMD">
+    <description>Compute maximum of packed half-precision floating-point values.</description>
+  </instruction>
   <instruction name="vmaxps" category="SIMD">
     <description>Maximum of packed single-precision (AVX)</description>
   </instruction>
   <instruction name="vmaxsd" category="SIMD">
     <description>Maximum of scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vmaxsh" category="SIMD">
+    <description>Compute maximum of scalar half-precision floating-point values.</description>
+  </instruction>
   <instruction name="vmaxss" category="SIMD">
     <description>Maximum of scalar single-precision (AVX)</description>
   </instruction>
+  <instruction name="vmcall" category="SYSTEM">
+    <description>Call to VM monitor from guest OS.</description>
+  </instruction>
+  <instruction name="vmclear" category="SYSTEM">
+    <description>Clear virtual machine control structure.</description>
+  </instruction>
+  <instruction name="vmfunc" category="SYSTEM">
+    <description>Invoke VM function.</description>
+  </instruction>
   <instruction name="vminpd" category="SIMD">
     <description>Minimum of packed double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vminph" category="SIMD">
+    <description>Compute minimum of packed half-precision floating-point values.</description>
   </instruction>
   <instruction name="vminps" category="SIMD">
     <description>Minimum of packed single-precision (AVX)</description>
@@ -6537,8 +7374,17 @@ R11 := RFLAGS</operation>
   <instruction name="vminsd" category="SIMD">
     <description>Minimum of scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vminsh" category="SIMD">
+    <description>Compute minimum of scalar half-precision floating-point values.</description>
+  </instruction>
   <instruction name="vminss" category="SIMD">
     <description>Minimum of scalar single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vmlaunch" category="SYSTEM">
+    <description>Launch virtual machine.</description>
+  </instruction>
+  <instruction name="vmload" category="SYSTEM">
+    <description>Load state from VMCB (AMD SVM instruction).</description>
   </instruction>
   <instruction name="vmovapd" category="SIMD">
     <description>Move aligned packed double-precision (AVX)</description>
@@ -6555,8 +7401,26 @@ R11 := RFLAGS</operation>
   <instruction name="vmovdqa" category="SIMD">
     <description>Move aligned packed integers (AVX)</description>
   </instruction>
+  <instruction name="vmovdqa32" category="SIMD">
+    <description>Move aligned packed 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vmovdqa64" category="SIMD">
+    <description>Move aligned packed 64-bit integer values.</description>
+  </instruction>
   <instruction name="vmovdqu" category="SIMD">
     <description>Move unaligned packed integers (AVX)</description>
+  </instruction>
+  <instruction name="vmovdqu16" category="SIMD">
+    <description>Move unaligned packed 16-bit integer values.</description>
+  </instruction>
+  <instruction name="vmovdqu32" category="SIMD">
+    <description>Move unaligned packed 32-bit integer values.</description>
+  </instruction>
+  <instruction name="vmovdqu64" category="SIMD">
+    <description>Move unaligned packed 64-bit integer values.</description>
+  </instruction>
+  <instruction name="vmovdqu8" category="SIMD">
+    <description>Move unaligned packed 8-bit integer values.</description>
   </instruction>
   <instruction name="vmovhlps" category="SIMD">
     <description>Move high to low packed single-precision (AVX)</description>
@@ -6600,6 +7464,9 @@ R11 := RFLAGS</operation>
   <instruction name="vmovsd" category="SIMD">
     <description>Move scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vmovsh" category="SIMD">
+    <description>Move scalar half-precision floating-point value.</description>
+  </instruction>
   <instruction name="vmovshdup" category="SIMD">
     <description>Move and duplicate high single-precision (AVX)</description>
   </instruction>
@@ -6615,8 +7482,35 @@ R11 := RFLAGS</operation>
   <instruction name="vmovups" category="SIMD">
     <description>Move unaligned packed single-precision (AVX)</description>
   </instruction>
+  <instruction name="vmovw" category="SIMD">
+    <description>Move word to/from vector register.</description>
+  </instruction>
+  <instruction name="vmpsadbw" category="SIMD">
+    <description>Compute multiple packed sum of absolute differences.</description>
+  </instruction>
+  <instruction name="vmptrld" category="SYSTEM">
+    <description>Load pointer to virtual machine control structure.</description>
+  </instruction>
+  <instruction name="vmptrst" category="SYSTEM">
+    <description>Store pointer to virtual machine control structure.</description>
+  </instruction>
+  <instruction name="vmread" category="SYSTEM">
+    <description>Read field from virtual machine control structure.</description>
+  </instruction>
+  <instruction name="vmresume" category="SYSTEM">
+    <description>Resume virtual machine.</description>
+  </instruction>
+  <instruction name="vmrun" category="SYSTEM">
+    <description>Run virtual machine (AMD SVM instruction).</description>
+  </instruction>
+  <instruction name="vmsave" category="SYSTEM">
+    <description>Save state to VMCB (AMD SVM instruction).</description>
+  </instruction>
   <instruction name="vmulpd" category="SIMD">
     <description>Multiply packed double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vmulph" category="SIMD">
+    <description>Multiply packed half-precision (FP16) floating-point values.</description>
   </instruction>
   <instruction name="vmulps" category="SIMD">
     <description>Multiply packed single-precision (AVX)</description>
@@ -6624,14 +7518,62 @@ R11 := RFLAGS</operation>
   <instruction name="vmulsd" category="SIMD">
     <description>Multiply scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vmulsh" category="SIMD">
+    <description>Multiply scalar half-precision (FP16) floating-point values.</description>
+  </instruction>
   <instruction name="vmulss" category="SIMD">
     <description>Multiply scalar single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vmwrite" category="SYSTEM">
+    <description>Write field to virtual machine control structure.</description>
+  </instruction>
+  <instruction name="vmxoff" category="SYSTEM">
+    <description>Leave VMX operation.</description>
+  </instruction>
+  <instruction name="vmxon" category="SYSTEM">
+    <description>Enter VMX operation.</description>
   </instruction>
   <instruction name="vorpd" category="SIMD">
     <description>Bitwise OR of packed double-precision (AVX)</description>
   </instruction>
   <instruction name="vorps" category="SIMD">
     <description>Bitwise OR of packed single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vp2intersectd" category="SIMD">
+    <description>Compute intersection between doubleword elements of two vector registers.</description>
+  </instruction>
+  <instruction name="vp2intersectq" category="SIMD">
+    <description>Compute intersection between quadword elements of two vector registers.</description>
+  </instruction>
+  <instruction name="vp4dpwssd" category="SIMD">
+    <description>Dot product of signed words with dword accumulation (4 iterations).</description>
+  </instruction>
+  <instruction name="vp4dpwssds" category="SIMD">
+    <description>Dot product of signed words with dword accumulation and saturation (4 iterations).</description>
+  </instruction>
+  <instruction name="vpabsb" category="SIMD">
+    <description>Compute absolute value of packed signed byte integers.</description>
+  </instruction>
+  <instruction name="vpabsd" category="SIMD">
+    <description>Compute absolute value of packed signed doubleword integers.</description>
+  </instruction>
+  <instruction name="vpabsq" category="SIMD">
+    <description>Compute absolute value of packed signed quadword integers.</description>
+  </instruction>
+  <instruction name="vpabsw" category="SIMD">
+    <description>Compute absolute value of packed signed word integers.</description>
+  </instruction>
+  <instruction name="vpackssdw" category="SIMD">
+    <description>Pack signed doubleword integers into signed words with saturation.</description>
+  </instruction>
+  <instruction name="vpacksswb" category="SIMD">
+    <description>Pack signed word integers into signed bytes with saturation.</description>
+  </instruction>
+  <instruction name="vpackusdw" category="SIMD">
+    <description>Pack unsigned doubleword integers into unsigned words with saturation.</description>
+  </instruction>
+  <instruction name="vpackuswb" category="SIMD">
+    <description>Pack unsigned word integers into unsigned bytes with saturation.</description>
   </instruction>
   <instruction name="vpaddb" category="SIMD">
     <description>Add packed bytes (AVX)</description>
@@ -6642,23 +7584,65 @@ R11 := RFLAGS</operation>
   <instruction name="vpaddq" category="SIMD">
     <description>Add packed quadwords (AVX)</description>
   </instruction>
+  <instruction name="vpaddsb" category="SIMD">
+    <description>Add packed signed byte integers with saturation.</description>
+  </instruction>
+  <instruction name="vpaddsw" category="SIMD">
+    <description>Add packed signed word integers with saturation.</description>
+  </instruction>
+  <instruction name="vpaddusb" category="SIMD">
+    <description>Add packed unsigned byte integers with saturation.</description>
+  </instruction>
+  <instruction name="vpaddusw" category="SIMD">
+    <description>Add packed unsigned word integers with saturation.</description>
+  </instruction>
   <instruction name="vpaddw" category="SIMD">
     <description>Add packed words (AVX)</description>
+  </instruction>
+  <instruction name="vpalignr" category="SIMD">
+    <description>Concatenate and shift packed data right logical.</description>
   </instruction>
   <instruction name="vpand" category="SIMD">
     <description>Packed AND (AVX)</description>
   </instruction>
+  <instruction name="vpandd" category="SIMD">
+    <description>Bitwise AND of packed doubleword integers.</description>
+  </instruction>
   <instruction name="vpandn" category="SIMD">
     <description>Packed AND NOT (AVX)</description>
   </instruction>
+  <instruction name="vpandnd" category="SIMD">
+    <description>Bitwise AND NOT of packed doubleword integers.</description>
+  </instruction>
+  <instruction name="vpandnq" category="SIMD">
+    <description>Bitwise AND NOT of packed quadword integers.</description>
+  </instruction>
+  <instruction name="vpandq" category="SIMD">
+    <description>Bitwise AND of packed quadword integers.</description>
+  </instruction>
+  <instruction name="vpavgb" category="SIMD">
+    <description>Average packed unsigned byte integers.</description>
+  </instruction>
+  <instruction name="vpavgw" category="SIMD">
+    <description>Average packed unsigned word integers.</description>
+  </instruction>
   <instruction name="vpblendd" category="SIMD">
     <description>Blend packed doublewords (AVX2)</description>
+  </instruction>
+  <instruction name="vpblendvb" category="SIMD">
+    <description>Blend packed bytes using variable mask.</description>
+  </instruction>
+  <instruction name="vpblendw" category="SIMD">
+    <description>Blend packed words using immediate control.</description>
   </instruction>
   <instruction name="vpbroadcastb" category="SIMD">
     <description>Broadcast byte to all elements (AVX2)</description>
   </instruction>
   <instruction name="vpbroadcastd" category="SIMD">
     <description>Broadcast doubleword to all elements (AVX2)</description>
+  </instruction>
+  <instruction name="vpbroadcastm" category="SIMD">
+    <description>Broadcast mask register to vector register.</description>
   </instruction>
   <instruction name="vpbroadcastq" category="SIMD">
     <description>Broadcast quadword to all elements (AVX2)</description>
@@ -6669,11 +7653,98 @@ R11 := RFLAGS</operation>
   <instruction name="vpclmulqdq" category="CRYPTO">
     <description>Carry-less multiplication quadword (AVX)</description>
   </instruction>
+  <instruction name="vpcmov" category="SIMD">
+    <description>Conditional move of packed integer values (XOP).</description>
+  </instruction>
+  <instruction name="vpcmpb" category="SIMD">
+    <description>Compare packed signed byte integers.</description>
+  </instruction>
+  <instruction name="vpcmpd" category="SIMD">
+    <description>Compare packed signed doubleword integers.</description>
+  </instruction>
+  <instruction name="vpcmpeqb" category="SIMD">
+    <description>Compare packed byte integers for equality.</description>
+  </instruction>
+  <instruction name="vpcmpeqd" category="SIMD">
+    <description>Compare packed doubleword integers for equality.</description>
+  </instruction>
+  <instruction name="vpcmpeqq" category="SIMD">
+    <description>Compare packed quadword integers for equality.</description>
+  </instruction>
+  <instruction name="vpcmpeqw" category="SIMD">
+    <description>Compare packed word integers for equality.</description>
+  </instruction>
+  <instruction name="vpcmpestri" category="SIMD">
+    <description>Packed compare explicit length strings, return index.</description>
+  </instruction>
+  <instruction name="vpcmpestrm" category="SIMD">
+    <description>Packed compare explicit length strings, return mask.</description>
+  </instruction>
+  <instruction name="vpcmpgtb" category="SIMD">
+    <description>Compare packed signed byte integers for greater than.</description>
+  </instruction>
+  <instruction name="vpcmpgtd" category="SIMD">
+    <description>Compare packed signed doubleword integers for greater than.</description>
+  </instruction>
+  <instruction name="vpcmpgtq" category="SIMD">
+    <description>Compare packed signed quadword integers for greater than.</description>
+  </instruction>
+  <instruction name="vpcmpgtw" category="SIMD">
+    <description>Compare packed signed word integers for greater than.</description>
+  </instruction>
+  <instruction name="vpcmpistri" category="SIMD">
+    <description>Packed compare implicit length strings, return index.</description>
+  </instruction>
+  <instruction name="vpcmpistrm" category="SIMD">
+    <description>Packed compare implicit length strings, return mask.</description>
+  </instruction>
+  <instruction name="vpcmpq" category="SIMD">
+    <description>Compare packed signed quadword integers.</description>
+  </instruction>
+  <instruction name="vpcmpub" category="SIMD">
+    <description>Compare packed unsigned byte integers.</description>
+  </instruction>
+  <instruction name="vpcmpud" category="SIMD">
+    <description>Compare packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vpcmpuq" category="SIMD">
+    <description>Compare packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vpcmpuw" category="SIMD">
+    <description>Compare packed unsigned word integers.</description>
+  </instruction>
+  <instruction name="vpcmpw" category="SIMD">
+    <description>Compare packed signed word integers.</description>
+  </instruction>
+  <instruction name="vpcomb" category="SIMD">
+    <description>Compare packed signed byte integers (XOP).</description>
+  </instruction>
+  <instruction name="vpcomd" category="SIMD">
+    <description>Compare packed signed doubleword integers (XOP).</description>
+  </instruction>
   <instruction name="vpcompressd" category="SIMD">
     <description>Store sparse packed doubleword values</description>
   </instruction>
   <instruction name="vpcompressq" category="SIMD">
     <description>Store sparse packed quadword values</description>
+  </instruction>
+  <instruction name="vpcomq" category="SIMD">
+    <description>Compare packed signed quadword integers (XOP).</description>
+  </instruction>
+  <instruction name="vpcomub" category="SIMD">
+    <description>Compare packed unsigned byte integers (XOP).</description>
+  </instruction>
+  <instruction name="vpcomud" category="SIMD">
+    <description>Compare packed unsigned doubleword integers (XOP).</description>
+  </instruction>
+  <instruction name="vpcomuq" category="SIMD">
+    <description>Compare packed unsigned quadword integers (XOP).</description>
+  </instruction>
+  <instruction name="vpcomuw" category="SIMD">
+    <description>Compare packed unsigned word integers (XOP).</description>
+  </instruction>
+  <instruction name="vpcomw" category="SIMD">
+    <description>Compare packed signed word integers (XOP).</description>
   </instruction>
   <instruction name="vpconflictd" category="SIMD">
     <description>Detect conflicts within vector of packed doublewords</description>
@@ -6681,11 +7752,26 @@ R11 := RFLAGS</operation>
   <instruction name="vpconflictq" category="SIMD">
     <description>Detect conflicts within vector of packed quadwords</description>
   </instruction>
+  <instruction name="vpdpbusd" category="SIMD">
+    <description>Multiply and add unsigned and signed bytes with dword accumulation.</description>
+  </instruction>
+  <instruction name="vpdpbusds" category="SIMD">
+    <description>Multiply and add unsigned and signed bytes with dword accumulation and saturation.</description>
+  </instruction>
+  <instruction name="vpdpwssd" category="SIMD">
+    <description>Multiply and add signed words with dword accumulation.</description>
+  </instruction>
+  <instruction name="vpdpwssds" category="SIMD">
+    <description>Multiply and add signed words with dword accumulation and saturation.</description>
+  </instruction>
   <instruction name="vperm2f128" category="SIMD">
     <description>Permute 128-bit floating-point fields (AVX)</description>
   </instruction>
   <instruction name="vperm2i128" category="SIMD">
     <description>Permute 128-bit integer fields (AVX2)</description>
+  </instruction>
+  <instruction name="vpermb" category="SIMD">
+    <description>Permute packed bytes using byte indices.</description>
   </instruction>
   <instruction name="vpermd" category="SIMD">
     <description>Permute packed doublewords (AVX2)</description>
@@ -6696,11 +7782,23 @@ R11 := RFLAGS</operation>
   <instruction name="vpermi2d" category="SIMD">
     <description>Full permute of two doubleword tables overwriting the index</description>
   </instruction>
+  <instruction name="vpermi2pd" category="SIMD">
+    <description>Full permute from two tables of packed double-precision values overwriting the index.</description>
+  </instruction>
+  <instruction name="vpermi2ps" category="SIMD">
+    <description>Full permute from two tables of packed single-precision values overwriting the index.</description>
+  </instruction>
   <instruction name="vpermi2q" category="SIMD">
     <description>Full permute of two quadword tables overwriting the index</description>
   </instruction>
   <instruction name="vpermi2w" category="SIMD">
     <description>Full permute of two word tables overwriting the index</description>
+  </instruction>
+  <instruction name="vpermil2pd" category="SIMD">
+    <description>Permute two-source packed double-precision floating-point values (XOP).</description>
+  </instruction>
+  <instruction name="vpermil2ps" category="SIMD">
+    <description>Permute two-source packed single-precision floating-point values (XOP).</description>
   </instruction>
   <instruction name="vpermilpd" category="SIMD">
     <description>Permute in-lane packed double-precision (AVX)</description>
@@ -6723,17 +7821,38 @@ R11 := RFLAGS</operation>
   <instruction name="vpermt2d" category="SIMD">
     <description>Full permute of two doubleword tables overwriting one table</description>
   </instruction>
+  <instruction name="vpermt2pd" category="SIMD">
+    <description>Full permute from two tables of packed double-precision values overwriting one table.</description>
+  </instruction>
+  <instruction name="vpermt2ps" category="SIMD">
+    <description>Full permute from two tables of packed single-precision values overwriting one table.</description>
+  </instruction>
   <instruction name="vpermt2q" category="SIMD">
     <description>Full permute of two quadword tables overwriting one table</description>
   </instruction>
   <instruction name="vpermt2w" category="SIMD">
     <description>Full permute of two word tables overwriting one table</description>
   </instruction>
+  <instruction name="vpermw" category="SIMD">
+    <description>Permute packed words using word indices.</description>
+  </instruction>
   <instruction name="vpexpandd" category="SIMD">
     <description>Load sparse packed doubleword values</description>
   </instruction>
   <instruction name="vpexpandq" category="SIMD">
     <description>Load sparse packed quadword values</description>
+  </instruction>
+  <instruction name="vpextrb" category="SIMD">
+    <description>Extract byte from vector register.</description>
+  </instruction>
+  <instruction name="vpextrd" category="SIMD">
+    <description>Extract doubleword from vector register.</description>
+  </instruction>
+  <instruction name="vpextrq" category="SIMD">
+    <description>Extract quadword from vector register.</description>
+  </instruction>
+  <instruction name="vpextrw" category="SIMD">
+    <description>Extract word from vector register.</description>
   </instruction>
   <instruction name="vpgatherdd" category="SIMD">
     <description>Gather packed doubleword values using doubleword indices</description>
@@ -6747,17 +7866,194 @@ R11 := RFLAGS</operation>
   <instruction name="vpgatherqq" category="SIMD">
     <description>Gather packed quadword values using quadword indices</description>
   </instruction>
+  <instruction name="vphaddbd" category="SIMD">
+    <description>Horizontal add packed signed byte integers to doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vphaddbq" category="SIMD">
+    <description>Horizontal add packed signed byte integers to quadword (XOP).</description>
+  </instruction>
+  <instruction name="vphaddbw" category="SIMD">
+    <description>Horizontal add packed signed byte integers to word (XOP).</description>
+  </instruction>
+  <instruction name="vphaddd" category="SIMD">
+    <description>Horizontal add packed signed doubleword integers.</description>
+  </instruction>
+  <instruction name="vphadddq" category="SIMD">
+    <description>Horizontal add packed signed doubleword integers to quadword (XOP).</description>
+  </instruction>
+  <instruction name="vphaddsw" category="SIMD">
+    <description>Horizontal add packed signed word integers with saturation.</description>
+  </instruction>
+  <instruction name="vphaddubd" category="SIMD">
+    <description>Horizontal add packed unsigned byte integers to doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vphaddubq" category="SIMD">
+    <description>Horizontal add packed unsigned byte integers to quadword (XOP).</description>
+  </instruction>
+  <instruction name="vphaddubw" category="SIMD">
+    <description>Horizontal add packed unsigned byte integers to word (XOP).</description>
+  </instruction>
+  <instruction name="vphaddudq" category="SIMD">
+    <description>Horizontal add packed unsigned doubleword integers to quadword (XOP).</description>
+  </instruction>
+  <instruction name="vphadduwd" category="SIMD">
+    <description>Horizontal add packed unsigned word integers to doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vphadduwq" category="SIMD">
+    <description>Horizontal add packed unsigned word integers to quadword (XOP).</description>
+  </instruction>
+  <instruction name="vphaddw" category="SIMD">
+    <description>Horizontal add packed signed word integers.</description>
+  </instruction>
+  <instruction name="vphaddwd" category="SIMD">
+    <description>Horizontal add packed signed word integers to doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vphaddwq" category="SIMD">
+    <description>Horizontal add packed signed word integers to quadword (XOP).</description>
+  </instruction>
+  <instruction name="vphminposuw" category="SIMD">
+    <description>Find minimum unsigned word and its index.</description>
+  </instruction>
+  <instruction name="vphsubbw" category="SIMD">
+    <description>Horizontal subtract packed signed byte integers to word (XOP).</description>
+  </instruction>
+  <instruction name="vphsubd" category="SIMD">
+    <description>Horizontal subtract packed signed doubleword integers.</description>
+  </instruction>
+  <instruction name="vphsubdq" category="SIMD">
+    <description>Horizontal subtract packed signed doubleword integers to quadword (XOP).</description>
+  </instruction>
+  <instruction name="vphsubsw" category="SIMD">
+    <description>Horizontal subtract packed signed word integers with saturation.</description>
+  </instruction>
+  <instruction name="vphsubw" category="SIMD">
+    <description>Horizontal subtract packed signed word integers.</description>
+  </instruction>
+  <instruction name="vphsubwd" category="SIMD">
+    <description>Horizontal subtract packed signed word integers to doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vpinsrb" category="SIMD">
+    <description>Insert byte into vector register.</description>
+  </instruction>
+  <instruction name="vpinsrd" category="SIMD">
+    <description>Insert doubleword into vector register.</description>
+  </instruction>
+  <instruction name="vpinsrq" category="SIMD">
+    <description>Insert quadword into vector register.</description>
+  </instruction>
+  <instruction name="vpinsrw" category="SIMD">
+    <description>Insert word into vector register.</description>
+  </instruction>
   <instruction name="vplzcntd" category="SIMD">
     <description>Count number of leading zero bits in packed doublewords</description>
   </instruction>
   <instruction name="vplzcntq" category="SIMD">
     <description>Count number of leading zero bits in packed quadwords</description>
   </instruction>
+  <instruction name="vpmacsdd" category="SIMD">
+    <description>Multiply and accumulate packed signed doubleword integers (XOP).</description>
+  </instruction>
+  <instruction name="vpmacsdqh" category="SIMD">
+    <description>Multiply and accumulate packed signed doubleword to quadword high (XOP).</description>
+  </instruction>
+  <instruction name="vpmacsdql" category="SIMD">
+    <description>Multiply and accumulate packed signed doubleword to quadword low (XOP).</description>
+  </instruction>
+  <instruction name="vpmacssdd" category="SIMD">
+    <description>Multiply and accumulate packed signed doubleword integers with saturation (XOP).</description>
+  </instruction>
+  <instruction name="vpmacssdqh" category="SIMD">
+    <description>Multiply and accumulate packed signed doubleword to quadword high with saturation (XOP).</description>
+  </instruction>
+  <instruction name="vpmacssdql" category="SIMD">
+    <description>Multiply and accumulate packed signed doubleword to quadword low with saturation (XOP).</description>
+  </instruction>
+  <instruction name="vpmacsswd" category="SIMD">
+    <description>Multiply and accumulate packed signed word integers to doubleword with saturation (XOP).</description>
+  </instruction>
+  <instruction name="vpmacssww" category="SIMD">
+    <description>Multiply and accumulate packed signed word integers with saturation (XOP).</description>
+  </instruction>
+  <instruction name="vpmacswd" category="SIMD">
+    <description>Multiply and accumulate packed signed word integers to doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vpmacsww" category="SIMD">
+    <description>Multiply and accumulate packed signed word integers (XOP).</description>
+  </instruction>
+  <instruction name="vpmadcsswd" category="SIMD">
+    <description>Multiply, add adjacent and accumulate packed signed word integers to doubleword with saturation (XOP).</description>
+  </instruction>
+  <instruction name="vpmadcswd" category="SIMD">
+    <description>Multiply, add adjacent and accumulate packed signed word integers to doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vpmadd52huq" category="SIMD">
+    <description>Multiply packed unsigned 52-bit integers and add high 52 bits to 64-bit accumulator.</description>
+  </instruction>
+  <instruction name="vpmadd52luq" category="SIMD">
+    <description>Multiply packed unsigned 52-bit integers and add low 52 bits to 64-bit accumulator.</description>
+  </instruction>
+  <instruction name="vpmaddubsw" category="SIMD">
+    <description>Multiply and add packed unsigned and signed byte integers to signed word.</description>
+  </instruction>
+  <instruction name="vpmaddwd" category="SIMD">
+    <description>Multiply and add packed signed word integers.</description>
+  </instruction>
+  <instruction name="vpmaskmov" category="SIMD">
+    <description>Conditional SIMD integer packed load or store.</description>
+  </instruction>
   <instruction name="vpmaskmovd" category="SIMD">
     <description>Conditional load/store packed doublewords (AVX2)</description>
   </instruction>
   <instruction name="vpmaskmovq" category="SIMD">
     <description>Conditional load/store packed quadwords (AVX2)</description>
+  </instruction>
+  <instruction name="vpmaxsb" category="SIMD">
+    <description>Maximum of packed signed byte integers.</description>
+  </instruction>
+  <instruction name="vpmaxsd" category="SIMD">
+    <description>Maximum of packed signed doubleword integers.</description>
+  </instruction>
+  <instruction name="vpmaxsq" category="SIMD">
+    <description>Maximum of packed signed quadword integers.</description>
+  </instruction>
+  <instruction name="vpmaxsw" category="SIMD">
+    <description>Maximum of packed signed word integers.</description>
+  </instruction>
+  <instruction name="vpmaxub" category="SIMD">
+    <description>Maximum of packed unsigned byte integers.</description>
+  </instruction>
+  <instruction name="vpmaxud" category="SIMD">
+    <description>Maximum of packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vpmaxuq" category="SIMD">
+    <description>Maximum of packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vpmaxuw" category="SIMD">
+    <description>Maximum of packed unsigned word integers.</description>
+  </instruction>
+  <instruction name="vpminsb" category="SIMD">
+    <description>Minimum of packed signed byte integers.</description>
+  </instruction>
+  <instruction name="vpminsd" category="SIMD">
+    <description>Minimum of packed signed doubleword integers.</description>
+  </instruction>
+  <instruction name="vpminsq" category="SIMD">
+    <description>Minimum of packed signed quadword integers.</description>
+  </instruction>
+  <instruction name="vpminsw" category="SIMD">
+    <description>Minimum of packed signed word integers.</description>
+  </instruction>
+  <instruction name="vpminub" category="SIMD">
+    <description>Minimum of packed unsigned byte integers.</description>
+  </instruction>
+  <instruction name="vpminud" category="SIMD">
+    <description>Minimum of packed unsigned doubleword integers.</description>
+  </instruction>
+  <instruction name="vpminuq" category="SIMD">
+    <description>Minimum of packed unsigned quadword integers.</description>
+  </instruction>
+  <instruction name="vpminuw" category="SIMD">
+    <description>Minimum of packed unsigned word integers.</description>
   </instruction>
   <instruction name="vpmovb2m" category="SIMD">
     <description>Convert byte vector to mask register</description>
@@ -6782,6 +8078,9 @@ R11 := RFLAGS</operation>
   </instruction>
   <instruction name="vpmovm2w" category="SIMD">
     <description>Convert mask register to word vector</description>
+  </instruction>
+  <instruction name="vpmovmskb" category="SIMD">
+    <description>Move byte mask to general-purpose register.</description>
   </instruction>
   <instruction name="vpmovq2m" category="SIMD">
     <description>Convert quadword vector to mask register</description>
@@ -6813,6 +8112,24 @@ R11 := RFLAGS</operation>
   <instruction name="vpmovswb" category="SIMD">
     <description>Down-convert word to byte with signed saturation</description>
   </instruction>
+  <instruction name="vpmovsxbd" category="SIMD">
+    <description>Sign-extend packed byte integers to doubleword integers.</description>
+  </instruction>
+  <instruction name="vpmovsxbq" category="SIMD">
+    <description>Sign-extend packed byte integers to quadword integers.</description>
+  </instruction>
+  <instruction name="vpmovsxbw" category="SIMD">
+    <description>Sign-extend packed byte integers to word integers.</description>
+  </instruction>
+  <instruction name="vpmovsxdq" category="SIMD">
+    <description>Sign-extend packed doubleword integers to quadword integers.</description>
+  </instruction>
+  <instruction name="vpmovsxwd" category="SIMD">
+    <description>Sign-extend packed word integers to doubleword integers.</description>
+  </instruction>
+  <instruction name="vpmovsxwq" category="SIMD">
+    <description>Sign-extend packed word integers to quadword integers.</description>
+  </instruction>
   <instruction name="vpmovusdb" category="SIMD">
     <description>Down-convert doubleword to byte with unsigned saturation</description>
   </instruction>
@@ -6837,6 +8154,30 @@ R11 := RFLAGS</operation>
   <instruction name="vpmovwb" category="SIMD">
     <description>Down-convert word to byte with truncation</description>
   </instruction>
+  <instruction name="vpmovzxbd" category="SIMD">
+    <description>Zero-extend packed byte integers to doubleword integers.</description>
+  </instruction>
+  <instruction name="vpmovzxbq" category="SIMD">
+    <description>Zero-extend packed byte integers to quadword integers.</description>
+  </instruction>
+  <instruction name="vpmovzxbw" category="SIMD">
+    <description>Zero-extend packed byte integers to word integers.</description>
+  </instruction>
+  <instruction name="vpmovzxdq" category="SIMD">
+    <description>Zero-extend packed doubleword integers to quadword integers.</description>
+  </instruction>
+  <instruction name="vpmovzxwd" category="SIMD">
+    <description>Zero-extend packed word integers to doubleword integers.</description>
+  </instruction>
+  <instruction name="vpmovzxwq" category="SIMD">
+    <description>Zero-extend packed word integers to quadword integers.</description>
+  </instruction>
+  <instruction name="vpmuldq" category="SIMD">
+    <description>Multiply packed signed doubleword integers to quadword.</description>
+  </instruction>
+  <instruction name="vpmulhrsw" category="SIMD">
+    <description>Multiply packed signed word integers and round, scale high result.</description>
+  </instruction>
   <instruction name="vpmulhuw" category="SIMD">
     <description>Multiply packed unsigned words and store high result (AVX)</description>
   </instruction>
@@ -6846,11 +8187,41 @@ R11 := RFLAGS</operation>
   <instruction name="vpmulld" category="SIMD">
     <description>Multiply packed signed doubleword integers and store low result (AVX)</description>
   </instruction>
+  <instruction name="vpmullq" category="SIMD">
+    <description>Multiply packed signed quadword integers and store low result.</description>
+  </instruction>
   <instruction name="vpmullw" category="SIMD">
     <description>Multiply packed signed words and store low result (AVX)</description>
   </instruction>
+  <instruction name="vpmultishiftqb" category="SIMD">
+    <description>Select packed unaligned bytes from quadword sources.</description>
+  </instruction>
+  <instruction name="vpmuludq" category="SIMD">
+    <description>Multiply packed unsigned doubleword integers to quadword.</description>
+  </instruction>
+  <instruction name="vpopcntb" category="SIMD">
+    <description>Return count of number of bits set to 1 in each byte.</description>
+  </instruction>
+  <instruction name="vpopcntd" category="SIMD">
+    <description>Return count of number of bits set to 1 in each doubleword.</description>
+  </instruction>
+  <instruction name="vpopcntq" category="SIMD">
+    <description>Return count of number of bits set to 1 in each quadword.</description>
+  </instruction>
+  <instruction name="vpopcntw" category="SIMD">
+    <description>Return count of number of bits set to 1 in each word.</description>
+  </instruction>
   <instruction name="vpor" category="SIMD">
     <description>Packed OR (AVX)</description>
+  </instruction>
+  <instruction name="vpord" category="SIMD">
+    <description>Bitwise OR of packed doubleword integers.</description>
+  </instruction>
+  <instruction name="vporq" category="SIMD">
+    <description>Bitwise OR of packed quadword integers.</description>
+  </instruction>
+  <instruction name="vpperm" category="SIMD">
+    <description>Permute packed bytes with variable control (XOP).</description>
   </instruction>
   <instruction name="vprold" category="SIMD">
     <description>Rotate packed doublewords left by immediate count</description>
@@ -6876,6 +8247,21 @@ R11 := RFLAGS</operation>
   <instruction name="vprorvq" category="SIMD">
     <description>Rotate packed quadwords right by variable count</description>
   </instruction>
+  <instruction name="vprotb" category="SIMD">
+    <description>Rotate packed byte integers (XOP).</description>
+  </instruction>
+  <instruction name="vprotd" category="SIMD">
+    <description>Rotate packed doubleword integers (XOP).</description>
+  </instruction>
+  <instruction name="vprotq" category="SIMD">
+    <description>Rotate packed quadword integers (XOP).</description>
+  </instruction>
+  <instruction name="vprotw" category="SIMD">
+    <description>Rotate packed word integers (XOP).</description>
+  </instruction>
+  <instruction name="vpsadbw" category="SIMD">
+    <description>Compute sum of absolute differences of packed unsigned byte integers.</description>
+  </instruction>
   <instruction name="vpscatterdd" category="SIMD">
     <description>Scatter packed doubleword values with doubleword indices</description>
   </instruction>
@@ -6888,20 +8274,149 @@ R11 := RFLAGS</operation>
   <instruction name="vpscatterqq" category="SIMD">
     <description>Scatter packed quadword values with quadword indices</description>
   </instruction>
+  <instruction name="vpshab" category="SIMD">
+    <description>Packed shift arithmetic byte (XOP).</description>
+  </instruction>
+  <instruction name="vpshad" category="SIMD">
+    <description>Packed shift arithmetic doubleword (XOP).</description>
+  </instruction>
+  <instruction name="vpshaq" category="SIMD">
+    <description>Packed shift arithmetic quadword (XOP).</description>
+  </instruction>
+  <instruction name="vpshaw" category="SIMD">
+    <description>Packed shift arithmetic word (XOP).</description>
+  </instruction>
+  <instruction name="vpshlb" category="SIMD">
+    <description>Packed shift logical byte (XOP).</description>
+  </instruction>
+  <instruction name="vpshld" category="SIMD">
+    <description>Concatenate and shift packed data left logical.</description>
+  </instruction>
+  <instruction name="vpshldd" category="SIMD">
+    <description>Concatenate and shift packed doublewords left logical.</description>
+  </instruction>
+  <instruction name="vpshldq" category="SIMD">
+    <description>Concatenate and shift packed quadwords left logical.</description>
+  </instruction>
+  <instruction name="vpshldvd" category="SIMD">
+    <description>Concatenate and variable shift packed doublewords left logical.</description>
+  </instruction>
+  <instruction name="vpshldvq" category="SIMD">
+    <description>Concatenate and variable shift packed quadwords left logical.</description>
+  </instruction>
+  <instruction name="vpshldvw" category="SIMD">
+    <description>Concatenate and variable shift packed words left logical.</description>
+  </instruction>
+  <instruction name="vpshldw" category="SIMD">
+    <description>Concatenate and shift packed words left logical.</description>
+  </instruction>
+  <instruction name="vpshlq" category="SIMD">
+    <description>Packed shift logical quadword (XOP).</description>
+  </instruction>
+  <instruction name="vpshlw" category="SIMD">
+    <description>Packed shift logical word (XOP).</description>
+  </instruction>
+  <instruction name="vpshrd" category="SIMD">
+    <description>Concatenate and shift packed data right logical.</description>
+  </instruction>
+  <instruction name="vpshrdq" category="SIMD">
+    <description>Concatenate and shift packed quadwords right logical.</description>
+  </instruction>
+  <instruction name="vpshrdvd" category="SIMD">
+    <description>Concatenate and variable shift packed doublewords right logical.</description>
+  </instruction>
+  <instruction name="vpshrdvq" category="SIMD">
+    <description>Concatenate and variable shift packed quadwords right logical.</description>
+  </instruction>
+  <instruction name="vpshrdvw" category="SIMD">
+    <description>Concatenate and variable shift packed words right logical.</description>
+  </instruction>
+  <instruction name="vpshrdw" category="SIMD">
+    <description>Concatenate and shift packed words right logical.</description>
+  </instruction>
+  <instruction name="vpshufb" category="SIMD">
+    <description>Shuffle packed bytes using byte indices.</description>
+  </instruction>
+  <instruction name="vpshufbitqmb" category="SIMD">
+    <description>Shuffle bits from quadword elements using byte indices.</description>
+  </instruction>
+  <instruction name="vpshufd" category="SIMD">
+    <description>Shuffle packed doublewords using immediate control.</description>
+  </instruction>
+  <instruction name="vpshufhw" category="SIMD">
+    <description>Shuffle packed high words using immediate control.</description>
+  </instruction>
+  <instruction name="vpshuflw" category="SIMD">
+    <description>Shuffle packed low words using immediate control.</description>
+  </instruction>
+  <instruction name="vpsignb" category="SIMD">
+    <description>Negate/zero/preserve packed byte integers depending on sign.</description>
+  </instruction>
+  <instruction name="vpsignd" category="SIMD">
+    <description>Negate/zero/preserve packed doubleword integers depending on sign.</description>
+  </instruction>
+  <instruction name="vpsignw" category="SIMD">
+    <description>Negate/zero/preserve packed word integers depending on sign.</description>
+  </instruction>
+  <instruction name="vpslld" category="SIMD">
+    <description>Shift packed doubleword integers left logical.</description>
+  </instruction>
+  <instruction name="vpslldq" category="SIMD">
+    <description>Shift double quadword left logical.</description>
+  </instruction>
+  <instruction name="vpsllq" category="SIMD">
+    <description>Shift packed quadword integers left logical.</description>
+  </instruction>
   <instruction name="vpsllvd" category="SIMD">
     <description>Variable shift packed doublewords left logical (AVX2)</description>
   </instruction>
   <instruction name="vpsllvq" category="SIMD">
     <description>Variable shift packed quadwords left logical (AVX2)</description>
   </instruction>
+  <instruction name="vpsllvw" category="SIMD">
+    <description>Variable shift packed word integers left logical.</description>
+  </instruction>
+  <instruction name="vpsllw" category="SIMD">
+    <description>Shift packed word integers left logical.</description>
+  </instruction>
+  <instruction name="vpsrad" category="SIMD">
+    <description>Shift packed doubleword integers right arithmetic.</description>
+  </instruction>
+  <instruction name="vpsraq" category="SIMD">
+    <description>Shift packed quadword integers right arithmetic.</description>
+  </instruction>
   <instruction name="vpsravd" category="SIMD">
     <description>Variable shift packed doublewords right arithmetic (AVX2)</description>
+  </instruction>
+  <instruction name="vpsravq" category="SIMD">
+    <description>Variable shift packed quadword integers right arithmetic.</description>
+  </instruction>
+  <instruction name="vpsravw" category="SIMD">
+    <description>Variable shift packed word integers right arithmetic.</description>
+  </instruction>
+  <instruction name="vpsraw" category="SIMD">
+    <description>Shift packed word integers right arithmetic.</description>
+  </instruction>
+  <instruction name="vpsrld" category="SIMD">
+    <description>Shift packed doubleword integers right logical.</description>
+  </instruction>
+  <instruction name="vpsrldq" category="SIMD">
+    <description>Shift double quadword right logical.</description>
+  </instruction>
+  <instruction name="vpsrlq" category="SIMD">
+    <description>Shift packed quadword integers right logical.</description>
   </instruction>
   <instruction name="vpsrlvd" category="SIMD">
     <description>Variable shift packed doublewords right logical (AVX2)</description>
   </instruction>
   <instruction name="vpsrlvq" category="SIMD">
     <description>Variable shift packed quadwords right logical (AVX2)</description>
+  </instruction>
+  <instruction name="vpsrlvw" category="SIMD">
+    <description>Variable shift packed word integers right logical.</description>
+  </instruction>
+  <instruction name="vpsrlw" category="SIMD">
+    <description>Shift packed word integers right logical.</description>
   </instruction>
   <instruction name="vpsubb" category="SIMD">
     <description>Subtract packed bytes (AVX)</description>
@@ -6911,6 +8426,18 @@ R11 := RFLAGS</operation>
   </instruction>
   <instruction name="vpsubq" category="SIMD">
     <description>Subtract packed quadwords (AVX)</description>
+  </instruction>
+  <instruction name="vpsubsb" category="SIMD">
+    <description>Subtract packed signed byte integers with saturation.</description>
+  </instruction>
+  <instruction name="vpsubsw" category="SIMD">
+    <description>Subtract packed signed word integers with saturation.</description>
+  </instruction>
+  <instruction name="vpsubusb" category="SIMD">
+    <description>Subtract packed unsigned byte integers with saturation.</description>
+  </instruction>
+  <instruction name="vpsubusw" category="SIMD">
+    <description>Subtract packed unsigned word integers with saturation.</description>
   </instruction>
   <instruction name="vpsubw" category="SIMD">
     <description>Subtract packed words (AVX)</description>
@@ -6924,8 +8451,62 @@ R11 := RFLAGS</operation>
   <instruction name="vptest" category="SIMD">
     <description>Logical compare (AVX)</description>
   </instruction>
+  <instruction name="vptestmb" category="SIMD">
+    <description>Logical AND and set mask for packed byte integers.</description>
+  </instruction>
+  <instruction name="vptestmd" category="SIMD">
+    <description>Logical AND and set mask for packed doubleword integers.</description>
+  </instruction>
+  <instruction name="vptestmq" category="SIMD">
+    <description>Logical AND and set mask for packed quadword integers.</description>
+  </instruction>
+  <instruction name="vptestmw" category="SIMD">
+    <description>Logical AND and set mask for packed word integers.</description>
+  </instruction>
+  <instruction name="vptestnmb" category="SIMD">
+    <description>Logical NAND and set mask for packed byte integers.</description>
+  </instruction>
+  <instruction name="vptestnmd" category="SIMD">
+    <description>Logical NAND and set mask for packed doubleword integers.</description>
+  </instruction>
+  <instruction name="vptestnmq" category="SIMD">
+    <description>Logical NAND and set mask for packed quadword integers.</description>
+  </instruction>
+  <instruction name="vptestnmw" category="SIMD">
+    <description>Logical NAND and set mask for packed word integers.</description>
+  </instruction>
+  <instruction name="vpunpckhbw" category="SIMD">
+    <description>Unpack and interleave high-order bytes.</description>
+  </instruction>
+  <instruction name="vpunpckhdq" category="SIMD">
+    <description>Unpack and interleave high-order doublewords.</description>
+  </instruction>
+  <instruction name="vpunpckhqdq" category="SIMD">
+    <description>Unpack and interleave high-order quadwords.</description>
+  </instruction>
+  <instruction name="vpunpckhwd" category="SIMD">
+    <description>Unpack and interleave high-order words.</description>
+  </instruction>
+  <instruction name="vpunpcklbw" category="SIMD">
+    <description>Unpack and interleave low-order bytes.</description>
+  </instruction>
+  <instruction name="vpunpckldq" category="SIMD">
+    <description>Unpack and interleave low-order doublewords.</description>
+  </instruction>
+  <instruction name="vpunpcklqdq" category="SIMD">
+    <description>Unpack and interleave low-order quadwords.</description>
+  </instruction>
+  <instruction name="vpunpcklwd" category="SIMD">
+    <description>Unpack and interleave low-order words.</description>
+  </instruction>
   <instruction name="vpxor" category="SIMD">
     <description>Packed XOR (AVX)</description>
+  </instruction>
+  <instruction name="vpxord" category="SIMD">
+    <description>Bitwise XOR of packed doubleword integers.</description>
+  </instruction>
+  <instruction name="vpxorq" category="SIMD">
+    <description>Bitwise XOR of packed quadword integers.</description>
   </instruction>
   <instruction name="vrangepd" category="SIMD">
     <description>Range restriction calculation for packed double-precision floating-point values</description>
@@ -6951,8 +8532,26 @@ R11 := RFLAGS</operation>
   <instruction name="vrcp14ss" category="SIMD">
     <description>Compute approximate reciprocal of scalar single-precision floating-point value</description>
   </instruction>
+  <instruction name="vrcp28pd" category="SIMD">
+    <description>Compute approximate reciprocals of packed double-precision floating-point values (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrcp28ps" category="SIMD">
+    <description>Compute approximate reciprocals of packed single-precision floating-point values (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrcp28sd" category="SIMD">
+    <description>Compute approximate reciprocal of scalar double-precision floating-point value (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrcp28ss" category="SIMD">
+    <description>Compute approximate reciprocal of scalar single-precision floating-point value (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrcpph" category="SIMD">
+    <description>Compute approximate reciprocals of packed half-precision floating-point values.</description>
+  </instruction>
   <instruction name="vrcpps" category="SIMD">
     <description>Reciprocal of packed single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vrcpsh" category="SIMD">
+    <description>Compute approximate reciprocal of scalar half-precision floating-point value.</description>
   </instruction>
   <instruction name="vrcpss" category="SIMD">
     <description>Reciprocal of scalar single-precision (AVX)</description>
@@ -6960,11 +8559,17 @@ R11 := RFLAGS</operation>
   <instruction name="vreducepd" category="SIMD">
     <description>Perform reduction transformation on packed double-precision floating-point values</description>
   </instruction>
+  <instruction name="vreduceph" category="SIMD">
+    <description>Reduce packed half-precision floating-point values by subtracting integer and fractional parts.</description>
+  </instruction>
   <instruction name="vreduceps" category="SIMD">
     <description>Perform reduction transformation on packed single-precision floating-point values</description>
   </instruction>
   <instruction name="vreducesd" category="SIMD">
     <description>Perform reduction transformation on scalar double-precision floating-point value</description>
+  </instruction>
+  <instruction name="vreducesh" category="SIMD">
+    <description>Reduce scalar half-precision floating-point value by subtracting integer and fractional parts.</description>
   </instruction>
   <instruction name="vreducess" category="SIMD">
     <description>Perform reduction transformation on scalar single-precision floating-point value</description>
@@ -6972,11 +8577,17 @@ R11 := RFLAGS</operation>
   <instruction name="vrndscalepd" category="SIMD">
     <description>Round packed double-precision floating-point values to a number of fraction bits</description>
   </instruction>
+  <instruction name="vrndscaleph" category="SIMD">
+    <description>Round packed half-precision floating-point values to specified number of fraction bits.</description>
+  </instruction>
   <instruction name="vrndscaleps" category="SIMD">
     <description>Round packed single-precision floating-point values to a number of fraction bits</description>
   </instruction>
   <instruction name="vrndscalesd" category="SIMD">
     <description>Round scalar double-precision floating-point value to a number of fraction bits</description>
+  </instruction>
+  <instruction name="vrndscalesh" category="SIMD">
+    <description>Round scalar half-precision floating-point value to specified number of fraction bits.</description>
   </instruction>
   <instruction name="vrndscaless" category="SIMD">
     <description>Round scalar single-precision floating-point value to a number of fraction bits</description>
@@ -7005,8 +8616,26 @@ R11 := RFLAGS</operation>
   <instruction name="vrsqrt14ss" category="SIMD">
     <description>Compute approximate reciprocal of square root of scalar single-precision value</description>
   </instruction>
+  <instruction name="vrsqrt28pd" category="SIMD">
+    <description>Compute approximate reciprocal square roots of packed double-precision floating-point values (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrsqrt28ps" category="SIMD">
+    <description>Compute approximate reciprocal square roots of packed single-precision floating-point values (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrsqrt28sd" category="SIMD">
+    <description>Compute approximate reciprocal square root of scalar double-precision floating-point value (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrsqrt28ss" category="SIMD">
+    <description>Compute approximate reciprocal square root of scalar single-precision floating-point value (28-bit precision).</description>
+  </instruction>
+  <instruction name="vrsqrtph" category="SIMD">
+    <description>Compute approximate reciprocal square roots of packed half-precision floating-point values.</description>
+  </instruction>
   <instruction name="vrsqrtps" category="SIMD">
     <description>Reciprocal square root of packed single-precision (AVX)</description>
+  </instruction>
+  <instruction name="vrsqrtsh" category="SIMD">
+    <description>Compute approximate reciprocal square root of scalar half-precision floating-point value.</description>
   </instruction>
   <instruction name="vrsqrtss" category="SIMD">
     <description>Reciprocal square root of scalar single-precision (AVX)</description>
@@ -7014,11 +8643,17 @@ R11 := RFLAGS</operation>
   <instruction name="vscalefpd" category="SIMD">
     <description>Scale packed double-precision floating-point values by powers of two</description>
   </instruction>
+  <instruction name="vscalefph" category="SIMD">
+    <description>Scale packed half-precision floating-point values by powers of 2.</description>
+  </instruction>
   <instruction name="vscalefps" category="SIMD">
     <description>Scale packed single-precision floating-point values by powers of two</description>
   </instruction>
   <instruction name="vscalefsd" category="SIMD">
     <description>Scale scalar double-precision floating-point value by power of two</description>
+  </instruction>
+  <instruction name="vscalefsh" category="SIMD">
+    <description>Scale scalar half-precision floating-point value by power of 2.</description>
   </instruction>
   <instruction name="vscalefss" category="SIMD">
     <description>Scale scalar single-precision floating-point value by power of two</description>
@@ -7029,11 +8664,41 @@ R11 := RFLAGS</operation>
   <instruction name="vscatterdps" category="SIMD">
     <description>Scatter packed single-precision floating-point values with doubleword indices</description>
   </instruction>
+  <instruction name="vscatterpf0dpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with dword indices for write using T0 hint.</description>
+  </instruction>
+  <instruction name="vscatterpf0dps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with dword indices for write using T0 hint.</description>
+  </instruction>
+  <instruction name="vscatterpf0qpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with qword indices for write using T0 hint.</description>
+  </instruction>
+  <instruction name="vscatterpf0qps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with qword indices for write using T0 hint.</description>
+  </instruction>
+  <instruction name="vscatterpf1dpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with dword indices for write using T1 hint.</description>
+  </instruction>
+  <instruction name="vscatterpf1dps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with dword indices for write using T1 hint.</description>
+  </instruction>
+  <instruction name="vscatterpf1qpd" category="SIMD">
+    <description>Sparse prefetch packed double-precision values with qword indices for write using T1 hint.</description>
+  </instruction>
+  <instruction name="vscatterpf1qps" category="SIMD">
+    <description>Sparse prefetch packed single-precision values with qword indices for write using T1 hint.</description>
+  </instruction>
   <instruction name="vscatterqpd" category="SIMD">
     <description>Scatter packed double-precision floating-point values with quadword indices</description>
   </instruction>
   <instruction name="vscatterqps" category="SIMD">
     <description>Scatter packed single-precision floating-point values with quadword indices</description>
+  </instruction>
+  <instruction name="vshuff32x4" category="SIMD">
+    <description>Shuffle 128-bit lanes of packed 32-bit floating-point values using immediate control.</description>
+  </instruction>
+  <instruction name="vshuff64x2" category="SIMD">
+    <description>Shuffle 128-bit lanes of packed 64-bit floating-point values using immediate control.</description>
   </instruction>
   <instruction name="vshufi32x4" category="SIMD">
     <description>Shuffle 128-bit lanes of packed 32-bit values</description>
@@ -7050,17 +8715,29 @@ R11 := RFLAGS</operation>
   <instruction name="vsqrtpd" category="SIMD">
     <description>Square root of packed double-precision (AVX)</description>
   </instruction>
+  <instruction name="vsqrtph" category="SIMD">
+    <description>Compute square root of packed half-precision (FP16) floating-point values.</description>
+  </instruction>
   <instruction name="vsqrtps" category="SIMD">
     <description>Square root of packed single-precision (AVX)</description>
   </instruction>
   <instruction name="vsqrtsd" category="SIMD">
     <description>Square root of scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vsqrtsh" category="SIMD">
+    <description>Compute square root of scalar half-precision (FP16) floating-point values.</description>
+  </instruction>
   <instruction name="vsqrtss" category="SIMD">
     <description>Square root of scalar single-precision (AVX)</description>
   </instruction>
+  <instruction name="vstmxcsr" category="SIMD">
+    <description>Store MXCSR register to memory.</description>
+  </instruction>
   <instruction name="vsubpd" category="SIMD">
     <description>Subtract packed double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vsubph" category="SIMD">
+    <description>Subtract packed half-precision (FP16) floating-point values.</description>
   </instruction>
   <instruction name="vsubps" category="SIMD">
     <description>Subtract packed single-precision (AVX)</description>
@@ -7068,11 +8745,23 @@ R11 := RFLAGS</operation>
   <instruction name="vsubsd" category="SIMD">
     <description>Subtract scalar double-precision (AVX)</description>
   </instruction>
+  <instruction name="vsubsh" category="SIMD">
+    <description>Subtract scalar half-precision (FP16) floating-point values.</description>
+  </instruction>
   <instruction name="vsubss" category="SIMD">
     <description>Subtract scalar single-precision (AVX)</description>
   </instruction>
+  <instruction name="vtestpd" category="SIMD">
+    <description>Packed bit test of packed double-precision floating-point values.</description>
+  </instruction>
+  <instruction name="vtestps" category="SIMD">
+    <description>Packed bit test of packed single-precision floating-point values.</description>
+  </instruction>
   <instruction name="vucomisd" category="SIMD">
     <description>Compare scalar unordered double-precision (AVX)</description>
+  </instruction>
+  <instruction name="vucomish" category="SIMD">
+    <description>Unordered compare scalar half-precision floating-point values and set EFLAGS.</description>
   </instruction>
   <instruction name="vucomiss" category="SIMD">
     <description>Compare scalar unordered single-precision (AVX)</description>
