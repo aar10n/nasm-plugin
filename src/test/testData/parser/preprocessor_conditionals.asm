@@ -1,7 +1,6 @@
 ; Preprocessor conditional test file
 ; Tests all conditional directives and combinations
 
-%define DEBUG 1
 %define PLATFORM_LINUX 1
 %define SIZE 1024
 

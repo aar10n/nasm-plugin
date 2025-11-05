@@ -1,10 +1,13 @@
 package dev.agb.nasmplugin.settings
 
-import com.intellij.codeInsight.daemon.DaemonCodeAnalyzer
+import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.options.BoundConfigurable
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.DialogPanel
+import com.intellij.psi.PsiManager
 import com.intellij.ui.dsl.builder.*
+import com.intellij.util.FileContentUtil
+import dev.agb.nasmplugin.NasmFileType
 
 /**
  * Settings page for NASM plugin configuration.
@@ -71,10 +74,17 @@ class NasmSettingsConfigurable(private val project: Project) : BoundConfigurable
 
     override fun apply() {
         super.apply()
-        // Trigger re-analysis of all files to reflect the settings changes
+        // Trigger re-analysis of open NASM files to reflect the settings changes
         // This ensures that changes to command-line macros and include paths
         // are immediately reflected in the editor (e.g., conditional branch highlighting)
-        DaemonCodeAnalyzer.getInstance(project).restart()
+        val nasmFiles = FileEditorManager.getInstance(project).openFiles.filter { virtualFile ->
+            val psiFile = PsiManager.getInstance(project).findFile(virtualFile)
+            psiFile?.fileType == NasmFileType
+        }
+
+        if (nasmFiles.isNotEmpty()) {
+            FileContentUtil.reparseFiles(project, nasmFiles, true)
+        }
     }
 
     override fun reset() {

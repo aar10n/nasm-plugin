@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "dev.agb.nasmplugin"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        // Use CLion as the primary platform to get CIDR APIs
+        // Use CLion as the primary platform to get CIDR APIs for compilation
         clion("2025.2")
         bundledPlugin("com.intellij.clion")
         bundledPlugin("com.intellij.cidr.lang")
@@ -46,7 +46,7 @@ kotlin {
 intellijPlatform {
     pluginConfiguration {
         name = "Enhanced NASM Assembly Support"
-        version = "1.0.0"
+        version = "1.0.1"
 
         ideaVersion {
             sinceBuild = "252"
@@ -58,6 +58,16 @@ intellijPlatform {
         ides {
             recommended()
         }
+
+        // Allow missing CIDR dependencies in non-CLion IDEs since they're optional
+        freeArgs = listOf(
+            "-mute",
+            "ForbiddenPluginIdPrefix",
+            "-mute",
+            "TemplateWordInPluginId",
+            "-ignored-problems",
+            "com.jetbrains.cidr.*"
+        )
     }
 }
 
