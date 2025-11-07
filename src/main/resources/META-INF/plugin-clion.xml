@@ -1,5 +1,8 @@
 <!-- CLion-specific extensions for NASM plugin -->
 <idea-plugin>
+    <!-- Dependencies for CLion-specific features -->
+    <depends>com.intellij.cidr.lang</depends>
+
     <extensions defaultExtensionNs="com.intellij">
         <!-- Cross-language navigation: NASM extern symbols -> C/C++ declarations -->
         <!-- Registered as "first" to take priority for extern symbols -->

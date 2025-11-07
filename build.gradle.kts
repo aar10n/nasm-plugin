@@ -22,8 +22,8 @@ dependencies {
         bundledPlugin("com.intellij.clion")
         bundledPlugin("com.intellij.cidr.lang")
         bundledPlugin("com.intellij.clion.cmake")
+        bundledPlugin("com.intellij.nativeDebug")
 
-        instrumentationTools()
         pluginVerifier()
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
     }
@@ -59,14 +59,12 @@ intellijPlatform {
             recommended()
         }
 
-        // Allow missing CIDR dependencies in non-CLion IDEs since they're optional
+        // Mute specific warnings
         freeArgs = listOf(
             "-mute",
             "ForbiddenPluginIdPrefix",
             "-mute",
-            "TemplateWordInPluginId",
-            "-ignored-problems",
-            "com.jetbrains.cidr.*"
+            "TemplateWordInPluginId"
         )
     }
 }
