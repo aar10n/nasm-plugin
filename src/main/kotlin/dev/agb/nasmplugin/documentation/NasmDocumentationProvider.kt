@@ -37,6 +37,12 @@ class NasmDocumentationProvider : AbstractDocumentationProvider() {
                 return current
             }
 
+            // Check if we're in an instruction before checking for macro definitions
+            // This ensures instruction documentation takes priority inside macro bodies
+            if (current is NasmInstruction) {
+                return current
+            }
+
             // Only show instruction documentation if we're on the mnemonic itself
             if (current is dev.agb.nasmplugin.psi.NasmMnemonic) {
                 // Return the parent instruction for documentation
@@ -47,8 +53,17 @@ class NasmDocumentationProvider : AbstractDocumentationProvider() {
             }
 
             // Check for macro definition or EQU definition
-            if (current is NasmMultiLineMacro || current is NasmPpDefineStmt ||
-                current is NasmEquDefinition || current is NasmPpAssignStmt) {
+            // For multi-line macros, only show documentation if we're on the macro name itself
+            if (current is NasmMultiLineMacro) {
+                // Check if contextElement is within the macro name
+                val macroName = current.node.findChildByType(dev.agb.nasmplugin.psi.NasmTypes.MACRO_NAME)
+                if (macroName != null && isElementOrDescendant(contextElement, macroName.psi)) {
+                    return current
+                }
+                // We're inside the macro body, but haven't found an instruction yet
+                // This shouldn't happen if the checks above are correct, but just in case
+                return null
+            } else if (current is NasmPpDefineStmt || current is NasmEquDefinition || current is NasmPpAssignStmt) {
                 return current
             }
 
@@ -68,6 +83,19 @@ class NasmDocumentationProvider : AbstractDocumentationProvider() {
             current = current.parent
         }
         return null
+    }
+
+    /**
+     * Checks if element is the same as or a descendant of parent
+     */
+    private fun isElementOrDescendant(element: PsiElement?, parent: PsiElement?): Boolean {
+        if (element == null || parent == null) return false
+        var current: PsiElement? = element
+        while (current != null) {
+            if (current == parent) return true
+            current = current.parent
+        }
+        return false
     }
 
     override fun generateDoc(element: PsiElement?, originalElement: PsiElement?): String? {
