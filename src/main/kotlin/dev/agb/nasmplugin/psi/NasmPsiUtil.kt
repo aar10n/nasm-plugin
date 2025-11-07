@@ -77,6 +77,16 @@ fun PsiFile.findAllNamedElements(): List<NasmNamedElement> = buildList {
 // ===== Find by name =====
 
 fun PsiFile.findLabelDefinition(labelName: String, referenceElement: PsiElement? = null): PsiElement? {
+    // Handle macro-local labels (starts with %%)
+    if (labelName.startsWith("%%") && referenceElement != null) {
+        // Find the parent macro for this reference
+        val parentMacro = findParentMacro(referenceElement)
+        if (parentMacro != null) {
+            // Search for the macro-local label only within the parent macro's scope
+            return findMacroLocalLabelInScope(parentMacro, labelName)
+        }
+    }
+
     // Handle explicit global.local label references (e.g., "global_label.local")
     if (labelName.contains('.') && !labelName.startsWith('.')) {
         val parts = labelName.split('.', limit = 2)
@@ -108,6 +118,27 @@ fun PsiFile.findLabelDefinition(labelName: String, referenceElement: PsiElement?
 }
 
 /**
+ * Find the parent macro that contains this element.
+ * Returns the macro definition that contains the reference element.
+ */
+private fun findParentMacro(element: PsiElement): NasmMultiLineMacro? {
+    return PsiTreeUtil.getParentOfType(element, NasmMultiLineMacro::class.java)
+}
+
+/**
+ * Find a macro-local label within the scope of a macro
+ */
+private fun findMacroLocalLabelInScope(macro: NasmMultiLineMacro, macroLocalLabelName: String): NasmLabelDef? {
+    // Find all labels within the macro
+    val labels = PsiTreeUtil.findChildrenOfType(macro, NasmLabelDef::class.java)
+
+    // Find the macro-local label with the matching name
+    return labels.firstOrNull { label ->
+        label.name == macroLocalLabelName
+    }
+}
+
+/**
  * Find the parent global label (non-local label) that contains this element.
  * Returns the last global label that appears before the reference element in the file.
  */
@@ -123,10 +154,11 @@ private fun findParentGlobalLabel(element: PsiElement): NasmLabelDef? {
         .asReversed()  // Start from the end
         .firstOrNull { label ->
             val labelName = label.name
-            // Must be a global label (not starting with '.')
+            // Must be a global label (not starting with '.' or '%%')
             // Must appear before the reference in the file
             labelName != null &&
             !labelName.startsWith('.') &&
+            !labelName.startsWith("%%") &&
             label.textOffset < referenceOffset
         }
 }
@@ -151,6 +183,10 @@ private fun findLocalLabelInScope(globalLabel: NasmLabelDef, localLabelName: Str
             if (!labelName.startsWith('.')) {
                 // We've reached the next global label, stop searching
                 break
+            }
+            // Skip macro-local labels (they have their own scope)
+            if (labelName.startsWith("%%")) {
+                continue
             }
             if (labelName == localLabelName) {
                 return label
@@ -400,6 +436,12 @@ fun PsiFile.findExternDefinitionWithIncludes(symbolName: String): PsiElement? =
  */
 fun PsiElement.isInInactiveConditionalBranch(): Boolean {
     try {
+        // Prevent circular dependency: If we're currently evaluating preprocessor conditionals,
+        // don't try to check if we're in an inactive branch (that's what we're trying to determine!)
+        if (dev.agb.nasmplugin.eval.NasmConstExprEvaluator.isInsidePreprocessorEvaluation()) {
+            return false
+        }
+
         // Check if the inspection is enabled
         val profile = com.intellij.profile.codeInspection.InspectionProjectProfileManager
             .getInstance(project).currentProfile

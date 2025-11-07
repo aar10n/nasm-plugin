@@ -44,9 +44,16 @@ object NasmElementHandlers {
 
             // Check global label
             labelDef.globalLabel?.let { globalLabel ->
+                // Try direct children first (IDENTIFIER, MACRO_PARAM_REF)
                 globalLabel.node.findChildByType(NasmTypes.IDENTIFIER)?.let { return it.psi }
                 globalLabel.node.findChildByType(NasmTypes.MACRO_PARAM_REF)?.let { return it.psi }
-                globalLabel.node.findChildByType(NasmTypes.CONTEXT_LOCAL_REF)?.let { return it.psi }
+
+                // Check if there's a CONTEXT_REF child (for MACRO_LOCAL_REF and CONTEXT_LOCAL_REF)
+                globalLabel.node.findChildByType(NasmTypes.CONTEXT_REF)?.let { contextRefNode ->
+                    // Look inside CONTEXT_REF for the actual token
+                    contextRefNode.findChildByType(NasmTypes.MACRO_LOCAL_REF)?.let { return it.psi }
+                    contextRefNode.findChildByType(NasmTypes.CONTEXT_LOCAL_REF)?.let { return it.psi }
+                }
             }
 
             // Check local label

@@ -21,8 +21,6 @@ dependencies {
         clion("2025.2")
         bundledPlugin("com.intellij.clion")
         bundledPlugin("com.intellij.cidr.lang")
-        bundledPlugin("com.intellij.clion.cmake")
-        bundledPlugin("com.intellij.nativeDebug")
 
         pluginVerifier()
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
@@ -59,12 +57,18 @@ intellijPlatform {
             recommended()
         }
 
-        // Mute specific warnings
+        // Ignore class/package not found problems from optional CLion dependencies
+        // These classes (OCFileType, OCDeclarator, OCFile) are only used when running in CLion
+        // via plugin-clion.xml and won't be loaded in other IDEs
         freeArgs = listOf(
             "-mute",
             "ForbiddenPluginIdPrefix",
             "-mute",
-            "TemplateWordInPluginId"
+            "TemplateWordInPluginId",
+            "-mute",
+            "ClassNotFoundProblem",
+            "-mute",
+            "PackageNotFoundProblem"
         )
     }
 }

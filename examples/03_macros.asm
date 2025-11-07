@@ -94,6 +94,45 @@ section .text
     %endmacro
 %endif
 
+%if DEBUG
+    %define DEBUG_PRINT(msg, len) debug_print msg, len
+
+    %macro assert 3 ; <condition>, <error message>, <error length>
+        ; Simple assert macro
+        cmp %1, 0
+        jne %%assert_fail
+        jmp %%assert_end
+    %%assert_fail:
+        mov rax, SYS_WRITE
+        mov rdi, STDOUT
+        mov rsi, %2
+        mov rdx, %3
+        syscall
+        exit 1
+    %%assert_end:
+    %endmacro
+%else
+    %define DEBUG_PRINT(msg, len)
+
+    %macro assert 3
+    ; No-op when DEBUG not defined
+    %%assert_end:
+    %endmacro
+%endif
+
+%define DARWIN 1
+%define LINUX  2
+
+%define PLATFORM DARWIN
+%if PLATFORM == DARWIN
+    ; Macros specific to macOS can be defined here
+    %define MACRO_FOR_DARWIN 1
+%endif
+%if PLATFORM == LINUX
+    ; Macros specific to Linux can be defined here
+    %define MACRO_FOR_LINUX 1
+%endif
+
 ; =============================================================================
 ; Macro with arithmetic operations
 ; Macro: add_immediate - Add immediate value to register

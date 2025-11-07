@@ -8,7 +8,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.PsiModificationTracker
-import com.intellij.psi.util.PsiTreeUtil
+import dev.agb.nasmplugin.eval.NasmConstExprEvaluator
 import dev.agb.nasmplugin.psi.*
 import dev.agb.nasmplugin.settings.CommandLineMacroProvider
 import dev.agb.nasmplugin.settings.NasmProjectSettings
@@ -200,25 +200,19 @@ class PreprocessorStateEvaluator(private val project: Project) {
 
         // Extract and evaluate the initial condition
         val conditionType = extractConditionType(ifDir)
-        val ifConditionResult = evaluateCondition(conditionType, macros)
-
         // If the condition cannot be evaluated (contains macro parameters),
         // don't add any branches - treat all as potentially active
-        if (ifConditionResult == null) {
-            return
-        }
-
-        val ifConditionTrue: Boolean = ifConditionResult
+        val ifConditionResult = evaluateCondition(conditionType, macros) ?: return
 
         // Find which branch is active
-        var activeBranchFound: Boolean = ifConditionTrue
+        var activeBranchFound: Boolean = ifConditionResult
 
         // Process IF branch
         val ifBranchRange = getIfBranchRange(block, ifDir, elifDirs.firstOrNull() ?: elseDir)
         if (ifBranchRange != null) {
             branches.add(ConditionalBranch(
                 textRange = ifBranchRange,
-                isActive = ifConditionTrue,
+                isActive = ifConditionResult,
                 conditionalBlock = block,
                 branchType = ConditionalBranch.BranchType.IF
             ))
@@ -368,10 +362,43 @@ class PreprocessorStateEvaluator(private val project: Project) {
                     return null
                 }
 
-                // TODO: Implement expression evaluation
-                // For now, we cannot evaluate %if conditions reliably, so return null
-                // to avoid incorrectly marking branches as inactive
-                null
+                // Evaluate the condition expression using the constant expression evaluator
+                val condition = conditionType.condition ?: return null
+
+                // Get the expression from the condition
+                val expression = condition.expression ?: return null
+
+                // Build a map of macro values for the evaluator
+                // Only include macros that have numeric values
+                val macroValueMap = macros.mapNotNull { (name, macroDef) ->
+                    val value = macroDef.value
+                    if (value != null) {
+                        // Try to parse the value as a number
+                        try {
+                            name to value.toLong()
+                        } catch (e: NumberFormatException) {
+                            null // Skip non-numeric macros
+                        }
+                    } else {
+                        null
+                    }
+                }.toMap()
+
+                // Evaluate the expression with macro context
+                when (val result = NasmConstExprEvaluator.evaluate(expression, macroValueMap)) {
+                    is NasmConstExprEvaluator.EvalResult.Value -> {
+                        // In NASM, non-zero values are true, zero is false
+                        result.value != 0L
+                    }
+                    is NasmConstExprEvaluator.EvalResult.NotConstant -> {
+                        // Cannot evaluate - contains non-constant elements
+                        null
+                    }
+                    is NasmConstExprEvaluator.EvalResult.Error -> {
+                        // Evaluation error - treat as unable to evaluate
+                        null
+                    }
+                }
             }
 
             // Future condition types can be added here

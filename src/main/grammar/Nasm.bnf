@@ -799,8 +799,22 @@ macro_arg ::= LBRACE token_sequence RBRACE
 
 private macro_arg_tokens ::= macro_arg_token+
 
-// Macro argument tokens - base tokens minus COMMA and RPAREN
-private macro_arg_token ::= !(COMMA | RPAREN) base_token_element
+// Macro argument tokens - base tokens minus COMMA and RPAREN, but with balanced nested constructs
+private macro_arg_token ::= balanced_parens
+                          | balanced_brackets
+                          | balanced_braces
+                          | !(COMMA | RPAREN | LPAREN | LBRACKET | LBRACE) base_token_element
+
+// Balanced constructs that can contain nested parentheses, brackets, and braces
+private balanced_parens ::= LPAREN macro_arg_nested_content* RPAREN
+private balanced_brackets ::= LBRACKET macro_arg_nested_content* RBRACKET
+private balanced_braces ::= LBRACE macro_arg_nested_content* RBRACE
+
+// Content inside balanced constructs - can recursively contain more balanced constructs
+private macro_arg_nested_content ::= balanced_parens
+                                   | balanced_brackets
+                                   | balanced_braces
+                                   | !(RPAREN | RBRACKET | RBRACE) base_token_element
 
 smacro_expansion ::= IDENTIFIER
                    | MACRO_EXPANSION_START token_sequence RBRACKET

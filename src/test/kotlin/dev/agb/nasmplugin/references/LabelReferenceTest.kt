@@ -112,4 +112,61 @@ class LabelReferenceTest : BasePlatformTestCase() {
 
         assertTrue(".local reference should have references", hasReference)
     }
+
+    fun testMacroLocalLabelReference() {
+        val psiFile = myFixture.configureByText(
+            "test.asm",
+            """
+                %macro test_macro 1
+                %%start:
+                    cmp %1, 0
+                    je %%end
+                    dec %1
+                    jmp %%start
+                %%end:
+                %endmacro
+
+                section .text
+                _start:
+                    test_macro rax
+            """.trimIndent()
+        )
+
+        // Find all symbol_ref elements that contain macro-local labels
+        val symbolRefs = PsiTreeUtil.findChildrenOfType(psiFile, dev.agb.nasmplugin.psi.NasmSymbolRef::class.java)
+
+        // Find the %%end reference in je instruction
+        val endRef = symbolRefs.find {
+            it.text == "%%end" && it.textOffset < 60  // Should be around offset 50
+        }
+
+        assertNotNull("Should find %%end reference in je instruction as NasmSymbolRef", endRef)
+
+        // Check if it has references
+        val hasEndReference = endRef!!.references.isNotEmpty()
+        assertTrue("%%end reference should have references", hasEndReference)
+
+        // Check if %%end resolves correctly
+        val endResolved = endRef.references.firstOrNull()?.resolve()
+        assertNotNull("%%end reference should resolve to label definition", endResolved)
+        assertTrue("Resolved element should contain %%end", endResolved?.text?.contains("%%end") == true)
+
+        // Find the %%start in jmp instruction
+        val startRef = symbolRefs.find {
+            it.text == "%%start" && it.textOffset > 60  // Should be around offset 75
+        }
+
+        assertNotNull("Should find %%start reference in jmp instruction as NasmSymbolRef", startRef)
+
+        // Check if it has references
+        val hasReference = startRef!!.references.isNotEmpty()
+        assertTrue("%%start reference should have references", hasReference)
+
+        // Check if it resolves correctly
+        val resolved = startRef.references.firstOrNull()?.resolve()
+        assertNotNull("%%start reference should resolve to label definition", resolved)
+
+        // The resolved element should be the label definition
+        assertTrue("Resolved element should contain %%start", resolved?.text?.contains("%%start") == true)
+    }
 }

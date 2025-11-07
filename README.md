@@ -23,7 +23,6 @@ A JetBrains IDE plugin providing comprehensive IDE support for NASM x86_64 assem
 - **Instruction Operand Validation**: Validate operand types and counts for instructions
 - **Expanded Instruction Documentation**: Add documentation for more instructions
 - **16-bit and 32-bit Validation**: Enforce bitness-specific rules and instructions
-- **Support %if in preprocessor branch inspection**: Implement const-expr evaluation to enable analysis of `%if` directives
 - **[CLion] Project Model Integration**: Automatically detect compilation flags and include paths from CMake and Makefiles
 
 ## Supported IDEs

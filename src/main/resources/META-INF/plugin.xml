@@ -44,7 +44,6 @@
     <br/>
     <strong>TODO Features:</strong>
     <ul>
-      <li>Evaluation of constant expressions (to support %if in the conditional branch inspection)</li>
       <li>Instruction operand validation</li>
       <li>Expanded instruction documentation</li>
       <li>[CLion only] Integration with the project model (support automatic flag detection for compiled files)</li>
