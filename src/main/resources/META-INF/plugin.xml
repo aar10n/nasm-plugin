@@ -39,7 +39,6 @@
     <ul>
       <li>Native debugger integration (GDB/LLDB) with breakpoint and expression evaluation support</li>
       <li>Bidirectional cross-language navigation between NASM and C/C++ code</li>
-      <li>Automatic include path detection from compile_commands.json</li>
     </ul>
     <br/>
     <strong>TODO Features:</strong>
