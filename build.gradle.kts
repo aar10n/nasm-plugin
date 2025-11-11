@@ -5,8 +5,8 @@ plugins {
     id("org.jetbrains.grammarkit") version "2022.3.2.2"
 }
 
-group = "dev.agb.nasmplugin"
-version = "1.0.1"
+group = property("pluginGroup").toString()
+version = property("pluginVersion").toString()
 
 repositories {
     mavenCentral()
@@ -43,8 +43,8 @@ kotlin {
 
 intellijPlatform {
     pluginConfiguration {
-        name = "Enhanced NASM Assembly Support"
-        version = "1.0.1"
+        name = property("pluginName").toString()
+        version = property("pluginVersion").toString()
 
         ideaVersion {
             sinceBuild = "252"
