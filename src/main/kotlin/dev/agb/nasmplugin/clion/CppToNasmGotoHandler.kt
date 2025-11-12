@@ -24,17 +24,23 @@ class CppToNasmGotoHandler : GotoDeclarationHandler {
     ): Array<PsiElement>? {
         sourceElement ?: return null
 
-        // Only handle C/C++ declarators
-        val declarator = sourceElement.parent as? OCDeclarator
-            ?: PsiTreeUtil.getParentOfType(sourceElement, OCDeclarator::class.java)
-            ?: return null
+        // Only handle C/C++ declarators where we're clicking on the name identifier itself
+        // This prevents matching when clicking on function calls or references
+        val declarator = sourceElement.parent as? OCDeclarator ?: return null
 
-        // Check if this is an extern declaration (has no body)
-        if (!isExternDeclaration(declarator)) {
+        // Verify that the clicked element is actually the name identifier of this declarator
+        // This ensures we're clicking on the declaration itself, not just somewhere inside it
+        if (declarator.nameIdentifier != sourceElement) {
             return null
         }
 
-        val symbolName = declarator.name
+        // Check if this is an extern declaration (has no body)
+        // Also skip declarators with initializers
+        if (!isExternDeclaration(declarator) || hasInitializer(declarator)) {
+            return null
+        }
+
+        val symbolName = declarator.name ?: return null
 
         // Search for matching NASM label definitions
         val nasmLabels = findNasmGlobalLabels(symbolName, declarator.project)
@@ -49,20 +55,79 @@ class CppToNasmGotoHandler : GotoDeclarationHandler {
     /**
      * Checks if a C/C++ declarator is an extern declaration.
      *
-     * In CIDR PSI, extern declarations typically don't have a definition body.
-     * This heuristic checks if the declarator has no associated definition.
+     * Only matches:
+     * 1. Explicit extern declarations (e.g., extern int foo;)
+     * 2. Function prototypes at file scope
+     *
+     * Does NOT match:
+     * - Local variables (with or without initializers)
+     * - Struct/class members
+     * - Function parameters
+     * - Function definitions with bodies
      */
     private fun isExternDeclaration(declarator: OCDeclarator): Boolean {
-        // Check the declaration text for 'extern' keyword
-        val declarationText = declarator.text
-        if (declarationText.contains("extern")) {
+        val parent = declarator.parent
+        val declarationText = parent?.text ?: declarator.text
+
+        // Check for explicit 'extern' keyword - this is the most reliable
+        if (declarationText.contains(Regex("\\bextern\\b"))) {
             return true
         }
 
-        // Additional heuristic: if it's a function declarator without a body
-        // (ends with semicolon in the containing statement)
+        // For everything else, we need to be very conservative
+        // Only accept function declarations (they have parentheses in their signature)
+        // and reject everything else to avoid false positives with local variables
+
+        // Check if this is a function declarator (has parameters)
+        // Function declarators contain '(' after the name
+        val isFunction = try {
+            declarator.text.contains("(") || declarationText.contains(Regex("\\w+\\s*\\("))
+        } catch (e: Exception) {
+            false
+        }
+
+        // Only proceed if it's a function
+        if (!isFunction) {
+            return false
+        }
+
+        // Function prototypes end with semicolon and have no body
+        if (declarationText.trimEnd().endsWith(";") && !declarationText.contains("{")) {
+            return true
+        }
+
+        return false
+    }
+
+    /**
+     * Checks if a declarator has an initializer (assignment).
+     * Uses both CIDR API and text-based heuristics for robustness.
+     */
+    private fun hasInitializer(declarator: OCDeclarator): Boolean {
+        // Try CIDR API first - check if there's an initializer child
+        try {
+            val init = declarator.initializer
+            if (init != null) {
+                return true
+            }
+        } catch (e: Throwable) {
+            // Silently continue to text-based check
+        }
+
+        // Fallback: check the surrounding text for '=' sign
         val parent = declarator.parent
-        return parent?.text?.trimEnd()?.endsWith(";") == true
+        val text = parent?.text ?: declarator.text
+
+        // Look for assignment after the declarator name
+        val nameIdentifier = declarator.nameIdentifier
+        if (nameIdentifier != null) {
+            val textAfterName = text.substring(nameIdentifier.startOffsetInParent + nameIdentifier.textLength)
+            if (textAfterName.contains(Regex("\\s*="))) {
+                return true
+            }
+        }
+
+        return false
     }
 
     /**
