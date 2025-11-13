@@ -2,12 +2,17 @@ package dev.agb.nasmplugin.clion
 
 import com.intellij.psi.search.searches.ReferencesSearch
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
+import com.jetbrains.cidr.lang.psi.OCFile
 import dev.agb.nasmplugin.psi.*
 
 /**
  * Tests for cross-language find usages between NASM and C++.
  * Tests that finding usages of C++ symbols includes NASM extern references,
  * and finding usages of NASM globals includes C++ extern declarations.
+ *
+ * NOTE: These tests focus on NASM-side functionality (extern/global declarations, references).
+ * Full cross-language find usages requires a real CLion environment with initialized CIDR
+ * workspace. These tests verify the NASM plugin's infrastructure is in place.
  */
 class CrossLanguageFindUsagesTest : BasePlatformTestCase() {
 

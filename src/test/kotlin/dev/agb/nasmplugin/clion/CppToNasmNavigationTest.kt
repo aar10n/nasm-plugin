@@ -1,11 +1,17 @@
 package dev.agb.nasmplugin.clion
 
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
+import com.jetbrains.cidr.lang.psi.OCFile
 import dev.agb.nasmplugin.psi.*
 
 /**
  * Tests for navigation from C++ extern declarations to NASM global symbols.
  * Tests the CppToNasmGotoHandler and related cross-language navigation features.
+ *
+ * NOTE: These tests focus on NASM-side functionality (global declarations, symbol parsing).
+ * Full C++/CIDR integration (OCFile parsing, cross-language navigation) requires a real
+ * CLion environment with initialized CIDR workspace, which is not available in these
+ * lightweight unit tests.
  */
 class CppToNasmNavigationTest : BasePlatformTestCase() {
 
@@ -38,6 +44,7 @@ class CppToNasmNavigationTest : BasePlatformTestCase() {
 
         // Verify the C++ file is created
         assertNotNull("CPP file should be created", cppFile)
+        // Note: In a real CLion environment, cppFile would be instanceof OCFile
     }
 
     fun testNasmGlobalLabelIsFoundInProject() {

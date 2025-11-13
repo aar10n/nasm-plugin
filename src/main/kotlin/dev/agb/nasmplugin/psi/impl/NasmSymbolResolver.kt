@@ -144,12 +144,15 @@ object NasmSymbolResolver {
     }
 
     /**
-     * Resolves a command-line macro from project settings.
+     * Resolves a command-line macro from project settings or compilation database.
+     * This integrates both global macros (from settings) and per-file macros (from compilation database).
      */
     private fun resolveCommandLineMacro(name: String, file: PsiFile): PsiElement? {
         val project = file.project
         val provider = CommandLineMacroProvider.getInstance(project)
-        val macro = provider.findMacroByName(name) ?: return null
+        // Pass the virtual file to enable per-file macro resolution
+        val virtualFile = file.virtualFile ?: file.originalFile?.virtualFile
+        val macro = provider.findMacroByName(name, virtualFile) ?: return null
         return NasmCommandLineMacroElement(macro, file)
     }
 }

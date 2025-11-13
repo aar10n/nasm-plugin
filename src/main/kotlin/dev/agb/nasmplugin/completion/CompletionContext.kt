@@ -44,7 +44,8 @@ sealed class CompletionContext {
             NasmCompletionVariantBuilder.VariantType.LABELS,
             NasmCompletionVariantBuilder.VariantType.EQU_CONSTANTS,
             NasmCompletionVariantBuilder.VariantType.SINGLE_LINE_MACROS,
-            NasmCompletionVariantBuilder.VariantType.ASSIGNS
+            NasmCompletionVariantBuilder.VariantType.ASSIGNS,
+            NasmCompletionVariantBuilder.VariantType.COMMAND_LINE_MACROS
         )
         override val userSymbolPriority = 92.0
         override val showRegisters = true
@@ -96,6 +97,7 @@ sealed class CompletionContext {
             NasmCompletionVariantBuilder.VariantType.SINGLE_LINE_MACROS,
             NasmCompletionVariantBuilder.VariantType.MULTI_LINE_MACROS,
             NasmCompletionVariantBuilder.VariantType.ASSIGNS,
+            NasmCompletionVariantBuilder.VariantType.COMMAND_LINE_MACROS,
             NasmCompletionVariantBuilder.VariantType.EXTERNS
         )
         override val userSymbolPriority = 105.0  // Higher priority for macros at line start

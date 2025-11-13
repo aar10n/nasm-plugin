@@ -39,18 +39,40 @@
     <ul>
       <li>Native debugger integration (GDB/LLDB) with breakpoint and expression evaluation support</li>
       <li>Bidirectional cross-language navigation between NASM and C/C++ code</li>
+      <li>Project model integration: automatic discovery of compiled NASM files in Makefile, CMake, and Compilation Database projects</li>
     </ul>
     <br/>
     <strong>TODO Features:</strong>
     <ul>
       <li>Instruction operand validation</li>
       <li>Expanded instruction documentation</li>
-      <li>[CLion only] Integration with the project model (support automatic flag detection for compiled files)</li>
+      <li>Inspections for 16/32 bit modes</li>
     </ul>
     ]]></description>
 
     <!-- Change notes for the current version. -->
     <change-notes><![CDATA[
+    <h3>1.1.0</h3>
+
+    <h4>CLion Features</h4>
+    <ul>
+        <li>Project Model Integration
+            <p>
+                Added integration with all major project models including Makefile,
+                CMake and Compliation Database projects. The plugin will discover all
+                compiled NASM files and provide the "Show Compiler Info" action for
+                those files in addition to providing the include paths and macros for
+                each file from the command line flags.
+            </p>
+        </li>
+    </ul>
+
+    <h4>Fixes</h4>
+    <ul>
+        <li>Fixed hover popup for symbols used in an instruction line</li>
+        <li>[CLion] Fixed NASM<->C/C++ references to not include irrelevant declarations</li>
+    </ul>
+
     <h3>1.0.0 - Initial Release</h3>
 
     <h4>Core Features</h4>

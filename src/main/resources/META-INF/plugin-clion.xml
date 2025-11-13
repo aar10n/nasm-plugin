@@ -35,4 +35,47 @@
         <!-- Register NASM file type as supporting line breakpoints -->
         <lineBreakpointFileTypesProvider implementation="dev.agb.nasmplugin.clion.NasmLineBreakpointFileTypesProvider"/>
     </extensions>
+
+    <!-- Project Model Integration -->
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Project model-based include path resolver (overrides fallback resolver) -->
+        <projectService
+                serviceInterface="dev.agb.nasmplugin.navigation.NasmIncludePathResolver"
+                serviceImplementation="dev.agb.nasmplugin.clion.projectmodel.ProjectModelIncludePathResolver"
+                overrides="true"/>
+    </extensions>
+
+    <!-- Project Listeners -->
+    <projectListeners>
+        <!-- Listen for CLion workspace changes (e.g., "Reload CMake/Makefile Project") -->
+        <listener
+                class="dev.agb.nasmplugin.clion.projectmodel.NasmWorkspaceListener"
+                topic="com.jetbrains.cidr.project.workspace.CidrWorkspaceListener"/>
+
+        <!-- Listen for instantaneous workspace state changes to trigger re-analysis -->
+        <listener
+                class="dev.agb.nasmplugin.clion.projectmodel.CidrWorkspaceInstantaneousListener"
+                topic="com.jetbrains.cidr.project.workspace.CidrWorkspaceInstantaneousStateChangeListener"/>
+    </projectListeners>
+
+    <!-- Actions -->
+    <actions>
+        <!-- Show Compiler Info action -->
+        <action id="NASM.ShowCompilerInfo"
+                class="dev.agb.nasmplugin.clion.ShowNasmCompilerInfoAction"
+                text="Show Compiler Info"
+                description="Show compilation information for this NASM file"
+                icon="AllIcons.Actions.Properties">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+
+        <!-- Reload NASM Project Model action -->
+        <action id="NASM.ReloadProjectModel"
+                class="dev.agb.nasmplugin.clion.ReloadNasmProjectModelAction"
+                text="Reload NASM Project Model"
+                description="Re-analyze NASM compilation information from build system"
+                icon="AllIcons.Actions.Refresh">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>

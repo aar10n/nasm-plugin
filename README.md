@@ -16,14 +16,13 @@ A JetBrains IDE plugin providing comprehensive IDE support for NASM x86_64 assem
 - **Preprocessor**: Full support for macros, conditionals, includes, and command-line defines
 - **Inspections**: Unused symbols, inactive preprocessor branches, macro redefinitions
 - **Structure View**: Hierarchical outline of sections, macros, and labels
-- **CLion Integration**: Native debugger support (GDB/LLDB) and bidirectional C/C++ cross-language navigation
+- **CLion Integration**: Project model integration, native debugger support (GDB/LLDB) and bidirectional C/C++ cross-language navigation
 
 ## TODO Features
 
 - **Instruction Operand Validation**: Validate operand types and counts for instructions
 - **Expanded Instruction Documentation**: Add documentation for more instructions
 - **16-bit and 32-bit Validation**: Enforce bitness-specific rules and instructions
-- **[CLion] Project Model Integration**: Automatically detect compilation flags and include paths from CMake and Makefiles
 
 ## Supported IDEs
 

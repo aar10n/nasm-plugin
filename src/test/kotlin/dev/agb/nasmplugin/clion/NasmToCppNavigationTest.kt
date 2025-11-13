@@ -10,6 +10,11 @@ import dev.agb.nasmplugin.psi.*
 /**
  * Tests for navigation from NASM extern declarations to C++ function declarations.
  * Tests the NasmToCppGotoHandler and related cross-language navigation features.
+ *
+ * NOTE: These tests focus on NASM-side functionality (extern declarations, symbol parsing).
+ * Full C++/CIDR integration (OCFile parsing, cross-language navigation) requires a real
+ * CLion environment with initialized CIDR workspace, which is not available in these
+ * lightweight unit tests. For manual testing of full integration, see docs/TESTING.md.
  */
 class NasmToCppNavigationTest : BasePlatformTestCase() {
 
@@ -160,7 +165,7 @@ class NasmToCppNavigationTest : BasePlatformTestCase() {
     }
 
     fun testCppFileTypeIsRecognized() {
-        // Verify that .cpp files are recognized as OCFile
+        // Verify that .cpp files are created correctly
         val cppFile = myFixture.addFileToProject(
             "test.cpp",
             """
@@ -168,10 +173,11 @@ class NasmToCppNavigationTest : BasePlatformTestCase() {
             """.trimIndent()
         )
 
-        // In CLion environment, this should be an OCFile
-        // In basic test environment, it's at least a valid PsiFile
         assertNotNull("CPP file should be created", cppFile)
         assertEquals("Should have .cpp extension", "cpp", cppFile.virtualFile.extension)
+
+        // Note: In a real CLion environment with CIDR workspace initialized,
+        // C++ files would be parsed as OCFile. In unit tests, this is not guaranteed.
     }
 
     fun testHeaderFileWithExternDeclaration() {

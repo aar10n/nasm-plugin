@@ -37,13 +37,7 @@ class NasmDocumentationProvider : AbstractDocumentationProvider() {
                 return current
             }
 
-            // Check if we're in an instruction before checking for macro definitions
-            // This ensures instruction documentation takes priority inside macro bodies
-            if (current is NasmInstruction) {
-                return current
-            }
-
-            // Only show instruction documentation if we're on the mnemonic itself
+            // Check if we're on the mnemonic itself first (before checking for instruction)
             if (current is dev.agb.nasmplugin.psi.NasmMnemonic) {
                 // Return the parent instruction for documentation
                 val parent = current.parent
@@ -67,7 +61,8 @@ class NasmDocumentationProvider : AbstractDocumentationProvider() {
                 return current
             }
 
-            // Check if this is a reference to a macro - resolve it to show the definition
+            // Check if this is a reference to a macro/symbol - resolve it to show the definition
+            // This must come BEFORE the NasmInstruction check so operands get priority over instructions
             if (type == NasmTypes.IDENTIFIER) {
                 val reference = current.reference
                 if (reference != null) {
@@ -77,7 +72,20 @@ class NasmDocumentationProvider : AbstractDocumentationProvider() {
                         resolved is NasmPpAssignStmt || resolved is NasmCommandLineMacroElement) {
                         return resolved
                     }
+                    // If it resolves to an EQU definition, show docs for it
+                    if (resolved is NasmEquDefinition) {
+                        return resolved
+                    }
                 }
+                // If we're on an identifier (operand), don't show instruction documentation
+                // Return null to show no docs rather than walking up to the instruction parent
+                return null
+            }
+
+            // Check if we're in an instruction (but only after checking for identifier references)
+            // This ensures operand documentation takes priority over instruction documentation
+            if (current is NasmInstruction) {
+                return current
             }
 
             current = current.parent

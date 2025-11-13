@@ -153,7 +153,8 @@ object NasmCompletionVariantBuilder {
     }
 
     /**
-     * Adds command-line macro variants from project settings.
+     * Adds command-line macro variants from project settings and compilation database.
+     * This includes both global macros and per-file macros from the project model.
      */
     private fun addCommandLineMacroVariants(
         list: MutableList<LookupElementBuilder>,
@@ -161,7 +162,10 @@ object NasmCompletionVariantBuilder {
     ) {
         val project = file.project
         val provider = CommandLineMacroProvider.getInstance(project)
-        val macros = provider.getCommandLineMacros()
+
+        // Pass the virtual file to get both global and per-file macros
+        val virtualFile = file.virtualFile ?: file.originalFile?.virtualFile
+        val macros = provider.getCommandLineMacros(virtualFile)
 
         macros.forEach { macro ->
             val builder = LookupElementBuilder.create(macro.name)

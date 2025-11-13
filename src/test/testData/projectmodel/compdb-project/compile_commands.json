@@ -1,0 +1,14 @@
+[
+  {
+    "directory": "/test/compdb-project",
+    "arguments": ["nasm", "-f", "elf64", "-g", "-DDEBUG=1", "-DVERSION=100", "-Iinclude", "src/main.asm", "-o", "main.o"],
+    "file": "/test/compdb-project/src/main.asm",
+    "output": "/test/compdb-project/main.o"
+  },
+  {
+    "directory": "/test/compdb-project",
+    "arguments": ["nasm", "-f", "elf64", "-g", "-DDEBUG=1", "-DVERSION=100", "-Iinclude", "src/helper.asm", "-o", "helper.o"],
+    "file": "/test/compdb-project/src/helper.asm",
+    "output": "/test/compdb-project/helper.o"
+  }
+]
